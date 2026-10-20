@@ -47,8 +47,10 @@ endif()
 
 set(NSMB_PREP_OUTPUTS
     "${NSMB_INPUT_DIR}/arm9.bin"
+    "${NSMB_INPUT_DIR}/arm9_runtime.bin"
     "${NSMB_INPUT_DIR}/arm7.bin"
     "${NSMB_INPUT_DIR}/arm9.toml"
+    "${NSMB_INPUT_DIR}/arm9_runtime.toml"
     "${NSMB_INPUT_DIR}/arm7.toml"
     "${NSMB_INPUT_DIR}/arm7_wram.toml"
     "${NSMB_INPUT_DIR}/arm9_itcm.toml")
@@ -75,11 +77,21 @@ file(GLOB NSMB_ARM9_SOURCES CONFIGURE_DEPENDS
 file(GLOB NSMB_ARM7_SOURCES CONFIGURE_DEPENDS
     "${NSMB_RECOMP_DIR}/*arm7*_[0-9][0-9].c"
     "${NSMB_RECOMP_DIR}/*arm7*_dispatch.c")
+# Include the new bank even on the first build, before the glob can see it.
+set(NSMB_RUNTIME_SOURCES
+    "${NSMB_RECOMP_DIR}/nsmb_arm9_runtime_00.c"
+    "${NSMB_RECOMP_DIR}/nsmb_arm9_runtime_01.c"
+    "${NSMB_RECOMP_DIR}/nsmb_arm9_runtime_02.c"
+    "${NSMB_RECOMP_DIR}/nsmb_arm9_runtime_03.c"
+    "${NSMB_RECOMP_DIR}/nsmb_arm9_runtime_dispatch.c")
+list(APPEND NSMB_ARM9_SOURCES ${NSMB_RUNTIME_SOURCES})
+list(REMOVE_DUPLICATES NSMB_ARM9_SOURCES)
 set(NSMB_BANK_SOURCES ${NSMB_ARM9_SOURCES} ${NSMB_ARM7_SOURCES})
 
 set(NSMB_BANKS_STAMP "${NSMB_RECOMP_DIR}/nsmb_banks.stamp")
 add_custom_command(
     OUTPUT "${NSMB_BANKS_STAMP}"
+    BYPRODUCTS ${NSMB_RUNTIME_SOURCES}
     COMMAND ${CMAKE_COMMAND} -E make_directory "${NSMB_RECOMP_DIR}"
     COMMAND "${NSMB_PYTHON}" "${CMAKE_CURRENT_SOURCE_DIR}/tools/emit_all_banks.py"
             --recompiler $<TARGET_FILE:nds_recompile>

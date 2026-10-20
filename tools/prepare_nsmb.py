@@ -12,6 +12,7 @@ import hashlib
 import json
 import pathlib
 import re
+import struct
 import sys
 
 try:
@@ -47,6 +48,37 @@ SECTION_RE = re.compile(
 )
 
 DS_MAIN_RAM_LIMIT = 0x02400000
+
+
+def extract_arm9_runtime(binary: bytes, load_address: int) -> tuple[int, bytes]:
+    """Read the SDK autoload table, retaining only its main-RAM code copy.
+
+    The source image is laid out before autoload. Compiling that entire image
+    at a shifted base also declares unrelated bytes as runtime instructions.
+    Use exactly the installed block instead; ITCM and DTCM are separate copies.
+    """
+    magic = struct.pack("<II", 0xDEC00621, 0x2106C0DE)
+    marker = binary.find(magic)
+    if marker < 28 or binary.find(magic, marker + 1) != -1:
+        raise ValueError("ARM9 must contain one SDK module-parameters signature")
+    table_start, table_end, source = struct.unpack_from("<III", binary, marker - 28)
+    first, last = table_start - load_address, table_end - load_address
+    if not (0 <= first <= last <= len(binary)) or (last - first) % 12:
+        raise ValueError("Invalid ARM9 autoload table bounds")
+    copies: list[tuple[int, bytes]] = []
+    for offset in range(first, last, 12):
+        destination, size, _bss = struct.unpack_from("<III", binary, offset)
+        source_offset = source - load_address
+        if not (0 <= source_offset <= len(binary)) or source_offset + size > len(binary):
+            raise ValueError("ARM9 autoload source is outside the image")
+        if size and 0x02000000 <= destination < DS_MAIN_RAM_LIMIT:
+            if destination + size > DS_MAIN_RAM_LIMIT:
+                raise ValueError("ARM9 autoload copy exceeds main RAM")
+            copies.append((destination, binary[source_offset:source_offset + size]))
+        source += size
+    if len(copies) != 1:
+        raise ValueError("Expected exactly one nonempty ARM9 main-RAM autoload copy")
+    return copies[0]
 
 
 def sha1(data: bytes) -> str:
@@ -257,6 +289,30 @@ def main() -> int:
         functions=functions,
         data_ranges=data_ranges,
         authoritative=True,
+    )
+
+    runtime_start, runtime = extract_arm9_runtime(arm9, arm9_start)
+    (out / "arm9_runtime.bin").write_bytes(runtime)
+    # These observed targets were attributed to the original image shifted
+    # by -0x87e0. They belong to the post-autoload main-RAM copy, not ITCM.
+    runtime_seeds = seeds_dir / "arm9_arm9_01ff7820.toml"
+    if runtime_seeds.is_file():
+        addresses = re.findall(r"^addr\s*=\s*(0x[0-9a-fA-F]+)",
+                               runtime_seeds.read_text(encoding="utf-8"), re.MULTILINE)
+        if any(not runtime_start <= int(addr, 16) < runtime_start + len(runtime)
+               for addr in addresses):
+            raise ValueError("Runtime seeds must stay inside the installed autoload block")
+    write_config(
+        out / "arm9_runtime.toml",
+        name=f"{info['title']} ARM9 post-autoload main RAM",
+        program_id=f"{program_slug}_arm9_runtime",
+        load_address=runtime_start,
+        entry_pc=runtime_start,
+        binary=runtime,
+        functions=[],
+        data_ranges=[],
+        extra_seeds_file=runtime_seeds,
+        authoritative=False,
     )
 
     write_config(

@@ -23,6 +23,15 @@ banks = [
         "flags": ["--stable-address-shards", "--max-function-bytes", "16384",
                   "--validate-live-bytes"],
     },
+    # Exact post-autoload main-RAM block. The original ARM9 bank remains
+    # authoritative and both variants must pass live-byte validation.
+    {
+        "bank": "nsmb_arm9_runtime",
+        "config": INPUTS_DIR / "arm9_runtime.toml",
+        "bin": INPUTS_DIR / "arm9_runtime.bin",
+        "shards": 4,
+        "flags": ["--validate-live-bytes"],
+    },
     # Main ARM7
     {
         "bank": "nsmb_arm7",
