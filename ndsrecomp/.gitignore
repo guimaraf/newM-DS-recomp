@@ -1,0 +1,73 @@
+# ───────────────────────────────────────────────────────────────────────────
+# Copyrighted dumps — NEVER commit. These are Nintendo's BIOS/firmware images
+# and the per-machine key; the build hash-verifies the owner's own dumps.
+# ───────────────────────────────────────────────────────────────────────────
+bios/*.rom
+bios/*.bin
+bios/*.ROM
+bios/*.cfg
+# (kept: bios/*.toml curated configs, bios/README.md)
+
+# ───────────────────────────────────────────────────────────────────────────
+# Derived-from-BIOS artifacts — recompiled BIOS C and Ghidra-extracted analysis
+# are derivative works of the copyrighted dumps; regenerated, never committed.
+# ───────────────────────────────────────────────────────────────────────────
+generated/*
+!generated/.gitkeep
+
+# Ghidra project state holds the disassembled BIOS programs (derivative) + is
+# large binary churn. Keep the scripts (ghidra/*.py, *.sh) and ghidra/README.md.
+ghidra/*.gpr
+ghidra/*.rep/
+ghidra/*.lock
+ghidra/*.lock~
+
+# ───────────────────────────────────────────────────────────────────────────
+# Oracle emulator clone — melonDS is GPLv3, kept out of the native build and
+# vendored locally by oracle/setup-melonds.sh. The oracle shim itself lives in
+# oracle/shim/ (tracked); only melonDS source edits ship as oracle/patches/*.
+# ───────────────────────────────────────────────────────────────────────────
+third_party/
+
+# ── Build trees ────────────────────────────────────────────────────────────
+build/
+build-*/
+build_*/
+*.o
+*.obj
+*.exe
+*.a
+*.lib
+
+# ── Runtime artifacts ──────────────────────────────────────────────────────
+*.log
+*.out
+*.err
+*.bmp
+dispatch_misses.log
+
+# Ad-hoc framebuffer captures produced while converging against the oracle.
+# Curated documentation images should use descriptive names without the
+# leading underscore and may be tracked explicitly.
+oracle/_*.png
+oracle/_*.ppm
+oracle/_*.rgb
+
+# ── Python ─────────────────────────────────────────────────────────────────
+__pycache__/
+*.pyc
+
+# ── Editor / OS cruft ──────────────────────────────────────────────────────
+.vs/
+.idea/
+.vscode/
+*.user
+.DS_Store
+Thumbs.db
+
+# third_party/ is vendored locally, EXCEPT the explicit freebios submodule.
+!third_party/freebios
+
+# Tier-2 toolchain downloads and test scratch
+/tools/_toolchain_cache/
+/runner/tests/live-index-lock-work/

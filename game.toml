@@ -1,0 +1,38 @@
+[game]
+name = "New Super Mario Bros."
+id = "A2DE"
+region = "USA"
+revision = 0
+status = "experimental recompilation"
+rom = "New Super Mario Bros. (USA).nds"
+rom_size = 0x02000000
+sha1 = "a22713711b5cd58dfbafc9688dadea66c59888ce"
+
+[display]
+screen_layout = "separate"
+supersampling = 1
+antialiasing = 0
+fps_limit = 60
+
+[system]
+startup_mode = "automatic"
+backup_type = "eeprom"
+backup_size = 0x2000
+
+[arm9]
+entry_pc = 0x02000800
+load_address = 0x02000000
+size = 0x0008E090
+
+[arm7]
+entry_pc = 0x02380000
+load_address = 0x02380000
+size = 0x000286A0
+
+[framework]
+path = "ndsrecomp"
+
+[decomp]
+url = "https://github.com/NSMB-Decomp/nsmb.git"
+upstream_region = "USA"
+target = "A2DE"

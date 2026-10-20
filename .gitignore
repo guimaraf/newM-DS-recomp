@@ -1,0 +1,45 @@
+# Nintendo DS ROMs, dumps e saves proprietários
+*.nds
+*.sav
+*.dsv
+dist-playable/
+/roms/
+
+# Artefatos de build locais
+/build/
+/build-*/
+build/
+build-*/
+*.exe
+*.dll
+*.a
+*.lib
+*.o
+*.obj
+*.pdb
+*.ilk
+.ninja_*
+build.ninja
+
+# Arquivos gerados a partir da ROM proprietária
+generated/recomp/
+generated/inputs/*.bin
+generated/inputs/overlays/*.bin
+
+# Logs de telemetria, profiling e coverage
+*.log
+*.jsonl
+*coverage*.json
+generated-identity.bin
+perf-results/
+
+# Arquivos de IDEs e ferramentas
+.vs/
+.vscode/
+.idea/
+*.user
+Thumbs.db
+.DS_Store
+__pycache__/
+*.pyc
+*.pyo

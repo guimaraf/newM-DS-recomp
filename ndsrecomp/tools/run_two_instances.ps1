@@ -1,0 +1,863 @@
+# run_two_instances.ps1 -- launch two ndsrecomp instances side by side for the
+# Nintendo WFC two-client milestone (beads-yjp.1.8).
+#
+# Instance A is INTERACTIVE (a real SDL window you play by hand).
+# Instance B is INTERACTIVE by default too, so a second person -- or the same
+# person on a second controller -- can drive it; pass -DriveB to run it headless
+# on the debug protocol instead.
+#
+# The two instances MUST have distinct console MACs, because Nintendo WFC
+# identity and DS friend codes derive from the MAC: two clients presenting the
+# same one appear to the service as a single console in two places and will not
+# match with each other. prepare_two_instance_saves.ps1 persists a separate
+# firmware image for each instance after the guest creates its WFC profile; this
+# launcher boots the firmware menu from the pristine dump, then installs that
+# prepared firmware into the in-memory SPI flash before MKDS reads its WFC
+# identity. No HLE, no ROM patch.
+#
+#   A: --instance-index 0 + prepared firmware profile
+#   B: --instance-index 1 + prepared firmware profile
+#
+# Run from the GAME worktree, after building with NDS_ENABLE_PCAP_BACKEND=ON:
+#
+#   powershell.exe -NoProfile -ExecutionPolicy Bypass -File ndsrecomp\tools\build_mkds_pcap_runner.ps1
+#
+# To initialize the default per-instance profiles before the owner-driven
+# Friend Roster run, prefer the guarded promotion path. It validates the
+# source pair through the prepared Wiimmfi two-login preflight before copying
+# into mkds_instance0/1.sav and mkds_instance0/1.firmware.bin:
+#
+#   powershell.exe -NoProfile -ExecutionPolicy Bypass -File ndsrecomp\tools\promote_prepared_profiles.ps1 -Force
+#
+# To regenerate fresh profiles instead, after closing any old owner windows
+# using mkds_instance0/1.sav, use ndsrecomp\tools\prepare_two_instance_saves.ps1 -Force.
+#
+# You can also bypass default promotion and launch directly from the proven
+# scratch profiles:
+#
+#   powershell.exe -NoProfile -ExecutionPolicy Bypass -File ndsrecomp\tools\run_two_instances.ps1 -UseKnownGoodScratchProfiles
+#
+# Rolling ring/framebuffer evidence starts automatically while driving the
+# Friend Roster attempt:
+#
+#   powershell.exe -NoProfile -ExecutionPolicy Bypass -File ndsrecomp\tools\run_two_instances.ps1
+#
+# By default the collector watches for 900 seconds, stops early only after
+# bidirectional peer UDP is proven AND you mark that both clients entered an
+# online race, and exits nonzero if that acceptance proof is never observed.
+# Pass -EvidenceWatchSeconds 0 only for a deliberate no-evidence launch.
+#
+# Before opening interactive windows, the launcher also proves the same
+# prepared save/firmware profiles can concurrently reach the authenticated
+# match setup menu. Pass -SkipLoginGatePreflight only for a deliberate fast
+# launch with weaker acceptance evidence.
+#
+#   powershell.exe -NoProfile -ExecutionPolicy Bypass -File ndsrecomp\tools\run_two_instances.ps1
+#
+# (pwsh / PowerShell 7 is NOT installed on this machine -- use powershell.exe.)
+#
+[CmdletBinding()]
+param(
+    [string] $GameRoot   = 'F:\Projects\ndsrecomp\mariokartdsrecomp',
+    [string] $BuildDir   = 'ndsrecomp\runner\build-mkds-pcap',
+    [string] $Rom        = 'Mario Kart DS.nds',
+    [string] $SavePrefix = 'mkds_instance',
+    [string] $FirmwarePrefix = 'mkds_instance',
+    [switch] $UseKnownGoodScratchProfiles,
+    [int]    $PortA      = 19860,
+    [int]    $PortB      = 19861,
+    [ValidateSet('slirp', 'pcap')]
+    [string] $NetworkBackend = 'pcap',
+    [string] $PcapAdapter = '',
+    [string] $WfcProvider = 'wiimmfi',
+    [switch] $DriveB,
+    [string] $PythonExe = '.venv\Scripts\python.exe',
+    [double] $EvidenceWatchSeconds = 900,
+    [double] $EvidenceStartupTimeoutSeconds = 30,
+    [double] $EvidenceInterval = 5,
+    [int] $EvidenceMaxPerKind = 4096,
+    [string] $EvidenceOutDir = '',
+    [string[]] $EvidenceStopOnVerdict = @(),
+    [string[]] $EvidenceRequireVerdict = @(
+        'direct_client_udp_bidirectional_observed'
+    ),
+    [string[]] $EvidenceStopOnAcceptance = @(
+        'race_entry_confirmed_with_bidirectional_peer_udp'
+    ),
+    [string[]] $EvidenceRequireAcceptance = @(
+        'race_entry_confirmed_with_bidirectional_peer_udp'
+    ),
+    [string] $EvidenceRaceEntryMarker = '',
+    [switch] $SkipSavePreflight,
+    [switch] $SkipPortPreflight,
+    [switch] $SkipNetworkRuntimePreflight,
+    [switch] $RunLoginGatePreflight,
+    [switch] $SkipLoginGatePreflight,
+    [string] $LoginGateOutDir = '',
+    [int] $LoginGateAttempts = 2,
+    [double] $LoginGateTimeoutSeconds = 900,
+    [double] $LoginGatePortReleaseTimeoutSeconds = 15,
+    [switch] $PreflightOnly
+)
+
+$ErrorActionPreference = 'Stop'
+Set-Location $GameRoot
+
+if ($UseKnownGoodScratchProfiles) {
+    $SavePrefix = 'scratch\m7-fwprobe-instance'
+    $FirmwarePrefix = 'scratch\m7-fwprobe-instance'
+}
+
+$exe = Join-Path $GameRoot (Join-Path $BuildDir 'nds_runner.exe')
+if (-not (Test-Path $exe)) {
+    throw (
+        "runner not found: $exe; build it with " +
+        "ndsrecomp\tools\build_mkds_pcap_runner.ps1 from the game worktree"
+    )
+}
+if (-not (Test-Path (Join-Path $GameRoot $Rom))) { throw "ROM not found: $Rom" }
+if ($PortA -lt 1 -or $PortA -gt 65535) { throw "-PortA must be in 1..65535" }
+if ($PortB -lt 1 -or $PortB -gt 65535) { throw "-PortB must be in 1..65535" }
+if ($PortA -eq $PortB) { throw "-PortA and -PortB must be different" }
+if ($EvidenceWatchSeconds -lt 0) { throw "-EvidenceWatchSeconds must be non-negative" }
+if ($EvidenceStartupTimeoutSeconds -lt 0) { throw "-EvidenceStartupTimeoutSeconds must be non-negative" }
+if ($EvidenceInterval -le 0) { throw "-EvidenceInterval must be positive" }
+if ($EvidenceMaxPerKind -lt 1 -or $EvidenceMaxPerKind -gt 4096) {
+    throw "-EvidenceMaxPerKind must be in 1..4096"
+}
+foreach ($status in $EvidenceStopOnVerdict) {
+    if ([string]::IsNullOrWhiteSpace($status)) {
+        throw "-EvidenceStopOnVerdict entries must be non-empty"
+    }
+}
+foreach ($status in $EvidenceRequireVerdict) {
+    if ([string]::IsNullOrWhiteSpace($status)) {
+        throw "-EvidenceRequireVerdict entries must be non-empty"
+    }
+}
+foreach ($status in $EvidenceStopOnAcceptance) {
+    if ([string]::IsNullOrWhiteSpace($status)) {
+        throw "-EvidenceStopOnAcceptance entries must be non-empty"
+    }
+}
+foreach ($status in $EvidenceRequireAcceptance) {
+    if ([string]::IsNullOrWhiteSpace($status)) {
+        throw "-EvidenceRequireAcceptance entries must be non-empty"
+    }
+}
+if ($LoginGateAttempts -lt 1) { throw "-LoginGateAttempts must be positive" }
+if ($LoginGateTimeoutSeconds -le 0) { throw "-LoginGateTimeoutSeconds must be positive" }
+if ($LoginGatePortReleaseTimeoutSeconds -lt 0) {
+    throw "-LoginGatePortReleaseTimeoutSeconds must be non-negative"
+}
+
+$ScriptRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
+
+function Resolve-GamePath {
+    param([string] $Path)
+
+    if ([System.IO.Path]::IsPathRooted($Path)) {
+        return $Path
+    }
+    return (Join-Path $GameRoot $Path)
+}
+
+function Format-PowerShellArg {
+    param([string] $Value)
+
+    return "'" + ($Value -replace "'", "''") + "'"
+}
+
+function Test-DebugPort {
+    param([int] $Port)
+
+    $client = New-Object System.Net.Sockets.TcpClient
+    try {
+        $async = $client.BeginConnect('127.0.0.1', $Port, $null, $null)
+        if (-not $async.AsyncWaitHandle.WaitOne(500, $false)) {
+            return $false
+        }
+        $client.EndConnect($async)
+        return $true
+    }
+    catch {
+        return $false
+    }
+    finally {
+        $client.Close()
+    }
+}
+
+function Wait-DebugPort {
+    param([int] $Port, [double] $TimeoutSeconds)
+
+    if ($TimeoutSeconds -eq 0) {
+        return (Test-DebugPort -Port $Port)
+    }
+
+    $deadline = (Get-Date).AddSeconds($TimeoutSeconds)
+    do {
+        if (Test-DebugPort -Port $Port) {
+            return $true
+        }
+        Start-Sleep -Milliseconds 250
+    } while ((Get-Date) -lt $deadline)
+
+    return $false
+}
+
+function Invoke-DebugCommand {
+    param([int] $Port, [hashtable] $Command, [int] $TimeoutMilliseconds = 30000)
+
+    $client = New-Object System.Net.Sockets.TcpClient
+    $client.ReceiveTimeout = $TimeoutMilliseconds
+    $client.SendTimeout = $TimeoutMilliseconds
+    try {
+        $client.Connect('127.0.0.1', $Port)
+        $stream = $client.GetStream()
+        $writer = New-Object System.IO.StreamWriter($stream)
+        $writer.NewLine = "`n"
+        $writer.AutoFlush = $true
+        $reader = New-Object System.IO.StreamReader($stream)
+        $writer.WriteLine(($Command | ConvertTo-Json -Compress))
+        $line = $reader.ReadLine()
+        if (-not $line) {
+            throw "debug server closed the connection"
+        }
+        $response = $line | ConvertFrom-Json
+        if ($response.error) {
+            throw "$($Command.cmd): $($response.error)"
+        }
+        return $response
+    }
+    finally {
+        $client.Close()
+    }
+}
+
+function Convert-FileToHex {
+    param([string] $Path)
+
+    $bytes = [System.IO.File]::ReadAllBytes($Path)
+    $builder = [System.Text.StringBuilder]::new($bytes.Length * 2)
+    foreach ($byte in $bytes) {
+        [void] $builder.Append($byte.ToString('x2'))
+    }
+    return $builder.ToString()
+}
+
+function Get-LogTail {
+    param([string] $Path, [int] $Lines = 80)
+
+    if (-not (Test-Path -LiteralPath $Path)) {
+        return ''
+    }
+    return ((Get-Content -LiteralPath $Path -Tail $Lines) -join [Environment]::NewLine)
+}
+
+function Assert-InstanceSaves {
+    if ($SkipSavePreflight) {
+        Write-Warning "skipping per-instance save preflight"
+        return
+    }
+
+    $saveHashes = @()
+    $firmwareHashes = @()
+    foreach ($index in 0, 1) {
+        $saveName = "${SavePrefix}${index}.sav"
+        $firmwareName = "${FirmwarePrefix}${index}.firmware.bin"
+        $savePath = Join-Path $GameRoot $saveName
+        $firmwarePath = Join-Path $GameRoot $firmwareName
+        if (-not (Test-Path -LiteralPath $savePath)) {
+            throw (
+                "missing prepared save: $savePath; run " +
+                "ndsrecomp\tools\promote_prepared_profiles.ps1 -Force after " +
+                "closing old owner windows, regenerate with " +
+                "ndsrecomp\tools\prepare_two_instance_saves.ps1 -Force, or " +
+                "launch with -SavePrefix scratch\m7-fwprobe-instance " +
+                "-FirmwarePrefix scratch\m7-fwprobe-instance for the " +
+                "known-good scratch profiles"
+            )
+        }
+        if (-not (Test-Path -LiteralPath $firmwarePath)) {
+            throw (
+                "missing prepared firmware image: $firmwarePath; run " +
+                "ndsrecomp\tools\promote_prepared_profiles.ps1 -Force after " +
+                "closing old owner windows, regenerate with " +
+                "ndsrecomp\tools\prepare_two_instance_saves.ps1 -Force, or " +
+                "launch with -SavePrefix scratch\m7-fwprobe-instance " +
+                "-FirmwarePrefix scratch\m7-fwprobe-instance for the " +
+                "known-good scratch profiles"
+            )
+        }
+        $saveInfo = Get-Item -LiteralPath $savePath
+        if ($saveInfo.Length -ne 262144) {
+            throw (
+                "unexpected save size for ${savePath}: $($saveInfo.Length) " +
+                "bytes, expected 262144 from prepare_two_instance_saves.ps1"
+            )
+        }
+        $firmwareInfo = Get-Item -LiteralPath $firmwarePath
+        if ($firmwareInfo.Length -ne 262144) {
+            throw (
+                "unexpected firmware size for ${firmwarePath}: " +
+                "$($firmwareInfo.Length) bytes, expected 262144 from " +
+                "prepare_two_instance_saves.ps1"
+            )
+        }
+        $saveHashes += (Get-FileHash -LiteralPath $savePath -Algorithm SHA1).Hash
+        $firmwareHashes += (Get-FileHash -LiteralPath $firmwarePath -Algorithm SHA1).Hash
+    }
+    if ($saveHashes[0] -eq $saveHashes[1]) {
+        throw (
+            "per-instance saves are byte-identical; run " +
+            "ndsrecomp\tools\promote_prepared_profiles.ps1 -Force or " +
+            "ndsrecomp\tools\prepare_two_instance_saves.ps1 -Force to create " +
+            "separate WFC identities before the Friend Roster attempt"
+        )
+    }
+    if ($firmwareHashes[0] -eq $firmwareHashes[1]) {
+        throw (
+            "per-instance firmware images are byte-identical; run " +
+            "ndsrecomp\tools\promote_prepared_profiles.ps1 -Force or " +
+            "ndsrecomp\tools\prepare_two_instance_saves.ps1 -Force to create " +
+            "separate WFC identities before the Friend Roster attempt"
+        )
+    }
+
+    Write-Host ("save/firmware preflight OK: {0}0/1.sav and {1}0/1.firmware.bin" -f $SavePrefix, $FirmwarePrefix) `
+        -ForegroundColor Green
+}
+
+function Assert-DebugPortsFree {
+    if ($SkipPortPreflight) {
+        Write-Warning "skipping debug-port preflight"
+        return
+    }
+
+    $busy = @()
+    foreach ($port in @($PortA, $PortB)) {
+        if (Test-DebugPort -Port $port) {
+            $busy += $port
+        }
+    }
+    if ($busy.Count -gt 0) {
+        throw (
+            "debug port(s) already accept connections: $($busy -join ', '); " +
+            "choose different -PortA/-PortB values or pass -SkipPortPreflight " +
+            "for an intentional shared-machine run"
+        )
+    }
+
+    Write-Host ("debug-port preflight OK: {0}, {1}" -f $PortA, $PortB) `
+        -ForegroundColor Green
+}
+
+function Wait-DebugPortsFree {
+    param([int] $PortA, [int] $PortB, [double] $TimeoutSeconds)
+
+    if ($SkipPortPreflight) {
+        Write-Warning "skipping debug-port release preflight"
+        return
+    }
+
+    $deadline = (Get-Date).AddSeconds($TimeoutSeconds)
+    do {
+        $busy = @()
+        foreach ($port in @($PortA, $PortB)) {
+            if (Test-DebugPort -Port $port) {
+                $busy += $port
+            }
+        }
+        if ($busy.Count -eq 0) {
+            Write-Host ("debug-port release OK: {0}, {1}" -f $PortA, $PortB) `
+                -ForegroundColor Green
+            return
+        }
+        if ($TimeoutSeconds -eq 0) { break }
+        Start-Sleep -Milliseconds 250
+    } while ((Get-Date) -lt $deadline)
+
+    throw (
+        "debug port(s) still accept connections after login preflight: " +
+        "$($busy -join ', ')"
+    )
+}
+
+function Assert-EvidenceCollectorPreflight {
+    if ($EvidenceWatchSeconds -le 0) { return }
+
+    $pythonPath = Resolve-GamePath $PythonExe
+    $collector = Join-Path $GameRoot 'ndsrecomp\tools\collect_two_instance_evidence.py'
+    if (-not (Test-Path -LiteralPath $pythonPath)) { throw "python not found: $pythonPath" }
+    if (-not (Test-Path -LiteralPath $collector)) { throw "collector not found: $collector" }
+
+    Write-Host "evidence collector preflight OK" -ForegroundColor Green
+}
+
+function Assert-NetworkRuntimePreflight {
+    if ($SkipNetworkRuntimePreflight) {
+        Write-Warning "skipping network runtime preflight"
+        return
+    }
+    if ($NetworkBackend -ne 'pcap') {
+        return
+    }
+
+    $stamp = Get-Date -Format 'yyyyMMdd-HHmmss'
+    $outLog = Join-Path $env:TEMP "nds_m7_pcap_preflight_$stamp.out.log"
+    $errLog = Join-Path $env:TEMP "nds_m7_pcap_preflight_$stamp.err.log"
+    $argv = @('ndsrecomp\bios', '--serve', '--port', "$PortA",
+              '--config', 'game.toml', '--rom', "`"$Rom`"",
+              '--no-save', '--startup-mode', 'manual',
+              '--network', 'on', '--network-backend', 'pcap',
+              '--wfc', 'on', '--wfc-provider', $WfcProvider,
+              '--instance-index', '0')
+    if ($PcapAdapter) { $argv += @('--pcap-adapter', $PcapAdapter) }
+
+    Write-Host "pcap runtime preflight: launching headless probe on port $PortA" `
+        -ForegroundColor Cyan
+    $p = Start-Process -FilePath $exe -ArgumentList $argv -PassThru `
+            -RedirectStandardOutput $outLog `
+            -RedirectStandardError  $errLog `
+            -WindowStyle Hidden
+    try {
+        if (-not (Wait-DebugPort -Port $PortA -TimeoutSeconds $EvidenceStartupTimeoutSeconds)) {
+            $exitText = if ($p.HasExited) { " exited with code $($p.ExitCode)" } else { '' }
+            throw (
+                "pcap preflight runner did not open debug port $PortA$exitText" +
+                [Environment]::NewLine + (Get-LogTail -Path $errLog)
+            )
+        }
+
+        $result = Invoke-DebugCommand -Port $PortA -Command @{
+            cmd = 'run_to_event'
+            event = 'vblank9'
+            count = 120
+        }
+        if (-not $result.reached -or $result.counts.vblank9 -ne 120) {
+            throw (
+                "pcap preflight failed to reach vblank9=120: " +
+                ($result | ConvertTo-Json -Compress)
+            )
+        }
+        $state = Invoke-DebugCommand -Port $PortA -Command @{ cmd = 'net_state' }
+        if ($state.capacity -lt 1) {
+            throw "pcap preflight returned invalid net_state"
+        }
+        $firmwarePath = Join-Path $GameRoot 'ndsrecomp\bios\firmware.bin'
+        if (-not (Test-Path -LiteralPath $firmwarePath)) {
+            throw "firmware_replace preflight firmware not found: $firmwarePath"
+        }
+        $replace = Invoke-DebugCommand -Port $PortA -Command @{
+            cmd = 'firmware_replace'
+            hex = (Convert-FileToHex -Path $firmwarePath)
+        } -TimeoutMilliseconds 120000
+        if (-not $replace.ok -or $replace.size -ne 262144) {
+            throw (
+                "firmware_replace preflight failed; rebuild the runner from " +
+                "current ndsrecomp before the owner-run launch: " +
+                ($replace | ConvertTo-Json -Compress)
+            )
+        }
+        Write-Host (
+            "pcap runtime preflight OK: vblank9={0} ring_capacity={1} firmware_replace={2}" -f `
+            $result.counts.vblank9, $state.capacity, $replace.size
+        ) -ForegroundColor Green
+    }
+    finally {
+        if ($p -and -not $p.HasExited) {
+            Stop-Process -Id $p.Id -Force
+            Wait-Process -Id $p.Id -Timeout 10 -ErrorAction SilentlyContinue
+        }
+    }
+}
+
+function Assert-TwoLoginGatePreflight {
+    if ($SkipLoginGatePreflight) {
+        Write-Warning "skipping two-login gate preflight"
+        return
+    }
+
+    $loginGate = Join-Path $ScriptRoot 'run_two_login_gate.ps1'
+    if (-not (Test-Path -LiteralPath $loginGate)) {
+        throw "two-login gate script not found: $loginGate"
+    }
+
+    $outDir = $LoginGateOutDir
+    if (-not $outDir) {
+        $stamp = Get-Date -Format 'yyyyMMdd-HHmmss'
+        $outDir = Join-Path $GameRoot (Join-Path 'generated\captures' "m7-login-preflight-$stamp")
+    }
+
+    $argv = @(
+        '-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', $loginGate,
+        '-GameRoot', $GameRoot,
+        '-BuildDir', $BuildDir,
+        '-Rom', $Rom,
+        '-SavePrefix', $SavePrefix,
+        '-FirmwarePrefix', $FirmwarePrefix,
+        '-PortA', "$PortA",
+        '-PortB', "$PortB",
+        '-NetworkBackend', $NetworkBackend,
+        '-WfcProvider', $WfcProvider,
+        '-PythonExe', $PythonExe,
+        '-PreparedProfile',
+        '-Attempts', "$LoginGateAttempts",
+        '-TimeoutSeconds', "$LoginGateTimeoutSeconds",
+        '-OutDir', $outDir
+    )
+    if ($PcapAdapter) {
+        $argv += @('-PcapAdapter', $PcapAdapter)
+    }
+
+    Write-Host "two-login preflight: proving prepared authenticated menus" `
+        -ForegroundColor Cyan
+    & powershell.exe @argv
+    if ($LASTEXITCODE -ne 0) {
+        throw "two-login preflight failed with exit code $LASTEXITCODE"
+    }
+
+    Wait-DebugPortsFree -PortA $PortA -PortB $PortB `
+        -TimeoutSeconds $LoginGatePortReleaseTimeoutSeconds
+}
+
+Assert-InstanceSaves
+Assert-DebugPortsFree
+Assert-EvidenceCollectorPreflight
+Assert-NetworkRuntimePreflight
+Assert-TwoLoginGatePreflight
+
+if ($PreflightOnly) {
+    Write-Host "preflight complete; no instances launched" -ForegroundColor Cyan
+    exit 0
+}
+
+# Never kill by process name -- other sessions and agents may own runners.
+# Only the PIDs this script starts are ours to stop.
+$existing = Get-CimInstance Win32_Process -Filter "Name='nds_runner.exe'" |
+            Select-Object ProcessId, CommandLine
+if ($existing) {
+    Write-Host "note: other nds_runner processes are already running; leaving them alone:" -ForegroundColor Yellow
+    $existing | ForEach-Object { Write-Host ("  pid {0}" -f $_.ProcessId) }
+}
+
+function Start-Instance {
+    param([string] $Label, [int] $Port, [int] $InstanceIndex, [switch] $Headless)
+
+    # Each instance MUST get its own cartridge save. Without --save-path the
+    # runner derives the save path from the ROM filename (main.cpp:923-930),
+    # so both instances -- launched from this one working directory -- opened,
+    # read and wrote the SAME "Mario Kart DS.sav".
+    #
+    # That was measured, not theorised: on 2026-08-11 a shared-save
+    # two-instance run had one instance complete WFC login while the other
+    # never got past the Wi-Fi Connection Setup menu, and re-running the same
+    # test with the saves separated had BOTH instances reach
+    # wfc_match_setup_screen with identical counters (vblank9=7600). See
+    # beads-yjp.1.15.
+    #
+    # It also undoes half the point of the per-instance MAC above: MKDS keeps
+    # its Nintendo WFC profile -- and the friend roster this script tells you
+    # to use -- in the cartridge save, so one shared save means one shared
+    # WFC identity no matter how distinct the two MACs are.
+    #
+    # Note --no-save would also separate them (and is what the scenario
+    # driver documents for scripted runs), but it is WRONG here: registering
+    # each instance as the other's friend has to persist across the session,
+    # and --no-save would discard it.
+    $save = "${SavePrefix}${InstanceIndex}.sav"
+    $argv = @('ndsrecomp\bios', '--config', 'game.toml', '--rom', "`"$Rom`"",
+              '--save-path', $save,
+              '--network', 'on', '--network-backend', $NetworkBackend,
+              '--wfc', 'on', '--wfc-provider', $WfcProvider,
+              '--port', "$Port", '--instance-index', "$InstanceIndex")
+    if ($PcapAdapter) { $argv += @('--pcap-adapter', $PcapAdapter) }
+    if ($Headless) { $argv += '--serve' } else { $argv += '--interactive' }
+
+    $p = Start-Process -FilePath $exe -ArgumentList $argv -PassThru `
+            -RedirectStandardOutput ("$env:TEMP\nds_$Label.out.log") `
+            -RedirectStandardError  ("$env:TEMP\nds_$Label.err.log")
+    Write-Host ("started {0}: pid {1}  port {2}  instance-index {3}  save {4}  {5}" -f `
+        $Label, $p.Id, $Port, $InstanceIndex, $save, $(if ($Headless) { 'headless' } else { 'interactive' })) `
+        -ForegroundColor Green
+    return $p
+}
+
+function Wait-DebugPorts {
+    param([int] $PortA, [int] $PortB)
+
+    if ($EvidenceStartupTimeoutSeconds -eq 0) {
+        return ((Test-DebugPort -Port $PortA) -and (Test-DebugPort -Port $PortB))
+    }
+
+    $deadline = (Get-Date).AddSeconds($EvidenceStartupTimeoutSeconds)
+    do {
+        if ((Test-DebugPort -Port $PortA) -and (Test-DebugPort -Port $PortB)) {
+            return $true
+        }
+        Start-Sleep -Milliseconds 250
+    } while ((Get-Date) -lt $deadline)
+
+    return $false
+}
+
+function Wait-FirmwareMenuReady {
+    param([int] $Port, [switch] $Headless)
+
+    if ($Headless) {
+        $hit = Invoke-DebugCommand -Port $Port -Command @{
+            cmd = 'run_to_event'
+            event = 'vblank9'
+            count = 120
+        } -TimeoutMilliseconds 120000
+        if (-not $hit.reached -or $hit.terminal) {
+            throw "headless instance on port $Port did not reach vblank9=120: $($hit | ConvertTo-Json -Compress)"
+        }
+        return
+    }
+
+    $deadline = (Get-Date).AddSeconds($EvidenceStartupTimeoutSeconds)
+    do {
+        $counts = Invoke-DebugCommand -Port $Port -Command @{ cmd = 'event_counts' }
+        if ($counts.vblank9 -ge 120) {
+            return
+        }
+        Start-Sleep -Milliseconds 250
+    } while ((Get-Date) -lt $deadline)
+
+    throw "interactive instance on port $Port did not reach firmware-menu vblank9>=120"
+}
+
+function Install-PreparedFirmware {
+    param([string] $Label, [int] $Port, [int] $InstanceIndex, [switch] $Headless)
+
+    $firmwareName = "${FirmwarePrefix}${InstanceIndex}.firmware.bin"
+    $firmwarePath = Join-Path $GameRoot $firmwareName
+    Wait-FirmwareMenuReady -Port $Port -Headless:$Headless
+    $hex = Convert-FileToHex -Path $firmwarePath
+    $result = Invoke-DebugCommand -Port $Port -Command @{
+        cmd = 'firmware_replace'
+        hex = $hex
+    } -TimeoutMilliseconds 120000
+    if (-not $result.ok -or $result.size -ne 262144) {
+        throw "firmware_replace failed for ${Label}: $($result | ConvertTo-Json -Compress)"
+    }
+    Write-Host ("installed prepared firmware for {0}: {1}" -f $Label, $firmwareName) `
+        -ForegroundColor Green
+}
+
+function Start-EvidenceCollector {
+    param([int] $PortA, [int] $PortB)
+
+    if ($EvidenceWatchSeconds -le 0) { return $null }
+
+    $pythonPath = Resolve-GamePath $PythonExe
+    $collector = Join-Path $GameRoot 'ndsrecomp\tools\collect_two_instance_evidence.py'
+    if (-not (Test-Path -LiteralPath $pythonPath)) { throw "python not found: $pythonPath" }
+    if (-not (Test-Path -LiteralPath $collector)) { throw "collector not found: $collector" }
+    if (-not (Wait-DebugPorts -PortA $PortA -PortB $PortB)) {
+        Write-Warning (
+            "debug ports $PortA and $PortB did not both accept connections " +
+            "within $EvidenceStartupTimeoutSeconds seconds; evidence collector not started"
+        )
+        return $null
+    }
+
+    $outDir = if ($EvidenceOutDir) {
+        if ([System.IO.Path]::IsPathRooted($EvidenceOutDir)) {
+            $EvidenceOutDir
+        } else {
+            Join-Path $GameRoot $EvidenceOutDir
+        }
+    } else {
+        $stamp = Get-Date -Format 'yyyyMMdd-HHmmss'
+        Join-Path $GameRoot (Join-Path 'generated\captures' "m7-two-instance-evidence-$stamp")
+    }
+    New-Item -ItemType Directory -Force -Path $outDir | Out-Null
+
+    $raceEntryMarker = if ($EvidenceRaceEntryMarker) {
+        if ([System.IO.Path]::IsPathRooted($EvidenceRaceEntryMarker)) {
+            $EvidenceRaceEntryMarker
+        } else {
+            Join-Path $GameRoot $EvidenceRaceEntryMarker
+        }
+    } else {
+        Join-Path $outDir 'race_entered.marker'
+    }
+    $postRunOutDir = Join-Path $outDir 'final-post-run'
+    $savedEvidencePath = Join-Path $outDir 'evidence.json'
+    $save0Path = Join-Path $GameRoot "${SavePrefix}0.sav"
+    $save1Path = Join-Path $GameRoot "${SavePrefix}1.sav"
+    $firmware0Path = Join-Path $GameRoot "${FirmwarePrefix}0.firmware.bin"
+    $firmware1Path = Join-Path $GameRoot "${FirmwarePrefix}1.firmware.bin"
+    $save0Hash = (Get-FileHash -LiteralPath $save0Path -Algorithm SHA1).Hash
+    $save1Hash = (Get-FileHash -LiteralPath $save1Path -Algorithm SHA1).Hash
+    $firmware0Hash = (Get-FileHash -LiteralPath $firmware0Path -Algorithm SHA1).Hash
+    $firmware1Hash = (Get-FileHash -LiteralPath $firmware1Path -Algorithm SHA1).Hash
+
+    $collectorOut = Join-Path $outDir 'collector.out.log'
+    $collectorErr = Join-Path $outDir 'collector.err.log'
+    $argv = @('-B', $collector,
+              '--port-a', "$PortA", '--port-b', "$PortB",
+              '--watch-seconds', "$EvidenceWatchSeconds",
+              '--interval', "$EvidenceInterval",
+              '--max-per-kind', "$EvidenceMaxPerKind",
+              '--out-dir', $outDir,
+              '--race-entry-marker', $raceEntryMarker)
+    foreach ($status in $EvidenceStopOnVerdict) {
+        $argv += @('--stop-on-verdict', $status)
+    }
+    foreach ($status in $EvidenceRequireVerdict) {
+        $argv += @('--require-verdict', $status)
+    }
+    foreach ($status in $EvidenceStopOnAcceptance) {
+        $argv += @('--stop-on-acceptance', $status)
+    }
+    foreach ($status in $EvidenceRequireAcceptance) {
+        $argv += @('--require-acceptance', $status)
+    }
+    $p = Start-Process -FilePath $pythonPath -WorkingDirectory $GameRoot `
+            -ArgumentList $argv -PassThru `
+            -RedirectStandardOutput $collectorOut `
+            -RedirectStandardError $collectorErr `
+            -WindowStyle Hidden
+    Write-Host ("started evidence collector: pid {0}  out {1}" -f $p.Id, $outDir) `
+        -ForegroundColor Green
+    Write-Host "  stdout: $collectorOut"
+    Write-Host "  stderr: $collectorErr"
+    Write-Host "  race-entry marker: $raceEntryMarker"
+    Write-Host "  after both clients enter the online race, mark acceptance with:"
+    Write-Host "    Set-Content -LiteralPath '$raceEntryMarker' -Value race-entered"
+    $postRunArgs = @(
+        '&',
+        (Format-PowerShellArg $pythonPath),
+        (Format-PowerShellArg $collector),
+        '--port-a', "$PortA",
+        '--port-b', "$PortB",
+        '--max-per-kind', "$EvidenceMaxPerKind",
+        '--out-dir', (Format-PowerShellArg $postRunOutDir),
+        '--race-entry-marker', (Format-PowerShellArg $raceEntryMarker)
+    )
+    foreach ($status in $EvidenceRequireVerdict) {
+        $postRunArgs += @('--require-verdict', (Format-PowerShellArg $status))
+    }
+    foreach ($status in $EvidenceRequireAcceptance) {
+        $postRunArgs += @('--require-acceptance', (Format-PowerShellArg $status))
+    }
+    $savedSummaryArgs = @(
+        '&',
+        (Format-PowerShellArg $pythonPath),
+        (Format-PowerShellArg $collector),
+        '--from-file',
+        (Format-PowerShellArg $savedEvidencePath)
+    )
+    foreach ($status in $EvidenceRequireVerdict) {
+        $savedSummaryArgs += @('--require-verdict', (Format-PowerShellArg $status))
+    }
+    foreach ($status in $EvidenceRequireAcceptance) {
+        $savedSummaryArgs += @('--require-acceptance', (Format-PowerShellArg $status))
+    }
+    $postRunCommand = $postRunArgs -join ' '
+    $savedSummaryCommand = $savedSummaryArgs -join ' '
+    $markerCommand = "Set-Content -LiteralPath '$raceEntryMarker' -Value race-entered"
+    $checklist = Join-Path $outDir 'M7_OPERATOR_CHECKLIST.txt'
+    @"
+ndsrecomp M7 Friend Roster acceptance checklist
+
+Run directory:
+  $outDir
+
+Instances:
+  A debug port: $PortA
+  B debug port: $PortB
+  A save: ${SavePrefix}0.sav
+    SHA1: $save0Hash
+  B save: ${SavePrefix}1.sav
+    SHA1: $save1Hash
+  A firmware: ${FirmwarePrefix}0.firmware.bin
+    SHA1: $firmware0Hash
+  B firmware: ${FirmwarePrefix}1.firmware.bin
+    SHA1: $firmware1Hash
+
+These hashes are duplicate-profile guards only. They are not MKDS friend codes.
+Read and exchange the actual 12-digit friend codes through the in-game Friend
+Roster UI.
+
+Friend-code worksheet:
+  A friend code as shown in A:
+
+  B friend code as shown in B:
+
+  Entered B's friend code into A: [ ]
+  Entered A's friend code into B: [ ]
+  Both games show the other instance in Friend Roster: [ ]
+
+Use Friend Roster, not public matchmaking.
+
+Operator steps:
+  1. In instance A, open the MKDS Friend Roster and read A's friend code.
+  2. In instance B, open the MKDS Friend Roster and read B's friend code.
+  3. Register A's friend code in B.
+  4. Register B's friend code in A.
+  5. Start a Friend Roster match between A and B.
+  6. When both clients visibly enter the online race, create the marker:
+     $markerCommand
+  7. If the rolling collector has not already stopped, run the final snapshot:
+     $postRunCommand
+  8. To summarize the saved rolling evidence after the collector exits, run:
+     $savedSummaryCommand
+
+Acceptance requires both:
+  direct_client_udp_bidirectional_observed
+  race_entry_confirmed_with_bidirectional_peer_udp
+
+Collector logs:
+  stdout: $collectorOut
+  stderr: $collectorErr
+  race-entry marker: $raceEntryMarker
+"@ | Set-Content -LiteralPath $checklist -Encoding ASCII
+    Write-Host "  final post-run validation snapshot:"
+    Write-Host ("    {0}" -f $postRunCommand)
+    Write-Host "  saved evidence summary after collector exits:"
+    Write-Host ("    {0}" -f $savedSummaryCommand)
+    Write-Host "  operator checklist: $checklist"
+    return $p
+}
+
+$a = Start-Instance -Label 'A' -Port $PortA -InstanceIndex 0
+$b = Start-Instance -Label 'B' -Port $PortB -InstanceIndex 1 -Headless:$DriveB
+if (-not (Wait-DebugPorts -PortA $PortA -PortB $PortB)) {
+    throw "debug ports $PortA and $PortB did not both accept connections within $EvidenceStartupTimeoutSeconds seconds"
+}
+Install-PreparedFirmware -Label 'A' -Port $PortA -InstanceIndex 0
+Install-PreparedFirmware -Label 'B' -Port $PortB -InstanceIndex 1 -Headless:$DriveB
+$collector = Start-EvidenceCollector -PortA $PortA -PortB $PortB
+
+Write-Host ''
+Write-Host 'Both instances are up. Logs:' -ForegroundColor Cyan
+Write-Host "  A: $env:TEMP\nds_A.{out,err}.log   (debug port $PortA)"
+Write-Host "  B: $env:TEMP\nds_B.{out,err}.log   (debug port $PortB)"
+Write-Host "  network: backend=$NetworkBackend provider=$WfcProvider"
+if ($PcapAdapter) { Write-Host "  pcap adapter: $PcapAdapter" }
+Write-Host ''
+Write-Host 'Suggested route -- use FRIEND ROSTER, not a public search:' -ForegroundColor Cyan
+Write-Host '  Each instance now has its own friend code (they derive from the MAC).'
+Write-Host '  Register each as the other''s friend, then connect via Friend Roster.'
+Write-Host '  That pairs the two instances directly instead of matchmaking with a'
+Write-Host '  real stranger who would suffer if we desync.'
+Write-Host ''
+if ($collector) {
+    Write-Host 'Rolling evidence collection is already running.' -ForegroundColor Cyan
+    Write-Host 'By default it exits nonzero unless bidirectional peer UDP and race entry are both proven; check collector.err.log after the run.'
+} else {
+    Write-Host 'During the attempt, collect rolling proof from both always-on rings:' -ForegroundColor Cyan
+    Write-Host '  .venv\Scripts\python.exe ndsrecomp\tools\collect_two_instance_evidence.py --watch-seconds 900 --interval 5'
+    Write-Host '  Add --race-entry-marker <path> and create that marker after both clients enter the race.'
+    Write-Host 'The launcher normally starts this automatically; this run used -EvidenceWatchSeconds 0 or could not start the collector.'
+}
+Write-Host 'For a final post-run snapshot, omit --watch-seconds/--interval.'
+Write-Host ''
+$ids = @($a.Id, $b.Id)
+if ($collector) { $ids += $collector.Id }
+Write-Host ('to stop: Stop-Process -Id {0}' -f ($ids -join ',')) -ForegroundColor DarkGray
