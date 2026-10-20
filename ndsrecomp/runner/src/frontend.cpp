@@ -1837,6 +1837,7 @@ int nds_run_interactive_frontend(const NdsFrontendOptions& options) {
     nds_set_touch(0, 0, false);
     bool running = true;
     bool compute_failed = false;
+    bool cpu_failed = false;
     bool mouse_down = false;
     bool touch_release_pending = false;
     uint32_t touch_frames_held = 0;
@@ -2758,8 +2759,8 @@ int nds_run_interactive_frontend(const NdsFrontendOptions& options) {
         const uint64_t next_frame =
             (now / kSystemCyclesPerFrame + 1u) * kSystemCyclesPerFrame;
         while (running && scheduler_system_timestamp() < next_frame &&
-               !(scheduler_cpu_terminal_halted(0) &&
-                 scheduler_cpu_terminal_halted(1))) {
+               !scheduler_cpu_terminal_halted(0) &&
+               !scheduler_cpu_terminal_halted(1)) {
             scheduler_run_round();
         }
         // A real DS power-off is an application lifecycle request, not a
@@ -2768,6 +2769,21 @@ int nds_run_interactive_frontend(const NdsFrontendOptions& options) {
         if (nds_powered_off()) {
             std::fprintf(stderr,
                          "[sdl] guest requested power-off; closing\n");
+            running = false;
+            break;
+        }
+        // A terminal CPU fault cannot complete this frame. In particular,
+        // ARM9 owns the system timestamp, so retrying would busy-spin before
+        // SDL_PollEvent and make the windows impossible to close.
+        if (scheduler_cpu_terminal_halted(0) ||
+            scheduler_cpu_terminal_halted(1)) {
+            for (int cpu = 0; cpu < 2; ++cpu) {
+                if (scheduler_cpu_terminal_halted(cpu))
+                    std::fprintf(stderr, "[sdl] ARM%d terminal halt: %s; closing\n",
+                                 cpu == 0 ? 9 : 7,
+                                 scheduler_cpu_halt_reason(cpu));
+            }
+            cpu_failed = true;
             running = false;
             break;
         }
@@ -2996,10 +3012,6 @@ int nds_run_interactive_frontend(const NdsFrontendOptions& options) {
         if (selftest_relative_mouse && relative_mouse_selftest_stage == 10)
             running = false;
 
-        if (scheduler_cpu_terminal_halted(0) &&
-            scheduler_cpu_terminal_halted(1)) {
-            SDL_Delay(8);
-        }
     }
 
     release_relative_mouse();
@@ -3102,7 +3114,7 @@ int nds_run_interactive_frontend(const NdsFrontendOptions& options) {
         std::fprintf(stderr, "[sdl] relative mouse self-test: %s\n",
                      relative_mouse_selftest_failed ? "FAIL" : "PASS");
     return (audio_failed || menu_selftest_failed ||
-            relative_mouse_selftest_failed || compute_failed) ? 1 : 0;
+            relative_mouse_selftest_failed || compute_failed || cpu_failed) ? 1 : 0;
 }
 
 #else

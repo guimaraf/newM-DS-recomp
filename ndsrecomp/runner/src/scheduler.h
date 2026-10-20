@@ -74,8 +74,8 @@ struct NdsSchedulerDebugState {
 };
 void scheduler_debug_state(NdsSchedulerDebugState* out);
 
-// Interleave both CPUs until ARM9 reaches `arm9_cycle_budget` or both CPUs
-// have terminally halted. ARM9 runs ~2× the cycles per round (clock ratio).
+// Interleave both CPUs until ARM9 reaches `arm9_cycle_budget` or either CPU
+// terminally halts. A guest HALT waiting for an IRQ is not a terminal halt.
 SchedResult scheduler_run(uint64_t arm9_cycle_budget);
 void scheduler_run_round();
 

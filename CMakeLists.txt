@@ -49,7 +49,10 @@ set(NSMB_PREP_OUTPUTS
     "${NSMB_INPUT_DIR}/arm9.bin"
     "${NSMB_INPUT_DIR}/arm7.bin"
     "${NSMB_INPUT_DIR}/arm9.toml"
-    "${NSMB_INPUT_DIR}/arm7.toml")
+    "${NSMB_INPUT_DIR}/arm7.toml"
+    "${NSMB_INPUT_DIR}/arm7_wram.toml"
+    "${NSMB_INPUT_DIR}/arm9_itcm.toml")
+file(GLOB NSMB_SEED_INPUTS CONFIGURE_DEPENDS "${NSMB_CONFIG_DIR}/seeds/*.toml")
 
 add_custom_command(
     OUTPUT ${NSMB_PREP_OUTPUTS}
@@ -62,65 +65,28 @@ add_custom_command(
         "${CMAKE_CURRENT_SOURCE_DIR}/tools/prepare_nsmb.py"
         "${NSMB_CONFIG_DIR}/symbols.txt"
         "${NSMB_CONFIG_DIR}/delinks.txt"
+        ${NSMB_SEED_INPUTS}
     COMMENT "Preparing NSMB DS code images and TOML manifests")
 add_custom_target(nsmb_prepare DEPENDS ${NSMB_PREP_OUTPUTS})
 
-set(NSMB_ARM9_SOURCES)
-foreach(shard RANGE 0 15)
-    if(shard LESS 10)
-        set(shard_name "0${shard}")
-    else()
-        set(shard_name "${shard}")
-    endif()
-    list(APPEND NSMB_ARM9_SOURCES
-        "${NSMB_RECOMP_DIR}/nsmb_arm9_${shard_name}.c")
-endforeach()
-list(APPEND NSMB_ARM9_SOURCES
-    "${NSMB_RECOMP_DIR}/nsmb_arm9_dispatch.c")
-
-set(NSMB_ARM7_SOURCES
-    "${NSMB_RECOMP_DIR}/nsmb_arm7_00.c"
-    "${NSMB_RECOMP_DIR}/nsmb_arm7_01.c"
-    "${NSMB_RECOMP_DIR}/nsmb_arm7_dispatch.c")
-
+file(GLOB NSMB_ARM9_SOURCES CONFIGURE_DEPENDS
+    "${NSMB_RECOMP_DIR}/*arm9*_[0-9][0-9].c"
+    "${NSMB_RECOMP_DIR}/*arm9*_dispatch.c")
+file(GLOB NSMB_ARM7_SOURCES CONFIGURE_DEPENDS
+    "${NSMB_RECOMP_DIR}/*arm7*_[0-9][0-9].c"
+    "${NSMB_RECOMP_DIR}/*arm7*_dispatch.c")
 set(NSMB_BANK_SOURCES ${NSMB_ARM9_SOURCES} ${NSMB_ARM7_SOURCES})
 
-set(NSMB_ARM9_STAMP "${NSMB_RECOMP_DIR}/nsmb_arm9.stamp")
+set(NSMB_BANKS_STAMP "${NSMB_RECOMP_DIR}/nsmb_banks.stamp")
 add_custom_command(
-    OUTPUT "${NSMB_ARM9_STAMP}"
-    BYPRODUCTS ${NSMB_ARM9_SOURCES}
-        "${NSMB_RECOMP_DIR}/nsmb_arm9.h"
+    OUTPUT "${NSMB_BANKS_STAMP}"
     COMMAND ${CMAKE_COMMAND} -E make_directory "${NSMB_RECOMP_DIR}"
-    COMMAND $<TARGET_FILE:nds_recompile>
-            --config "${NSMB_INPUT_DIR}/arm9.toml"
-            --bin "${NSMB_INPUT_DIR}/arm9.bin"
-            --out "${NSMB_RECOMP_DIR}"
-            --bank nsmb_arm9
-            --shards 16
-            --stable-address-shards
-            --max-function-bytes 16384
-    COMMAND ${CMAKE_COMMAND} -E touch "${NSMB_ARM9_STAMP}"
-    DEPENDS nds_recompile ${NSMB_PREP_OUTPUTS}
-    COMMENT "Statically recompiling NSMB ARM9 main module")
-list(APPEND NSMB_BANK_STAMPS "${NSMB_ARM9_STAMP}")
-
-set(NSMB_ARM7_STAMP "${NSMB_RECOMP_DIR}/nsmb_arm7.stamp")
-add_custom_command(
-    OUTPUT "${NSMB_ARM7_STAMP}"
-    BYPRODUCTS ${NSMB_ARM7_SOURCES}
-        "${NSMB_RECOMP_DIR}/nsmb_arm7.h"
-    COMMAND ${CMAKE_COMMAND} -E make_directory "${NSMB_RECOMP_DIR}"
-    COMMAND $<TARGET_FILE:nds_recompile>
-            --config "${NSMB_INPUT_DIR}/arm7.toml"
-            --bin "${NSMB_INPUT_DIR}/arm7.bin"
-            --out "${NSMB_RECOMP_DIR}"
-            --bank nsmb_arm7
-            --shards 2
-            --max-function-bytes 512
-    COMMAND ${CMAKE_COMMAND} -E touch "${NSMB_ARM7_STAMP}"
-    DEPENDS nds_recompile ${NSMB_PREP_OUTPUTS}
-    COMMENT "Statically recompiling NSMB ARM7 module")
-list(APPEND NSMB_BANK_STAMPS "${NSMB_ARM7_STAMP}")
+    COMMAND "${NSMB_PYTHON}" "${CMAKE_CURRENT_SOURCE_DIR}/tools/emit_all_banks.py"
+            --recompiler $<TARGET_FILE:nds_recompile>
+    COMMAND ${CMAKE_COMMAND} -E touch "${NSMB_BANKS_STAMP}"
+    DEPENDS nds_recompile ${NSMB_PREP_OUTPUTS} "${CMAKE_CURRENT_SOURCE_DIR}/tools/emit_all_banks.py"
+    COMMENT "Statically recompiling NSMB ARM9, ARM7, runtime WRAM/ITCM, and overlays")
+list(APPEND NSMB_BANK_STAMPS "${NSMB_BANKS_STAMP}")
 
 add_custom_target(nsmb_generate_banks DEPENDS ${NSMB_BANK_STAMPS})
 
@@ -138,7 +104,7 @@ target_include_directories(nsmb_recompiled_banks PRIVATE
     ${NDS_ARM_RECOMP_INCLUDE_DIRS})
 
 if(NOT MSVC)
-    target_compile_options(nsmb_recompiled_banks PRIVATE -w -O0 -g0)
+    target_compile_options(nsmb_recompiled_banks PRIVATE -w -O2 -g0)
 endif()
 
 # Native recomp-ui launcher

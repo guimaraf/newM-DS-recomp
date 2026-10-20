@@ -506,7 +506,7 @@ SchedResult scheduler_run(uint64_t budget) {
     uint64_t rounds = 0;
     uint64_t last9 = 0, stall = 0;
     while (g_slot[0].cycles < budget &&
-           !(g_slot[0].halted && g_slot[1].halted)) {
+           !g_slot[0].halted && !g_slot[1].halted) {
         scheduler_run_round();
         ++rounds;
         // Diagnostic: if ARM9 stops advancing for many rounds while ARM7
