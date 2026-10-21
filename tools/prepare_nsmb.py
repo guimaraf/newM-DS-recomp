@@ -14,6 +14,7 @@ import pathlib
 import re
 import struct
 import sys
+import tomllib
 
 try:
     import ndspy.codeCompression as code_compression
@@ -144,6 +145,39 @@ def parse_data_ranges(path: pathlib.Path, start: int, end: int) -> list[tuple[in
     return ranges
 
 
+def merge_bounded_interiors(
+    functions: list[dict[str, object]], path: pathlib.Path,
+) -> list[dict[str, object]]:
+    """Add observed continuations without enabling recursive image discovery.
+
+    An interior seed inherits its parent's mode and exclusive end. The
+    finder may stop earlier at a terminator, but can never walk past that
+    declared function into the pre-autoload image or the next function.
+    """
+    if not path.is_file():
+        return functions
+    owners = {(int(f['addr']), str(f['mode'])): f for f in functions}
+    result = dict(owners)
+    for seed in tomllib.loads(path.read_text(encoding='utf-8')).get('entry_point', []):
+        addr, size, owner = seed['addr'], seed['size'], seed['owner']
+        mode = seed['mode']
+        parent = owners.get((owner, mode))
+        if parent is None:
+            raise ValueError(f'Interior 0x{addr:08x} has no same-mode declared owner')
+        end = owner + int(parent['size'])
+        alignment = 2 if mode == 'thumb' else 4
+        if not (owner < addr < end and size > 0 and addr + size == end
+                and addr % alignment == 0 and size % alignment == 0):
+            raise ValueError(f'Interior 0x{addr:08x} exceeds or contradicts its exact owner bounds')
+        if (addr, mode) in owners:
+            raise ValueError(f'Interior 0x{addr:08x} collides with a declared function')
+        value = dict(addr=addr, size=size, mode=mode, name=f'resume_{addr:08x}')
+        if (addr, mode) in result and result[(addr, mode)] != value:
+            raise ValueError(f'Conflicting interior 0x{addr:08x}')
+        result[(addr, mode)] = value
+    return sorted(result.values(), key=lambda f: (int(f['addr']), str(f['mode'])))
+
+
 def write_config(
     path: pathlib.Path,
     *,
@@ -194,7 +228,7 @@ def write_config(
         )
     content = "\n".join(lines)
     if extra_seeds_file and extra_seeds_file.is_file():
-        content += "\n" + extra_seeds_file.read_text(encoding="utf-8") + "\n"
+        content += "\n" + extra_seeds_file.read_text(encoding="utf-8").rstrip() + "\n"
     path.write_text(content, encoding="utf-8", newline="\n")
 
 
@@ -233,7 +267,7 @@ def write_overlay_config(
     ]
     content = "\n".join(lines)
     if extra_seeds_file and extra_seeds_file.is_file():
-        content += "\n" + extra_seeds_file.read_text(encoding="utf-8") + "\n"
+        content += "\n" + extra_seeds_file.read_text(encoding="utf-8").rstrip() + "\n"
     path.write_text(content, encoding="utf-8", newline="\n")
 
 
@@ -275,8 +309,10 @@ def main() -> int:
 
     program_slug = f"nsmb_{info['region'].lower()}"
     seeds_dir = args.config_dir / "seeds"
+    functions = merge_bounded_interiors(functions, seeds_dir / 'arm9_main_interiors.toml')
 
-    # Only the exact decomp functions belong to the initial ARM9 image.
+    # Only exact decomp functions and their bounded continuations belong
+    # to the initial ARM9 image.
     # Autoload moves the tail of this image over its original addresses;
     # recursive discovery there would compile the pre-copy instructions.
     write_config(

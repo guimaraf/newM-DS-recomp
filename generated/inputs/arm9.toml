@@ -563,6 +563,606 @@ mode = "arm"
 name = "_ZN6Layout13drawCellSubExEPK9BNCL_CellS2_bPK7Vec2_32tllhm"
 
 [[entry_point]]
+addr = 0x02004370
+size = 0x1f4
+mode = "arm"
+name = "resume_02004370"
+
+[[entry_point]]
+addr = 0x02004374
+size = 0x1f0
+mode = "arm"
+name = "resume_02004374"
+
+[[entry_point]]
+addr = 0x0200437c
+size = 0x1e8
+mode = "arm"
+name = "resume_0200437c"
+
+[[entry_point]]
+addr = 0x02004380
+size = 0x1e4
+mode = "arm"
+name = "resume_02004380"
+
+[[entry_point]]
+addr = 0x02004384
+size = 0x1e0
+mode = "arm"
+name = "resume_02004384"
+
+[[entry_point]]
+addr = 0x02004388
+size = 0x1dc
+mode = "arm"
+name = "resume_02004388"
+
+[[entry_point]]
+addr = 0x0200438c
+size = 0x1d8
+mode = "arm"
+name = "resume_0200438c"
+
+[[entry_point]]
+addr = 0x02004390
+size = 0x1d4
+mode = "arm"
+name = "resume_02004390"
+
+[[entry_point]]
+addr = 0x02004394
+size = 0x1d0
+mode = "arm"
+name = "resume_02004394"
+
+[[entry_point]]
+addr = 0x02004398
+size = 0x1cc
+mode = "arm"
+name = "resume_02004398"
+
+[[entry_point]]
+addr = 0x0200439c
+size = 0x1c8
+mode = "arm"
+name = "resume_0200439c"
+
+[[entry_point]]
+addr = 0x020043a0
+size = 0x1c4
+mode = "arm"
+name = "resume_020043a0"
+
+[[entry_point]]
+addr = 0x020043a4
+size = 0x1c0
+mode = "arm"
+name = "resume_020043a4"
+
+[[entry_point]]
+addr = 0x020043a8
+size = 0x1bc
+mode = "arm"
+name = "resume_020043a8"
+
+[[entry_point]]
+addr = 0x020043ac
+size = 0x1b8
+mode = "arm"
+name = "resume_020043ac"
+
+[[entry_point]]
+addr = 0x020043b0
+size = 0x1b4
+mode = "arm"
+name = "resume_020043b0"
+
+[[entry_point]]
+addr = 0x020043d0
+size = 0x194
+mode = "arm"
+name = "resume_020043d0"
+
+[[entry_point]]
+addr = 0x020043d4
+size = 0x190
+mode = "arm"
+name = "resume_020043d4"
+
+[[entry_point]]
+addr = 0x020043dc
+size = 0x188
+mode = "arm"
+name = "resume_020043dc"
+
+[[entry_point]]
+addr = 0x020043e0
+size = 0x184
+mode = "arm"
+name = "resume_020043e0"
+
+[[entry_point]]
+addr = 0x020043e4
+size = 0x180
+mode = "arm"
+name = "resume_020043e4"
+
+[[entry_point]]
+addr = 0x020043e8
+size = 0x17c
+mode = "arm"
+name = "resume_020043e8"
+
+[[entry_point]]
+addr = 0x020043ec
+size = 0x178
+mode = "arm"
+name = "resume_020043ec"
+
+[[entry_point]]
+addr = 0x020043f0
+size = 0x174
+mode = "arm"
+name = "resume_020043f0"
+
+[[entry_point]]
+addr = 0x020043f4
+size = 0x170
+mode = "arm"
+name = "resume_020043f4"
+
+[[entry_point]]
+addr = 0x020043f8
+size = 0x16c
+mode = "arm"
+name = "resume_020043f8"
+
+[[entry_point]]
+addr = 0x020043fc
+size = 0x168
+mode = "arm"
+name = "resume_020043fc"
+
+[[entry_point]]
+addr = 0x02004400
+size = 0x164
+mode = "arm"
+name = "resume_02004400"
+
+[[entry_point]]
+addr = 0x02004404
+size = 0x160
+mode = "arm"
+name = "resume_02004404"
+
+[[entry_point]]
+addr = 0x02004408
+size = 0x15c
+mode = "arm"
+name = "resume_02004408"
+
+[[entry_point]]
+addr = 0x0200440c
+size = 0x158
+mode = "arm"
+name = "resume_0200440c"
+
+[[entry_point]]
+addr = 0x02004410
+size = 0x154
+mode = "arm"
+name = "resume_02004410"
+
+[[entry_point]]
+addr = 0x02004414
+size = 0x150
+mode = "arm"
+name = "resume_02004414"
+
+[[entry_point]]
+addr = 0x02004418
+size = 0x14c
+mode = "arm"
+name = "resume_02004418"
+
+[[entry_point]]
+addr = 0x0200441c
+size = 0x148
+mode = "arm"
+name = "resume_0200441c"
+
+[[entry_point]]
+addr = 0x02004420
+size = 0x144
+mode = "arm"
+name = "resume_02004420"
+
+[[entry_point]]
+addr = 0x02004424
+size = 0x140
+mode = "arm"
+name = "resume_02004424"
+
+[[entry_point]]
+addr = 0x02004428
+size = 0x13c
+mode = "arm"
+name = "resume_02004428"
+
+[[entry_point]]
+addr = 0x0200442c
+size = 0x138
+mode = "arm"
+name = "resume_0200442c"
+
+[[entry_point]]
+addr = 0x02004430
+size = 0x134
+mode = "arm"
+name = "resume_02004430"
+
+[[entry_point]]
+addr = 0x02004434
+size = 0x130
+mode = "arm"
+name = "resume_02004434"
+
+[[entry_point]]
+addr = 0x02004438
+size = 0x12c
+mode = "arm"
+name = "resume_02004438"
+
+[[entry_point]]
+addr = 0x0200443c
+size = 0x128
+mode = "arm"
+name = "resume_0200443c"
+
+[[entry_point]]
+addr = 0x02004440
+size = 0x124
+mode = "arm"
+name = "resume_02004440"
+
+[[entry_point]]
+addr = 0x02004444
+size = 0x120
+mode = "arm"
+name = "resume_02004444"
+
+[[entry_point]]
+addr = 0x02004448
+size = 0x11c
+mode = "arm"
+name = "resume_02004448"
+
+[[entry_point]]
+addr = 0x0200444c
+size = 0x118
+mode = "arm"
+name = "resume_0200444c"
+
+[[entry_point]]
+addr = 0x02004450
+size = 0x114
+mode = "arm"
+name = "resume_02004450"
+
+[[entry_point]]
+addr = 0x02004454
+size = 0x110
+mode = "arm"
+name = "resume_02004454"
+
+[[entry_point]]
+addr = 0x02004458
+size = 0x10c
+mode = "arm"
+name = "resume_02004458"
+
+[[entry_point]]
+addr = 0x0200445c
+size = 0x108
+mode = "arm"
+name = "resume_0200445c"
+
+[[entry_point]]
+addr = 0x02004460
+size = 0x104
+mode = "arm"
+name = "resume_02004460"
+
+[[entry_point]]
+addr = 0x02004464
+size = 0x100
+mode = "arm"
+name = "resume_02004464"
+
+[[entry_point]]
+addr = 0x02004468
+size = 0xfc
+mode = "arm"
+name = "resume_02004468"
+
+[[entry_point]]
+addr = 0x0200446c
+size = 0xf8
+mode = "arm"
+name = "resume_0200446c"
+
+[[entry_point]]
+addr = 0x02004470
+size = 0xf4
+mode = "arm"
+name = "resume_02004470"
+
+[[entry_point]]
+addr = 0x02004474
+size = 0xf0
+mode = "arm"
+name = "resume_02004474"
+
+[[entry_point]]
+addr = 0x02004478
+size = 0xec
+mode = "arm"
+name = "resume_02004478"
+
+[[entry_point]]
+addr = 0x0200447c
+size = 0xe8
+mode = "arm"
+name = "resume_0200447c"
+
+[[entry_point]]
+addr = 0x02004480
+size = 0xe4
+mode = "arm"
+name = "resume_02004480"
+
+[[entry_point]]
+addr = 0x02004484
+size = 0xe0
+mode = "arm"
+name = "resume_02004484"
+
+[[entry_point]]
+addr = 0x02004488
+size = 0xdc
+mode = "arm"
+name = "resume_02004488"
+
+[[entry_point]]
+addr = 0x0200448c
+size = 0xd8
+mode = "arm"
+name = "resume_0200448c"
+
+[[entry_point]]
+addr = 0x02004490
+size = 0xd4
+mode = "arm"
+name = "resume_02004490"
+
+[[entry_point]]
+addr = 0x02004494
+size = 0xd0
+mode = "arm"
+name = "resume_02004494"
+
+[[entry_point]]
+addr = 0x02004498
+size = 0xcc
+mode = "arm"
+name = "resume_02004498"
+
+[[entry_point]]
+addr = 0x0200449c
+size = 0xc8
+mode = "arm"
+name = "resume_0200449c"
+
+[[entry_point]]
+addr = 0x020044a0
+size = 0xc4
+mode = "arm"
+name = "resume_020044a0"
+
+[[entry_point]]
+addr = 0x020044a4
+size = 0xc0
+mode = "arm"
+name = "resume_020044a4"
+
+[[entry_point]]
+addr = 0x020044a8
+size = 0xbc
+mode = "arm"
+name = "resume_020044a8"
+
+[[entry_point]]
+addr = 0x020044ac
+size = 0xb8
+mode = "arm"
+name = "resume_020044ac"
+
+[[entry_point]]
+addr = 0x020044b0
+size = 0xb4
+mode = "arm"
+name = "resume_020044b0"
+
+[[entry_point]]
+addr = 0x020044b4
+size = 0xb0
+mode = "arm"
+name = "resume_020044b4"
+
+[[entry_point]]
+addr = 0x020044b8
+size = 0xac
+mode = "arm"
+name = "resume_020044b8"
+
+[[entry_point]]
+addr = 0x020044bc
+size = 0xa8
+mode = "arm"
+name = "resume_020044bc"
+
+[[entry_point]]
+addr = 0x020044c0
+size = 0xa4
+mode = "arm"
+name = "resume_020044c0"
+
+[[entry_point]]
+addr = 0x020044c4
+size = 0xa0
+mode = "arm"
+name = "resume_020044c4"
+
+[[entry_point]]
+addr = 0x02004500
+size = 0x64
+mode = "arm"
+name = "resume_02004500"
+
+[[entry_point]]
+addr = 0x02004504
+size = 0x60
+mode = "arm"
+name = "resume_02004504"
+
+[[entry_point]]
+addr = 0x02004508
+size = 0x5c
+mode = "arm"
+name = "resume_02004508"
+
+[[entry_point]]
+addr = 0x0200450c
+size = 0x58
+mode = "arm"
+name = "resume_0200450c"
+
+[[entry_point]]
+addr = 0x02004510
+size = 0x54
+mode = "arm"
+name = "resume_02004510"
+
+[[entry_point]]
+addr = 0x02004514
+size = 0x50
+mode = "arm"
+name = "resume_02004514"
+
+[[entry_point]]
+addr = 0x02004518
+size = 0x4c
+mode = "arm"
+name = "resume_02004518"
+
+[[entry_point]]
+addr = 0x0200451c
+size = 0x48
+mode = "arm"
+name = "resume_0200451c"
+
+[[entry_point]]
+addr = 0x02004520
+size = 0x44
+mode = "arm"
+name = "resume_02004520"
+
+[[entry_point]]
+addr = 0x02004524
+size = 0x40
+mode = "arm"
+name = "resume_02004524"
+
+[[entry_point]]
+addr = 0x02004528
+size = 0x3c
+mode = "arm"
+name = "resume_02004528"
+
+[[entry_point]]
+addr = 0x0200452c
+size = 0x38
+mode = "arm"
+name = "resume_0200452c"
+
+[[entry_point]]
+addr = 0x02004530
+size = 0x34
+mode = "arm"
+name = "resume_02004530"
+
+[[entry_point]]
+addr = 0x02004534
+size = 0x30
+mode = "arm"
+name = "resume_02004534"
+
+[[entry_point]]
+addr = 0x02004538
+size = 0x2c
+mode = "arm"
+name = "resume_02004538"
+
+[[entry_point]]
+addr = 0x0200453c
+size = 0x28
+mode = "arm"
+name = "resume_0200453c"
+
+[[entry_point]]
+addr = 0x02004540
+size = 0x24
+mode = "arm"
+name = "resume_02004540"
+
+[[entry_point]]
+addr = 0x02004544
+size = 0x20
+mode = "arm"
+name = "resume_02004544"
+
+[[entry_point]]
+addr = 0x02004548
+size = 0x1c
+mode = "arm"
+name = "resume_02004548"
+
+[[entry_point]]
+addr = 0x0200454c
+size = 0x18
+mode = "arm"
+name = "resume_0200454c"
+
+[[entry_point]]
+addr = 0x02004550
+size = 0x14
+mode = "arm"
+name = "resume_02004550"
+
+[[entry_point]]
+addr = 0x02004554
+size = 0x10
+mode = "arm"
+name = "resume_02004554"
+
+[[entry_point]]
+addr = 0x02004558
+size = 0xc
+mode = "arm"
+name = "resume_02004558"
+
+[[entry_point]]
 addr = 0x02004564
 size = 0x34
 mode = "arm"
@@ -743,6 +1343,126 @@ mode = "arm"
 name = "_ZN3App11updateSleepEv"
 
 [[entry_point]]
+addr = 0x02005304
+size = 0x1b8
+mode = "arm"
+name = "resume_02005304"
+
+[[entry_point]]
+addr = 0x02005308
+size = 0x1b4
+mode = "arm"
+name = "resume_02005308"
+
+[[entry_point]]
+addr = 0x02005320
+size = 0x19c
+mode = "arm"
+name = "resume_02005320"
+
+[[entry_point]]
+addr = 0x02005364
+size = 0x158
+mode = "arm"
+name = "resume_02005364"
+
+[[entry_point]]
+addr = 0x02005368
+size = 0x154
+mode = "arm"
+name = "resume_02005368"
+
+[[entry_point]]
+addr = 0x020053b0
+size = 0x10c
+mode = "arm"
+name = "resume_020053b0"
+
+[[entry_point]]
+addr = 0x020053b4
+size = 0x108
+mode = "arm"
+name = "resume_020053b4"
+
+[[entry_point]]
+addr = 0x020053e0
+size = 0xdc
+mode = "arm"
+name = "resume_020053e0"
+
+[[entry_point]]
+addr = 0x020053e4
+size = 0xd8
+mode = "arm"
+name = "resume_020053e4"
+
+[[entry_point]]
+addr = 0x02005414
+size = 0xa8
+mode = "arm"
+name = "resume_02005414"
+
+[[entry_point]]
+addr = 0x02005438
+size = 0x84
+mode = "arm"
+name = "resume_02005438"
+
+[[entry_point]]
+addr = 0x0200543c
+size = 0x80
+mode = "arm"
+name = "resume_0200543c"
+
+[[entry_point]]
+addr = 0x02005440
+size = 0x7c
+mode = "arm"
+name = "resume_02005440"
+
+[[entry_point]]
+addr = 0x02005444
+size = 0x78
+mode = "arm"
+name = "resume_02005444"
+
+[[entry_point]]
+addr = 0x02005474
+size = 0x48
+mode = "arm"
+name = "resume_02005474"
+
+[[entry_point]]
+addr = 0x02005478
+size = 0x44
+mode = "arm"
+name = "resume_02005478"
+
+[[entry_point]]
+addr = 0x0200547c
+size = 0x40
+mode = "arm"
+name = "resume_0200547c"
+
+[[entry_point]]
+addr = 0x02005480
+size = 0x3c
+mode = "arm"
+name = "resume_02005480"
+
+[[entry_point]]
+addr = 0x02005484
+size = 0x38
+mode = "arm"
+name = "resume_02005484"
+
+[[entry_point]]
+addr = 0x02005488
+size = 0x34
+mode = "arm"
+name = "resume_02005488"
+
+[[entry_point]]
 addr = 0x020054bc
 size = 0x54
 mode = "arm"
@@ -861,6 +1581,24 @@ addr = 0x020058c0
 size = 0x50
 mode = "arm"
 name = "_ZN6System13waitForVBlankEv"
+
+[[entry_point]]
+addr = 0x020058fc
+size = 0x14
+mode = "arm"
+name = "resume_020058fc"
+
+[[entry_point]]
+addr = 0x02005900
+size = 0x10
+mode = "arm"
+name = "resume_02005900"
+
+[[entry_point]]
+addr = 0x02005904
+size = 0xc
+mode = "arm"
+name = "resume_02005904"
 
 [[entry_point]]
 addr = 0x02005910
@@ -1151,6 +1889,24 @@ mode = "arm"
 name = "GFX_FaderStep"
 
 [[entry_point]]
+addr = 0x02006f30
+size = 0x10
+mode = "arm"
+name = "resume_02006f30"
+
+[[entry_point]]
+addr = 0x02006f34
+size = 0xc
+mode = "arm"
+name = "resume_02006f34"
+
+[[entry_point]]
+addr = 0x02006f38
+size = 0x8
+mode = "arm"
+name = "resume_02006f38"
+
+[[entry_point]]
 addr = 0x02006f40
 size = 0x2c
 mode = "arm"
@@ -1205,6 +1961,24 @@ mode = "arm"
 name = "GFX_Reset3D"
 
 [[entry_point]]
+addr = 0x020072a0
+size = 0x14
+mode = "arm"
+name = "resume_020072a0"
+
+[[entry_point]]
+addr = 0x020072a4
+size = 0x10
+mode = "arm"
+name = "resume_020072a4"
+
+[[entry_point]]
+addr = 0x020072a8
+size = 0xc
+mode = "arm"
+name = "resume_020072a8"
+
+[[entry_point]]
 addr = 0x020072b4
 size = 0xd8
 mode = "arm"
@@ -1215,6 +1989,60 @@ addr = 0x0200738c
 size = 0x290
 mode = "arm"
 name = "GFX_func_0200738c"
+
+[[entry_point]]
+addr = 0x020074ac
+size = 0x170
+mode = "arm"
+name = "resume_020074ac"
+
+[[entry_point]]
+addr = 0x020074b0
+size = 0x16c
+mode = "arm"
+name = "resume_020074b0"
+
+[[entry_point]]
+addr = 0x0200750c
+size = 0x110
+mode = "arm"
+name = "resume_0200750c"
+
+[[entry_point]]
+addr = 0x02007510
+size = 0x10c
+mode = "arm"
+name = "resume_02007510"
+
+[[entry_point]]
+addr = 0x02007514
+size = 0x108
+mode = "arm"
+name = "resume_02007514"
+
+[[entry_point]]
+addr = 0x02007518
+size = 0x104
+mode = "arm"
+name = "resume_02007518"
+
+[[entry_point]]
+addr = 0x0200751c
+size = 0x100
+mode = "arm"
+name = "resume_0200751c"
+
+[[entry_point]]
+addr = 0x02007570
+size = 0xac
+mode = "arm"
+name = "resume_02007570"
+
+[[entry_point]]
+addr = 0x02007574
+size = 0xa8
+mode = "arm"
+name = "resume_02007574"
 
 [[entry_point]]
 addr = 0x0200761c
@@ -1329,6 +2157,66 @@ addr = 0x02007f70
 size = 0x45c
 mode = "arm"
 name = "Fader_step"
+
+[[entry_point]]
+addr = 0x020081cc
+size = 0x200
+mode = "arm"
+name = "resume_020081cc"
+
+[[entry_point]]
+addr = 0x020081d0
+size = 0x1fc
+mode = "arm"
+name = "resume_020081d0"
+
+[[entry_point]]
+addr = 0x020081d4
+size = 0x1f8
+mode = "arm"
+name = "resume_020081d4"
+
+[[entry_point]]
+addr = 0x020081d8
+size = 0x1f4
+mode = "arm"
+name = "resume_020081d8"
+
+[[entry_point]]
+addr = 0x020081dc
+size = 0x1f0
+mode = "arm"
+name = "resume_020081dc"
+
+[[entry_point]]
+addr = 0x020081e0
+size = 0x1ec
+mode = "arm"
+name = "resume_020081e0"
+
+[[entry_point]]
+addr = 0x0200837c
+size = 0x50
+mode = "arm"
+name = "resume_0200837c"
+
+[[entry_point]]
+addr = 0x02008380
+size = 0x4c
+mode = "arm"
+name = "resume_02008380"
+
+[[entry_point]]
+addr = 0x02008384
+size = 0x48
+mode = "arm"
+name = "resume_02008384"
+
+[[entry_point]]
+addr = 0x02008388
+size = 0x44
+mode = "arm"
+name = "resume_02008388"
 
 [[entry_point]]
 addr = 0x020083cc
@@ -1949,6 +2837,258 @@ mode = "arm"
 name = "Input_update"
 
 [[entry_point]]
+addr = 0x0200a5dc
+size = 0x108
+mode = "arm"
+name = "resume_0200a5dc"
+
+[[entry_point]]
+addr = 0x0200a5e0
+size = 0x104
+mode = "arm"
+name = "resume_0200a5e0"
+
+[[entry_point]]
+addr = 0x0200a5e4
+size = 0x100
+mode = "arm"
+name = "resume_0200a5e4"
+
+[[entry_point]]
+addr = 0x0200a5e8
+size = 0xfc
+mode = "arm"
+name = "resume_0200a5e8"
+
+[[entry_point]]
+addr = 0x0200a5ec
+size = 0xf8
+mode = "arm"
+name = "resume_0200a5ec"
+
+[[entry_point]]
+addr = 0x0200a5f0
+size = 0xf4
+mode = "arm"
+name = "resume_0200a5f0"
+
+[[entry_point]]
+addr = 0x0200a5f4
+size = 0xf0
+mode = "arm"
+name = "resume_0200a5f4"
+
+[[entry_point]]
+addr = 0x0200a5f8
+size = 0xec
+mode = "arm"
+name = "resume_0200a5f8"
+
+[[entry_point]]
+addr = 0x0200a5fc
+size = 0xe8
+mode = "arm"
+name = "resume_0200a5fc"
+
+[[entry_point]]
+addr = 0x0200a600
+size = 0xe4
+mode = "arm"
+name = "resume_0200a600"
+
+[[entry_point]]
+addr = 0x0200a604
+size = 0xe0
+mode = "arm"
+name = "resume_0200a604"
+
+[[entry_point]]
+addr = 0x0200a608
+size = 0xdc
+mode = "arm"
+name = "resume_0200a608"
+
+[[entry_point]]
+addr = 0x0200a60c
+size = 0xd8
+mode = "arm"
+name = "resume_0200a60c"
+
+[[entry_point]]
+addr = 0x0200a610
+size = 0xd4
+mode = "arm"
+name = "resume_0200a610"
+
+[[entry_point]]
+addr = 0x0200a614
+size = 0xd0
+mode = "arm"
+name = "resume_0200a614"
+
+[[entry_point]]
+addr = 0x0200a618
+size = 0xcc
+mode = "arm"
+name = "resume_0200a618"
+
+[[entry_point]]
+addr = 0x0200a61c
+size = 0xc8
+mode = "arm"
+name = "resume_0200a61c"
+
+[[entry_point]]
+addr = 0x0200a620
+size = 0xc4
+mode = "arm"
+name = "resume_0200a620"
+
+[[entry_point]]
+addr = 0x0200a628
+size = 0xbc
+mode = "arm"
+name = "resume_0200a628"
+
+[[entry_point]]
+addr = 0x0200a62c
+size = 0xb8
+mode = "arm"
+name = "resume_0200a62c"
+
+[[entry_point]]
+addr = 0x0200a630
+size = 0xb4
+mode = "arm"
+name = "resume_0200a630"
+
+[[entry_point]]
+addr = 0x0200a634
+size = 0xb0
+mode = "arm"
+name = "resume_0200a634"
+
+[[entry_point]]
+addr = 0x0200a638
+size = 0xac
+mode = "arm"
+name = "resume_0200a638"
+
+[[entry_point]]
+addr = 0x0200a63c
+size = 0xa8
+mode = "arm"
+name = "resume_0200a63c"
+
+[[entry_point]]
+addr = 0x0200a640
+size = 0xa4
+mode = "arm"
+name = "resume_0200a640"
+
+[[entry_point]]
+addr = 0x0200a644
+size = 0xa0
+mode = "arm"
+name = "resume_0200a644"
+
+[[entry_point]]
+addr = 0x0200a648
+size = 0x9c
+mode = "arm"
+name = "resume_0200a648"
+
+[[entry_point]]
+addr = 0x0200a64c
+size = 0x98
+mode = "arm"
+name = "resume_0200a64c"
+
+[[entry_point]]
+addr = 0x0200a650
+size = 0x94
+mode = "arm"
+name = "resume_0200a650"
+
+[[entry_point]]
+addr = 0x0200a654
+size = 0x90
+mode = "arm"
+name = "resume_0200a654"
+
+[[entry_point]]
+addr = 0x0200a670
+size = 0x74
+mode = "arm"
+name = "resume_0200a670"
+
+[[entry_point]]
+addr = 0x0200a674
+size = 0x70
+mode = "arm"
+name = "resume_0200a674"
+
+[[entry_point]]
+addr = 0x0200a678
+size = 0x6c
+mode = "arm"
+name = "resume_0200a678"
+
+[[entry_point]]
+addr = 0x0200a67c
+size = 0x68
+mode = "arm"
+name = "resume_0200a67c"
+
+[[entry_point]]
+addr = 0x0200a680
+size = 0x64
+mode = "arm"
+name = "resume_0200a680"
+
+[[entry_point]]
+addr = 0x0200a6a8
+size = 0x3c
+mode = "arm"
+name = "resume_0200a6a8"
+
+[[entry_point]]
+addr = 0x0200a6ac
+size = 0x38
+mode = "arm"
+name = "resume_0200a6ac"
+
+[[entry_point]]
+addr = 0x0200a6b0
+size = 0x34
+mode = "arm"
+name = "resume_0200a6b0"
+
+[[entry_point]]
+addr = 0x0200a6b4
+size = 0x30
+mode = "arm"
+name = "resume_0200a6b4"
+
+[[entry_point]]
+addr = 0x0200a6bc
+size = 0x28
+mode = "arm"
+name = "resume_0200a6bc"
+
+[[entry_point]]
+addr = 0x0200a6c0
+size = 0x24
+mode = "arm"
+name = "resume_0200a6c0"
+
+[[entry_point]]
+addr = 0x0200a6c4
+size = 0x20
+mode = "arm"
+name = "resume_0200a6c4"
+
+[[entry_point]]
 addr = 0x0200a6e4
 size = 0xa0
 mode = "arm"
@@ -1965,6 +3105,204 @@ addr = 0x0200a814
 size = 0x1bc
 mode = "arm"
 name = "func_0200a814"
+
+[[entry_point]]
+addr = 0x0200a8d0
+size = 0x100
+mode = "arm"
+name = "resume_0200a8d0"
+
+[[entry_point]]
+addr = 0x0200a8d4
+size = 0xfc
+mode = "arm"
+name = "resume_0200a8d4"
+
+[[entry_point]]
+addr = 0x0200a8d8
+size = 0xf8
+mode = "arm"
+name = "resume_0200a8d8"
+
+[[entry_point]]
+addr = 0x0200a8dc
+size = 0xf4
+mode = "arm"
+name = "resume_0200a8dc"
+
+[[entry_point]]
+addr = 0x0200a908
+size = 0xc8
+mode = "arm"
+name = "resume_0200a908"
+
+[[entry_point]]
+addr = 0x0200a90c
+size = 0xc4
+mode = "arm"
+name = "resume_0200a90c"
+
+[[entry_point]]
+addr = 0x0200a910
+size = 0xc0
+mode = "arm"
+name = "resume_0200a910"
+
+[[entry_point]]
+addr = 0x0200a914
+size = 0xbc
+mode = "arm"
+name = "resume_0200a914"
+
+[[entry_point]]
+addr = 0x0200a918
+size = 0xb8
+mode = "arm"
+name = "resume_0200a918"
+
+[[entry_point]]
+addr = 0x0200a91c
+size = 0xb4
+mode = "arm"
+name = "resume_0200a91c"
+
+[[entry_point]]
+addr = 0x0200a920
+size = 0xb0
+mode = "arm"
+name = "resume_0200a920"
+
+[[entry_point]]
+addr = 0x0200a924
+size = 0xac
+mode = "arm"
+name = "resume_0200a924"
+
+[[entry_point]]
+addr = 0x0200a928
+size = 0xa8
+mode = "arm"
+name = "resume_0200a928"
+
+[[entry_point]]
+addr = 0x0200a92c
+size = 0xa4
+mode = "arm"
+name = "resume_0200a92c"
+
+[[entry_point]]
+addr = 0x0200a934
+size = 0x9c
+mode = "arm"
+name = "resume_0200a934"
+
+[[entry_point]]
+addr = 0x0200a938
+size = 0x98
+mode = "arm"
+name = "resume_0200a938"
+
+[[entry_point]]
+addr = 0x0200a93c
+size = 0x94
+mode = "arm"
+name = "resume_0200a93c"
+
+[[entry_point]]
+addr = 0x0200a940
+size = 0x90
+mode = "arm"
+name = "resume_0200a940"
+
+[[entry_point]]
+addr = 0x0200a944
+size = 0x8c
+mode = "arm"
+name = "resume_0200a944"
+
+[[entry_point]]
+addr = 0x0200a948
+size = 0x88
+mode = "arm"
+name = "resume_0200a948"
+
+[[entry_point]]
+addr = 0x0200a94c
+size = 0x84
+mode = "arm"
+name = "resume_0200a94c"
+
+[[entry_point]]
+addr = 0x0200a950
+size = 0x80
+mode = "arm"
+name = "resume_0200a950"
+
+[[entry_point]]
+addr = 0x0200a954
+size = 0x7c
+mode = "arm"
+name = "resume_0200a954"
+
+[[entry_point]]
+addr = 0x0200a958
+size = 0x78
+mode = "arm"
+name = "resume_0200a958"
+
+[[entry_point]]
+addr = 0x0200a95c
+size = 0x74
+mode = "arm"
+name = "resume_0200a95c"
+
+[[entry_point]]
+addr = 0x0200a960
+size = 0x70
+mode = "arm"
+name = "resume_0200a960"
+
+[[entry_point]]
+addr = 0x0200a964
+size = 0x6c
+mode = "arm"
+name = "resume_0200a964"
+
+[[entry_point]]
+addr = 0x0200a968
+size = 0x68
+mode = "arm"
+name = "resume_0200a968"
+
+[[entry_point]]
+addr = 0x0200a96c
+size = 0x64
+mode = "arm"
+name = "resume_0200a96c"
+
+[[entry_point]]
+addr = 0x0200a970
+size = 0x60
+mode = "arm"
+name = "resume_0200a970"
+
+[[entry_point]]
+addr = 0x0200a98c
+size = 0x44
+mode = "arm"
+name = "resume_0200a98c"
+
+[[entry_point]]
+addr = 0x0200a990
+size = 0x40
+mode = "arm"
+name = "resume_0200a990"
+
+[[entry_point]]
+addr = 0x0200a994
+size = 0x3c
+mode = "arm"
+name = "resume_0200a994"
 
 [[entry_point]]
 addr = 0x0200a9d0
@@ -2105,6 +3443,408 @@ mode = "arm"
 name = "func_0200b580"
 
 [[entry_point]]
+addr = 0x0200b5f0
+size = 0x118
+mode = "arm"
+name = "resume_0200b5f0"
+
+[[entry_point]]
+addr = 0x0200b5f4
+size = 0x114
+mode = "arm"
+name = "resume_0200b5f4"
+
+[[entry_point]]
+addr = 0x0200b5f8
+size = 0x110
+mode = "arm"
+name = "resume_0200b5f8"
+
+[[entry_point]]
+addr = 0x0200b5fc
+size = 0x10c
+mode = "arm"
+name = "resume_0200b5fc"
+
+[[entry_point]]
+addr = 0x0200b600
+size = 0x108
+mode = "arm"
+name = "resume_0200b600"
+
+[[entry_point]]
+addr = 0x0200b604
+size = 0x104
+mode = "arm"
+name = "resume_0200b604"
+
+[[entry_point]]
+addr = 0x0200b608
+size = 0x100
+mode = "arm"
+name = "resume_0200b608"
+
+[[entry_point]]
+addr = 0x0200b60c
+size = 0xfc
+mode = "arm"
+name = "resume_0200b60c"
+
+[[entry_point]]
+addr = 0x0200b610
+size = 0xf8
+mode = "arm"
+name = "resume_0200b610"
+
+[[entry_point]]
+addr = 0x0200b614
+size = 0xf4
+mode = "arm"
+name = "resume_0200b614"
+
+[[entry_point]]
+addr = 0x0200b618
+size = 0xf0
+mode = "arm"
+name = "resume_0200b618"
+
+[[entry_point]]
+addr = 0x0200b61c
+size = 0xec
+mode = "arm"
+name = "resume_0200b61c"
+
+[[entry_point]]
+addr = 0x0200b620
+size = 0xe8
+mode = "arm"
+name = "resume_0200b620"
+
+[[entry_point]]
+addr = 0x0200b624
+size = 0xe4
+mode = "arm"
+name = "resume_0200b624"
+
+[[entry_point]]
+addr = 0x0200b628
+size = 0xe0
+mode = "arm"
+name = "resume_0200b628"
+
+[[entry_point]]
+addr = 0x0200b62c
+size = 0xdc
+mode = "arm"
+name = "resume_0200b62c"
+
+[[entry_point]]
+addr = 0x0200b630
+size = 0xd8
+mode = "arm"
+name = "resume_0200b630"
+
+[[entry_point]]
+addr = 0x0200b634
+size = 0xd4
+mode = "arm"
+name = "resume_0200b634"
+
+[[entry_point]]
+addr = 0x0200b638
+size = 0xd0
+mode = "arm"
+name = "resume_0200b638"
+
+[[entry_point]]
+addr = 0x0200b63c
+size = 0xcc
+mode = "arm"
+name = "resume_0200b63c"
+
+[[entry_point]]
+addr = 0x0200b640
+size = 0xc8
+mode = "arm"
+name = "resume_0200b640"
+
+[[entry_point]]
+addr = 0x0200b648
+size = 0xc0
+mode = "arm"
+name = "resume_0200b648"
+
+[[entry_point]]
+addr = 0x0200b64c
+size = 0xbc
+mode = "arm"
+name = "resume_0200b64c"
+
+[[entry_point]]
+addr = 0x0200b650
+size = 0xb8
+mode = "arm"
+name = "resume_0200b650"
+
+[[entry_point]]
+addr = 0x0200b654
+size = 0xb4
+mode = "arm"
+name = "resume_0200b654"
+
+[[entry_point]]
+addr = 0x0200b658
+size = 0xb0
+mode = "arm"
+name = "resume_0200b658"
+
+[[entry_point]]
+addr = 0x0200b65c
+size = 0xac
+mode = "arm"
+name = "resume_0200b65c"
+
+[[entry_point]]
+addr = 0x0200b660
+size = 0xa8
+mode = "arm"
+name = "resume_0200b660"
+
+[[entry_point]]
+addr = 0x0200b664
+size = 0xa4
+mode = "arm"
+name = "resume_0200b664"
+
+[[entry_point]]
+addr = 0x0200b668
+size = 0xa0
+mode = "arm"
+name = "resume_0200b668"
+
+[[entry_point]]
+addr = 0x0200b66c
+size = 0x9c
+mode = "arm"
+name = "resume_0200b66c"
+
+[[entry_point]]
+addr = 0x0200b670
+size = 0x98
+mode = "arm"
+name = "resume_0200b670"
+
+[[entry_point]]
+addr = 0x0200b674
+size = 0x94
+mode = "arm"
+name = "resume_0200b674"
+
+[[entry_point]]
+addr = 0x0200b678
+size = 0x90
+mode = "arm"
+name = "resume_0200b678"
+
+[[entry_point]]
+addr = 0x0200b67c
+size = 0x8c
+mode = "arm"
+name = "resume_0200b67c"
+
+[[entry_point]]
+addr = 0x0200b680
+size = 0x88
+mode = "arm"
+name = "resume_0200b680"
+
+[[entry_point]]
+addr = 0x0200b684
+size = 0x84
+mode = "arm"
+name = "resume_0200b684"
+
+[[entry_point]]
+addr = 0x0200b688
+size = 0x80
+mode = "arm"
+name = "resume_0200b688"
+
+[[entry_point]]
+addr = 0x0200b68c
+size = 0x7c
+mode = "arm"
+name = "resume_0200b68c"
+
+[[entry_point]]
+addr = 0x0200b690
+size = 0x78
+mode = "arm"
+name = "resume_0200b690"
+
+[[entry_point]]
+addr = 0x0200b694
+size = 0x74
+mode = "arm"
+name = "resume_0200b694"
+
+[[entry_point]]
+addr = 0x0200b698
+size = 0x70
+mode = "arm"
+name = "resume_0200b698"
+
+[[entry_point]]
+addr = 0x0200b69c
+size = 0x6c
+mode = "arm"
+name = "resume_0200b69c"
+
+[[entry_point]]
+addr = 0x0200b6a0
+size = 0x68
+mode = "arm"
+name = "resume_0200b6a0"
+
+[[entry_point]]
+addr = 0x0200b6a4
+size = 0x64
+mode = "arm"
+name = "resume_0200b6a4"
+
+[[entry_point]]
+addr = 0x0200b6a8
+size = 0x60
+mode = "arm"
+name = "resume_0200b6a8"
+
+[[entry_point]]
+addr = 0x0200b6ac
+size = 0x5c
+mode = "arm"
+name = "resume_0200b6ac"
+
+[[entry_point]]
+addr = 0x0200b6b0
+size = 0x58
+mode = "arm"
+name = "resume_0200b6b0"
+
+[[entry_point]]
+addr = 0x0200b6b4
+size = 0x54
+mode = "arm"
+name = "resume_0200b6b4"
+
+[[entry_point]]
+addr = 0x0200b6b8
+size = 0x50
+mode = "arm"
+name = "resume_0200b6b8"
+
+[[entry_point]]
+addr = 0x0200b6bc
+size = 0x4c
+mode = "arm"
+name = "resume_0200b6bc"
+
+[[entry_point]]
+addr = 0x0200b6c0
+size = 0x48
+mode = "arm"
+name = "resume_0200b6c0"
+
+[[entry_point]]
+addr = 0x0200b6c4
+size = 0x44
+mode = "arm"
+name = "resume_0200b6c4"
+
+[[entry_point]]
+addr = 0x0200b6c8
+size = 0x40
+mode = "arm"
+name = "resume_0200b6c8"
+
+[[entry_point]]
+addr = 0x0200b6cc
+size = 0x3c
+mode = "arm"
+name = "resume_0200b6cc"
+
+[[entry_point]]
+addr = 0x0200b6d0
+size = 0x38
+mode = "arm"
+name = "resume_0200b6d0"
+
+[[entry_point]]
+addr = 0x0200b6d4
+size = 0x34
+mode = "arm"
+name = "resume_0200b6d4"
+
+[[entry_point]]
+addr = 0x0200b6d8
+size = 0x30
+mode = "arm"
+name = "resume_0200b6d8"
+
+[[entry_point]]
+addr = 0x0200b6dc
+size = 0x2c
+mode = "arm"
+name = "resume_0200b6dc"
+
+[[entry_point]]
+addr = 0x0200b6e0
+size = 0x28
+mode = "arm"
+name = "resume_0200b6e0"
+
+[[entry_point]]
+addr = 0x0200b6e4
+size = 0x24
+mode = "arm"
+name = "resume_0200b6e4"
+
+[[entry_point]]
+addr = 0x0200b6e8
+size = 0x20
+mode = "arm"
+name = "resume_0200b6e8"
+
+[[entry_point]]
+addr = 0x0200b6ec
+size = 0x1c
+mode = "arm"
+name = "resume_0200b6ec"
+
+[[entry_point]]
+addr = 0x0200b6f0
+size = 0x18
+mode = "arm"
+name = "resume_0200b6f0"
+
+[[entry_point]]
+addr = 0x0200b6f4
+size = 0x14
+mode = "arm"
+name = "resume_0200b6f4"
+
+[[entry_point]]
+addr = 0x0200b6f8
+size = 0x10
+mode = "arm"
+name = "resume_0200b6f8"
+
+[[entry_point]]
+addr = 0x0200b6fc
+size = 0xc
+mode = "arm"
+name = "resume_0200b6fc"
+
+[[entry_point]]
 addr = 0x0200b708
 size = 0x38
 mode = "arm"
@@ -2165,6 +3905,690 @@ mode = "arm"
 name = "func_0200c32c"
 
 [[entry_point]]
+addr = 0x0200c3b4
+size = 0x24c
+mode = "arm"
+name = "resume_0200c3b4"
+
+[[entry_point]]
+addr = 0x0200c3b8
+size = 0x248
+mode = "arm"
+name = "resume_0200c3b8"
+
+[[entry_point]]
+addr = 0x0200c3bc
+size = 0x244
+mode = "arm"
+name = "resume_0200c3bc"
+
+[[entry_point]]
+addr = 0x0200c3c0
+size = 0x240
+mode = "arm"
+name = "resume_0200c3c0"
+
+[[entry_point]]
+addr = 0x0200c3c4
+size = 0x23c
+mode = "arm"
+name = "resume_0200c3c4"
+
+[[entry_point]]
+addr = 0x0200c3c8
+size = 0x238
+mode = "arm"
+name = "resume_0200c3c8"
+
+[[entry_point]]
+addr = 0x0200c3cc
+size = 0x234
+mode = "arm"
+name = "resume_0200c3cc"
+
+[[entry_point]]
+addr = 0x0200c3d0
+size = 0x230
+mode = "arm"
+name = "resume_0200c3d0"
+
+[[entry_point]]
+addr = 0x0200c3d4
+size = 0x22c
+mode = "arm"
+name = "resume_0200c3d4"
+
+[[entry_point]]
+addr = 0x0200c3d8
+size = 0x228
+mode = "arm"
+name = "resume_0200c3d8"
+
+[[entry_point]]
+addr = 0x0200c3dc
+size = 0x224
+mode = "arm"
+name = "resume_0200c3dc"
+
+[[entry_point]]
+addr = 0x0200c3e0
+size = 0x220
+mode = "arm"
+name = "resume_0200c3e0"
+
+[[entry_point]]
+addr = 0x0200c3e4
+size = 0x21c
+mode = "arm"
+name = "resume_0200c3e4"
+
+[[entry_point]]
+addr = 0x0200c3e8
+size = 0x218
+mode = "arm"
+name = "resume_0200c3e8"
+
+[[entry_point]]
+addr = 0x0200c3ec
+size = 0x214
+mode = "arm"
+name = "resume_0200c3ec"
+
+[[entry_point]]
+addr = 0x0200c3f0
+size = 0x210
+mode = "arm"
+name = "resume_0200c3f0"
+
+[[entry_point]]
+addr = 0x0200c3f4
+size = 0x20c
+mode = "arm"
+name = "resume_0200c3f4"
+
+[[entry_point]]
+addr = 0x0200c3f8
+size = 0x208
+mode = "arm"
+name = "resume_0200c3f8"
+
+[[entry_point]]
+addr = 0x0200c3fc
+size = 0x204
+mode = "arm"
+name = "resume_0200c3fc"
+
+[[entry_point]]
+addr = 0x0200c400
+size = 0x200
+mode = "arm"
+name = "resume_0200c400"
+
+[[entry_point]]
+addr = 0x0200c404
+size = 0x1fc
+mode = "arm"
+name = "resume_0200c404"
+
+[[entry_point]]
+addr = 0x0200c408
+size = 0x1f8
+mode = "arm"
+name = "resume_0200c408"
+
+[[entry_point]]
+addr = 0x0200c40c
+size = 0x1f4
+mode = "arm"
+name = "resume_0200c40c"
+
+[[entry_point]]
+addr = 0x0200c410
+size = 0x1f0
+mode = "arm"
+name = "resume_0200c410"
+
+[[entry_point]]
+addr = 0x0200c414
+size = 0x1ec
+mode = "arm"
+name = "resume_0200c414"
+
+[[entry_point]]
+addr = 0x0200c418
+size = 0x1e8
+mode = "arm"
+name = "resume_0200c418"
+
+[[entry_point]]
+addr = 0x0200c41c
+size = 0x1e4
+mode = "arm"
+name = "resume_0200c41c"
+
+[[entry_point]]
+addr = 0x0200c420
+size = 0x1e0
+mode = "arm"
+name = "resume_0200c420"
+
+[[entry_point]]
+addr = 0x0200c424
+size = 0x1dc
+mode = "arm"
+name = "resume_0200c424"
+
+[[entry_point]]
+addr = 0x0200c428
+size = 0x1d8
+mode = "arm"
+name = "resume_0200c428"
+
+[[entry_point]]
+addr = 0x0200c42c
+size = 0x1d4
+mode = "arm"
+name = "resume_0200c42c"
+
+[[entry_point]]
+addr = 0x0200c430
+size = 0x1d0
+mode = "arm"
+name = "resume_0200c430"
+
+[[entry_point]]
+addr = 0x0200c434
+size = 0x1cc
+mode = "arm"
+name = "resume_0200c434"
+
+[[entry_point]]
+addr = 0x0200c44c
+size = 0x1b4
+mode = "arm"
+name = "resume_0200c44c"
+
+[[entry_point]]
+addr = 0x0200c450
+size = 0x1b0
+mode = "arm"
+name = "resume_0200c450"
+
+[[entry_point]]
+addr = 0x0200c454
+size = 0x1ac
+mode = "arm"
+name = "resume_0200c454"
+
+[[entry_point]]
+addr = 0x0200c458
+size = 0x1a8
+mode = "arm"
+name = "resume_0200c458"
+
+[[entry_point]]
+addr = 0x0200c45c
+size = 0x1a4
+mode = "arm"
+name = "resume_0200c45c"
+
+[[entry_point]]
+addr = 0x0200c460
+size = 0x1a0
+mode = "arm"
+name = "resume_0200c460"
+
+[[entry_point]]
+addr = 0x0200c464
+size = 0x19c
+mode = "arm"
+name = "resume_0200c464"
+
+[[entry_point]]
+addr = 0x0200c468
+size = 0x198
+mode = "arm"
+name = "resume_0200c468"
+
+[[entry_point]]
+addr = 0x0200c46c
+size = 0x194
+mode = "arm"
+name = "resume_0200c46c"
+
+[[entry_point]]
+addr = 0x0200c470
+size = 0x190
+mode = "arm"
+name = "resume_0200c470"
+
+[[entry_point]]
+addr = 0x0200c474
+size = 0x18c
+mode = "arm"
+name = "resume_0200c474"
+
+[[entry_point]]
+addr = 0x0200c478
+size = 0x188
+mode = "arm"
+name = "resume_0200c478"
+
+[[entry_point]]
+addr = 0x0200c47c
+size = 0x184
+mode = "arm"
+name = "resume_0200c47c"
+
+[[entry_point]]
+addr = 0x0200c480
+size = 0x180
+mode = "arm"
+name = "resume_0200c480"
+
+[[entry_point]]
+addr = 0x0200c484
+size = 0x17c
+mode = "arm"
+name = "resume_0200c484"
+
+[[entry_point]]
+addr = 0x0200c488
+size = 0x178
+mode = "arm"
+name = "resume_0200c488"
+
+[[entry_point]]
+addr = 0x0200c48c
+size = 0x174
+mode = "arm"
+name = "resume_0200c48c"
+
+[[entry_point]]
+addr = 0x0200c490
+size = 0x170
+mode = "arm"
+name = "resume_0200c490"
+
+[[entry_point]]
+addr = 0x0200c494
+size = 0x16c
+mode = "arm"
+name = "resume_0200c494"
+
+[[entry_point]]
+addr = 0x0200c498
+size = 0x168
+mode = "arm"
+name = "resume_0200c498"
+
+[[entry_point]]
+addr = 0x0200c49c
+size = 0x164
+mode = "arm"
+name = "resume_0200c49c"
+
+[[entry_point]]
+addr = 0x0200c4a0
+size = 0x160
+mode = "arm"
+name = "resume_0200c4a0"
+
+[[entry_point]]
+addr = 0x0200c4a4
+size = 0x15c
+mode = "arm"
+name = "resume_0200c4a4"
+
+[[entry_point]]
+addr = 0x0200c4a8
+size = 0x158
+mode = "arm"
+name = "resume_0200c4a8"
+
+[[entry_point]]
+addr = 0x0200c4ac
+size = 0x154
+mode = "arm"
+name = "resume_0200c4ac"
+
+[[entry_point]]
+addr = 0x0200c4b0
+size = 0x150
+mode = "arm"
+name = "resume_0200c4b0"
+
+[[entry_point]]
+addr = 0x0200c4b4
+size = 0x14c
+mode = "arm"
+name = "resume_0200c4b4"
+
+[[entry_point]]
+addr = 0x0200c4b8
+size = 0x148
+mode = "arm"
+name = "resume_0200c4b8"
+
+[[entry_point]]
+addr = 0x0200c4bc
+size = 0x144
+mode = "arm"
+name = "resume_0200c4bc"
+
+[[entry_point]]
+addr = 0x0200c4c0
+size = 0x140
+mode = "arm"
+name = "resume_0200c4c0"
+
+[[entry_point]]
+addr = 0x0200c4c4
+size = 0x13c
+mode = "arm"
+name = "resume_0200c4c4"
+
+[[entry_point]]
+addr = 0x0200c4c8
+size = 0x138
+mode = "arm"
+name = "resume_0200c4c8"
+
+[[entry_point]]
+addr = 0x0200c4cc
+size = 0x134
+mode = "arm"
+name = "resume_0200c4cc"
+
+[[entry_point]]
+addr = 0x0200c4d0
+size = 0x130
+mode = "arm"
+name = "resume_0200c4d0"
+
+[[entry_point]]
+addr = 0x0200c4d4
+size = 0x12c
+mode = "arm"
+name = "resume_0200c4d4"
+
+[[entry_point]]
+addr = 0x0200c4d8
+size = 0x128
+mode = "arm"
+name = "resume_0200c4d8"
+
+[[entry_point]]
+addr = 0x0200c4dc
+size = 0x124
+mode = "arm"
+name = "resume_0200c4dc"
+
+[[entry_point]]
+addr = 0x0200c4e0
+size = 0x120
+mode = "arm"
+name = "resume_0200c4e0"
+
+[[entry_point]]
+addr = 0x0200c4e4
+size = 0x11c
+mode = "arm"
+name = "resume_0200c4e4"
+
+[[entry_point]]
+addr = 0x0200c4e8
+size = 0x118
+mode = "arm"
+name = "resume_0200c4e8"
+
+[[entry_point]]
+addr = 0x0200c4ec
+size = 0x114
+mode = "arm"
+name = "resume_0200c4ec"
+
+[[entry_point]]
+addr = 0x0200c4f0
+size = 0x110
+mode = "arm"
+name = "resume_0200c4f0"
+
+[[entry_point]]
+addr = 0x0200c4f4
+size = 0x10c
+mode = "arm"
+name = "resume_0200c4f4"
+
+[[entry_point]]
+addr = 0x0200c4f8
+size = 0x108
+mode = "arm"
+name = "resume_0200c4f8"
+
+[[entry_point]]
+addr = 0x0200c4fc
+size = 0x104
+mode = "arm"
+name = "resume_0200c4fc"
+
+[[entry_point]]
+addr = 0x0200c500
+size = 0x100
+mode = "arm"
+name = "resume_0200c500"
+
+[[entry_point]]
+addr = 0x0200c504
+size = 0xfc
+mode = "arm"
+name = "resume_0200c504"
+
+[[entry_point]]
+addr = 0x0200c508
+size = 0xf8
+mode = "arm"
+name = "resume_0200c508"
+
+[[entry_point]]
+addr = 0x0200c50c
+size = 0xf4
+mode = "arm"
+name = "resume_0200c50c"
+
+[[entry_point]]
+addr = 0x0200c55c
+size = 0xa4
+mode = "arm"
+name = "resume_0200c55c"
+
+[[entry_point]]
+addr = 0x0200c560
+size = 0xa0
+mode = "arm"
+name = "resume_0200c560"
+
+[[entry_point]]
+addr = 0x0200c564
+size = 0x9c
+mode = "arm"
+name = "resume_0200c564"
+
+[[entry_point]]
+addr = 0x0200c568
+size = 0x98
+mode = "arm"
+name = "resume_0200c568"
+
+[[entry_point]]
+addr = 0x0200c56c
+size = 0x94
+mode = "arm"
+name = "resume_0200c56c"
+
+[[entry_point]]
+addr = 0x0200c570
+size = 0x90
+mode = "arm"
+name = "resume_0200c570"
+
+[[entry_point]]
+addr = 0x0200c574
+size = 0x8c
+mode = "arm"
+name = "resume_0200c574"
+
+[[entry_point]]
+addr = 0x0200c578
+size = 0x88
+mode = "arm"
+name = "resume_0200c578"
+
+[[entry_point]]
+addr = 0x0200c57c
+size = 0x84
+mode = "arm"
+name = "resume_0200c57c"
+
+[[entry_point]]
+addr = 0x0200c580
+size = 0x80
+mode = "arm"
+name = "resume_0200c580"
+
+[[entry_point]]
+addr = 0x0200c584
+size = 0x7c
+mode = "arm"
+name = "resume_0200c584"
+
+[[entry_point]]
+addr = 0x0200c588
+size = 0x78
+mode = "arm"
+name = "resume_0200c588"
+
+[[entry_point]]
+addr = 0x0200c58c
+size = 0x74
+mode = "arm"
+name = "resume_0200c58c"
+
+[[entry_point]]
+addr = 0x0200c590
+size = 0x70
+mode = "arm"
+name = "resume_0200c590"
+
+[[entry_point]]
+addr = 0x0200c594
+size = 0x6c
+mode = "arm"
+name = "resume_0200c594"
+
+[[entry_point]]
+addr = 0x0200c598
+size = 0x68
+mode = "arm"
+name = "resume_0200c598"
+
+[[entry_point]]
+addr = 0x0200c59c
+size = 0x64
+mode = "arm"
+name = "resume_0200c59c"
+
+[[entry_point]]
+addr = 0x0200c5a0
+size = 0x60
+mode = "arm"
+name = "resume_0200c5a0"
+
+[[entry_point]]
+addr = 0x0200c5a4
+size = 0x5c
+mode = "arm"
+name = "resume_0200c5a4"
+
+[[entry_point]]
+addr = 0x0200c5a8
+size = 0x58
+mode = "arm"
+name = "resume_0200c5a8"
+
+[[entry_point]]
+addr = 0x0200c5ac
+size = 0x54
+mode = "arm"
+name = "resume_0200c5ac"
+
+[[entry_point]]
+addr = 0x0200c5b0
+size = 0x50
+mode = "arm"
+name = "resume_0200c5b0"
+
+[[entry_point]]
+addr = 0x0200c5b4
+size = 0x4c
+mode = "arm"
+name = "resume_0200c5b4"
+
+[[entry_point]]
+addr = 0x0200c5b8
+size = 0x48
+mode = "arm"
+name = "resume_0200c5b8"
+
+[[entry_point]]
+addr = 0x0200c5bc
+size = 0x44
+mode = "arm"
+name = "resume_0200c5bc"
+
+[[entry_point]]
+addr = 0x0200c5c0
+size = 0x40
+mode = "arm"
+name = "resume_0200c5c0"
+
+[[entry_point]]
+addr = 0x0200c5c4
+size = 0x3c
+mode = "arm"
+name = "resume_0200c5c4"
+
+[[entry_point]]
+addr = 0x0200c5c8
+size = 0x38
+mode = "arm"
+name = "resume_0200c5c8"
+
+[[entry_point]]
+addr = 0x0200c5cc
+size = 0x34
+mode = "arm"
+name = "resume_0200c5cc"
+
+[[entry_point]]
+addr = 0x0200c5d0
+size = 0x30
+mode = "arm"
+name = "resume_0200c5d0"
+
+[[entry_point]]
+addr = 0x0200c5d4
+size = 0x2c
+mode = "arm"
+name = "resume_0200c5d4"
+
+[[entry_point]]
+addr = 0x0200c5d8
+size = 0x28
+mode = "arm"
+name = "resume_0200c5d8"
+
+[[entry_point]]
 addr = 0x0200c600
 size = 0x1d4
 mode = "arm"
@@ -2187,6 +4611,690 @@ addr = 0x0200d2a4
 size = 0x2d4
 mode = "arm"
 name = "func_0200d2a4"
+
+[[entry_point]]
+addr = 0x0200d32c
+size = 0x24c
+mode = "arm"
+name = "resume_0200d32c"
+
+[[entry_point]]
+addr = 0x0200d330
+size = 0x248
+mode = "arm"
+name = "resume_0200d330"
+
+[[entry_point]]
+addr = 0x0200d334
+size = 0x244
+mode = "arm"
+name = "resume_0200d334"
+
+[[entry_point]]
+addr = 0x0200d338
+size = 0x240
+mode = "arm"
+name = "resume_0200d338"
+
+[[entry_point]]
+addr = 0x0200d33c
+size = 0x23c
+mode = "arm"
+name = "resume_0200d33c"
+
+[[entry_point]]
+addr = 0x0200d340
+size = 0x238
+mode = "arm"
+name = "resume_0200d340"
+
+[[entry_point]]
+addr = 0x0200d344
+size = 0x234
+mode = "arm"
+name = "resume_0200d344"
+
+[[entry_point]]
+addr = 0x0200d348
+size = 0x230
+mode = "arm"
+name = "resume_0200d348"
+
+[[entry_point]]
+addr = 0x0200d34c
+size = 0x22c
+mode = "arm"
+name = "resume_0200d34c"
+
+[[entry_point]]
+addr = 0x0200d350
+size = 0x228
+mode = "arm"
+name = "resume_0200d350"
+
+[[entry_point]]
+addr = 0x0200d354
+size = 0x224
+mode = "arm"
+name = "resume_0200d354"
+
+[[entry_point]]
+addr = 0x0200d358
+size = 0x220
+mode = "arm"
+name = "resume_0200d358"
+
+[[entry_point]]
+addr = 0x0200d35c
+size = 0x21c
+mode = "arm"
+name = "resume_0200d35c"
+
+[[entry_point]]
+addr = 0x0200d360
+size = 0x218
+mode = "arm"
+name = "resume_0200d360"
+
+[[entry_point]]
+addr = 0x0200d364
+size = 0x214
+mode = "arm"
+name = "resume_0200d364"
+
+[[entry_point]]
+addr = 0x0200d368
+size = 0x210
+mode = "arm"
+name = "resume_0200d368"
+
+[[entry_point]]
+addr = 0x0200d36c
+size = 0x20c
+mode = "arm"
+name = "resume_0200d36c"
+
+[[entry_point]]
+addr = 0x0200d370
+size = 0x208
+mode = "arm"
+name = "resume_0200d370"
+
+[[entry_point]]
+addr = 0x0200d374
+size = 0x204
+mode = "arm"
+name = "resume_0200d374"
+
+[[entry_point]]
+addr = 0x0200d378
+size = 0x200
+mode = "arm"
+name = "resume_0200d378"
+
+[[entry_point]]
+addr = 0x0200d37c
+size = 0x1fc
+mode = "arm"
+name = "resume_0200d37c"
+
+[[entry_point]]
+addr = 0x0200d380
+size = 0x1f8
+mode = "arm"
+name = "resume_0200d380"
+
+[[entry_point]]
+addr = 0x0200d384
+size = 0x1f4
+mode = "arm"
+name = "resume_0200d384"
+
+[[entry_point]]
+addr = 0x0200d388
+size = 0x1f0
+mode = "arm"
+name = "resume_0200d388"
+
+[[entry_point]]
+addr = 0x0200d38c
+size = 0x1ec
+mode = "arm"
+name = "resume_0200d38c"
+
+[[entry_point]]
+addr = 0x0200d390
+size = 0x1e8
+mode = "arm"
+name = "resume_0200d390"
+
+[[entry_point]]
+addr = 0x0200d394
+size = 0x1e4
+mode = "arm"
+name = "resume_0200d394"
+
+[[entry_point]]
+addr = 0x0200d398
+size = 0x1e0
+mode = "arm"
+name = "resume_0200d398"
+
+[[entry_point]]
+addr = 0x0200d39c
+size = 0x1dc
+mode = "arm"
+name = "resume_0200d39c"
+
+[[entry_point]]
+addr = 0x0200d3a0
+size = 0x1d8
+mode = "arm"
+name = "resume_0200d3a0"
+
+[[entry_point]]
+addr = 0x0200d3a4
+size = 0x1d4
+mode = "arm"
+name = "resume_0200d3a4"
+
+[[entry_point]]
+addr = 0x0200d3a8
+size = 0x1d0
+mode = "arm"
+name = "resume_0200d3a8"
+
+[[entry_point]]
+addr = 0x0200d3ac
+size = 0x1cc
+mode = "arm"
+name = "resume_0200d3ac"
+
+[[entry_point]]
+addr = 0x0200d3c4
+size = 0x1b4
+mode = "arm"
+name = "resume_0200d3c4"
+
+[[entry_point]]
+addr = 0x0200d3c8
+size = 0x1b0
+mode = "arm"
+name = "resume_0200d3c8"
+
+[[entry_point]]
+addr = 0x0200d3cc
+size = 0x1ac
+mode = "arm"
+name = "resume_0200d3cc"
+
+[[entry_point]]
+addr = 0x0200d3d0
+size = 0x1a8
+mode = "arm"
+name = "resume_0200d3d0"
+
+[[entry_point]]
+addr = 0x0200d3d4
+size = 0x1a4
+mode = "arm"
+name = "resume_0200d3d4"
+
+[[entry_point]]
+addr = 0x0200d3d8
+size = 0x1a0
+mode = "arm"
+name = "resume_0200d3d8"
+
+[[entry_point]]
+addr = 0x0200d3dc
+size = 0x19c
+mode = "arm"
+name = "resume_0200d3dc"
+
+[[entry_point]]
+addr = 0x0200d3e0
+size = 0x198
+mode = "arm"
+name = "resume_0200d3e0"
+
+[[entry_point]]
+addr = 0x0200d3e4
+size = 0x194
+mode = "arm"
+name = "resume_0200d3e4"
+
+[[entry_point]]
+addr = 0x0200d3e8
+size = 0x190
+mode = "arm"
+name = "resume_0200d3e8"
+
+[[entry_point]]
+addr = 0x0200d3ec
+size = 0x18c
+mode = "arm"
+name = "resume_0200d3ec"
+
+[[entry_point]]
+addr = 0x0200d3f0
+size = 0x188
+mode = "arm"
+name = "resume_0200d3f0"
+
+[[entry_point]]
+addr = 0x0200d3f4
+size = 0x184
+mode = "arm"
+name = "resume_0200d3f4"
+
+[[entry_point]]
+addr = 0x0200d3f8
+size = 0x180
+mode = "arm"
+name = "resume_0200d3f8"
+
+[[entry_point]]
+addr = 0x0200d3fc
+size = 0x17c
+mode = "arm"
+name = "resume_0200d3fc"
+
+[[entry_point]]
+addr = 0x0200d400
+size = 0x178
+mode = "arm"
+name = "resume_0200d400"
+
+[[entry_point]]
+addr = 0x0200d404
+size = 0x174
+mode = "arm"
+name = "resume_0200d404"
+
+[[entry_point]]
+addr = 0x0200d408
+size = 0x170
+mode = "arm"
+name = "resume_0200d408"
+
+[[entry_point]]
+addr = 0x0200d40c
+size = 0x16c
+mode = "arm"
+name = "resume_0200d40c"
+
+[[entry_point]]
+addr = 0x0200d410
+size = 0x168
+mode = "arm"
+name = "resume_0200d410"
+
+[[entry_point]]
+addr = 0x0200d414
+size = 0x164
+mode = "arm"
+name = "resume_0200d414"
+
+[[entry_point]]
+addr = 0x0200d418
+size = 0x160
+mode = "arm"
+name = "resume_0200d418"
+
+[[entry_point]]
+addr = 0x0200d41c
+size = 0x15c
+mode = "arm"
+name = "resume_0200d41c"
+
+[[entry_point]]
+addr = 0x0200d420
+size = 0x158
+mode = "arm"
+name = "resume_0200d420"
+
+[[entry_point]]
+addr = 0x0200d424
+size = 0x154
+mode = "arm"
+name = "resume_0200d424"
+
+[[entry_point]]
+addr = 0x0200d428
+size = 0x150
+mode = "arm"
+name = "resume_0200d428"
+
+[[entry_point]]
+addr = 0x0200d42c
+size = 0x14c
+mode = "arm"
+name = "resume_0200d42c"
+
+[[entry_point]]
+addr = 0x0200d430
+size = 0x148
+mode = "arm"
+name = "resume_0200d430"
+
+[[entry_point]]
+addr = 0x0200d434
+size = 0x144
+mode = "arm"
+name = "resume_0200d434"
+
+[[entry_point]]
+addr = 0x0200d438
+size = 0x140
+mode = "arm"
+name = "resume_0200d438"
+
+[[entry_point]]
+addr = 0x0200d43c
+size = 0x13c
+mode = "arm"
+name = "resume_0200d43c"
+
+[[entry_point]]
+addr = 0x0200d440
+size = 0x138
+mode = "arm"
+name = "resume_0200d440"
+
+[[entry_point]]
+addr = 0x0200d444
+size = 0x134
+mode = "arm"
+name = "resume_0200d444"
+
+[[entry_point]]
+addr = 0x0200d448
+size = 0x130
+mode = "arm"
+name = "resume_0200d448"
+
+[[entry_point]]
+addr = 0x0200d44c
+size = 0x12c
+mode = "arm"
+name = "resume_0200d44c"
+
+[[entry_point]]
+addr = 0x0200d450
+size = 0x128
+mode = "arm"
+name = "resume_0200d450"
+
+[[entry_point]]
+addr = 0x0200d454
+size = 0x124
+mode = "arm"
+name = "resume_0200d454"
+
+[[entry_point]]
+addr = 0x0200d458
+size = 0x120
+mode = "arm"
+name = "resume_0200d458"
+
+[[entry_point]]
+addr = 0x0200d45c
+size = 0x11c
+mode = "arm"
+name = "resume_0200d45c"
+
+[[entry_point]]
+addr = 0x0200d460
+size = 0x118
+mode = "arm"
+name = "resume_0200d460"
+
+[[entry_point]]
+addr = 0x0200d464
+size = 0x114
+mode = "arm"
+name = "resume_0200d464"
+
+[[entry_point]]
+addr = 0x0200d468
+size = 0x110
+mode = "arm"
+name = "resume_0200d468"
+
+[[entry_point]]
+addr = 0x0200d46c
+size = 0x10c
+mode = "arm"
+name = "resume_0200d46c"
+
+[[entry_point]]
+addr = 0x0200d470
+size = 0x108
+mode = "arm"
+name = "resume_0200d470"
+
+[[entry_point]]
+addr = 0x0200d474
+size = 0x104
+mode = "arm"
+name = "resume_0200d474"
+
+[[entry_point]]
+addr = 0x0200d478
+size = 0x100
+mode = "arm"
+name = "resume_0200d478"
+
+[[entry_point]]
+addr = 0x0200d47c
+size = 0xfc
+mode = "arm"
+name = "resume_0200d47c"
+
+[[entry_point]]
+addr = 0x0200d480
+size = 0xf8
+mode = "arm"
+name = "resume_0200d480"
+
+[[entry_point]]
+addr = 0x0200d484
+size = 0xf4
+mode = "arm"
+name = "resume_0200d484"
+
+[[entry_point]]
+addr = 0x0200d4d4
+size = 0xa4
+mode = "arm"
+name = "resume_0200d4d4"
+
+[[entry_point]]
+addr = 0x0200d4d8
+size = 0xa0
+mode = "arm"
+name = "resume_0200d4d8"
+
+[[entry_point]]
+addr = 0x0200d4dc
+size = 0x9c
+mode = "arm"
+name = "resume_0200d4dc"
+
+[[entry_point]]
+addr = 0x0200d4e0
+size = 0x98
+mode = "arm"
+name = "resume_0200d4e0"
+
+[[entry_point]]
+addr = 0x0200d4e4
+size = 0x94
+mode = "arm"
+name = "resume_0200d4e4"
+
+[[entry_point]]
+addr = 0x0200d4e8
+size = 0x90
+mode = "arm"
+name = "resume_0200d4e8"
+
+[[entry_point]]
+addr = 0x0200d4ec
+size = 0x8c
+mode = "arm"
+name = "resume_0200d4ec"
+
+[[entry_point]]
+addr = 0x0200d4f0
+size = 0x88
+mode = "arm"
+name = "resume_0200d4f0"
+
+[[entry_point]]
+addr = 0x0200d4f4
+size = 0x84
+mode = "arm"
+name = "resume_0200d4f4"
+
+[[entry_point]]
+addr = 0x0200d4f8
+size = 0x80
+mode = "arm"
+name = "resume_0200d4f8"
+
+[[entry_point]]
+addr = 0x0200d4fc
+size = 0x7c
+mode = "arm"
+name = "resume_0200d4fc"
+
+[[entry_point]]
+addr = 0x0200d500
+size = 0x78
+mode = "arm"
+name = "resume_0200d500"
+
+[[entry_point]]
+addr = 0x0200d504
+size = 0x74
+mode = "arm"
+name = "resume_0200d504"
+
+[[entry_point]]
+addr = 0x0200d508
+size = 0x70
+mode = "arm"
+name = "resume_0200d508"
+
+[[entry_point]]
+addr = 0x0200d50c
+size = 0x6c
+mode = "arm"
+name = "resume_0200d50c"
+
+[[entry_point]]
+addr = 0x0200d510
+size = 0x68
+mode = "arm"
+name = "resume_0200d510"
+
+[[entry_point]]
+addr = 0x0200d514
+size = 0x64
+mode = "arm"
+name = "resume_0200d514"
+
+[[entry_point]]
+addr = 0x0200d518
+size = 0x60
+mode = "arm"
+name = "resume_0200d518"
+
+[[entry_point]]
+addr = 0x0200d51c
+size = 0x5c
+mode = "arm"
+name = "resume_0200d51c"
+
+[[entry_point]]
+addr = 0x0200d520
+size = 0x58
+mode = "arm"
+name = "resume_0200d520"
+
+[[entry_point]]
+addr = 0x0200d524
+size = 0x54
+mode = "arm"
+name = "resume_0200d524"
+
+[[entry_point]]
+addr = 0x0200d528
+size = 0x50
+mode = "arm"
+name = "resume_0200d528"
+
+[[entry_point]]
+addr = 0x0200d52c
+size = 0x4c
+mode = "arm"
+name = "resume_0200d52c"
+
+[[entry_point]]
+addr = 0x0200d530
+size = 0x48
+mode = "arm"
+name = "resume_0200d530"
+
+[[entry_point]]
+addr = 0x0200d534
+size = 0x44
+mode = "arm"
+name = "resume_0200d534"
+
+[[entry_point]]
+addr = 0x0200d538
+size = 0x40
+mode = "arm"
+name = "resume_0200d538"
+
+[[entry_point]]
+addr = 0x0200d53c
+size = 0x3c
+mode = "arm"
+name = "resume_0200d53c"
+
+[[entry_point]]
+addr = 0x0200d540
+size = 0x38
+mode = "arm"
+name = "resume_0200d540"
+
+[[entry_point]]
+addr = 0x0200d544
+size = 0x34
+mode = "arm"
+name = "resume_0200d544"
+
+[[entry_point]]
+addr = 0x0200d548
+size = 0x30
+mode = "arm"
+name = "resume_0200d548"
+
+[[entry_point]]
+addr = 0x0200d54c
+size = 0x2c
+mode = "arm"
+name = "resume_0200d54c"
+
+[[entry_point]]
+addr = 0x0200d550
+size = 0x28
+mode = "arm"
+name = "resume_0200d550"
 
 [[entry_point]]
 addr = 0x0200d578
@@ -2399,6 +5507,108 @@ mode = "arm"
 name = "func_0200e7d0"
 
 [[entry_point]]
+addr = 0x0200e810
+size = 0x44
+mode = "arm"
+name = "resume_0200e810"
+
+[[entry_point]]
+addr = 0x0200e814
+size = 0x40
+mode = "arm"
+name = "resume_0200e814"
+
+[[entry_point]]
+addr = 0x0200e818
+size = 0x3c
+mode = "arm"
+name = "resume_0200e818"
+
+[[entry_point]]
+addr = 0x0200e81c
+size = 0x38
+mode = "arm"
+name = "resume_0200e81c"
+
+[[entry_point]]
+addr = 0x0200e820
+size = 0x34
+mode = "arm"
+name = "resume_0200e820"
+
+[[entry_point]]
+addr = 0x0200e824
+size = 0x30
+mode = "arm"
+name = "resume_0200e824"
+
+[[entry_point]]
+addr = 0x0200e828
+size = 0x2c
+mode = "arm"
+name = "resume_0200e828"
+
+[[entry_point]]
+addr = 0x0200e82c
+size = 0x28
+mode = "arm"
+name = "resume_0200e82c"
+
+[[entry_point]]
+addr = 0x0200e830
+size = 0x24
+mode = "arm"
+name = "resume_0200e830"
+
+[[entry_point]]
+addr = 0x0200e834
+size = 0x20
+mode = "arm"
+name = "resume_0200e834"
+
+[[entry_point]]
+addr = 0x0200e838
+size = 0x1c
+mode = "arm"
+name = "resume_0200e838"
+
+[[entry_point]]
+addr = 0x0200e83c
+size = 0x18
+mode = "arm"
+name = "resume_0200e83c"
+
+[[entry_point]]
+addr = 0x0200e840
+size = 0x14
+mode = "arm"
+name = "resume_0200e840"
+
+[[entry_point]]
+addr = 0x0200e844
+size = 0x10
+mode = "arm"
+name = "resume_0200e844"
+
+[[entry_point]]
+addr = 0x0200e848
+size = 0xc
+mode = "arm"
+name = "resume_0200e848"
+
+[[entry_point]]
+addr = 0x0200e84c
+size = 0x8
+mode = "arm"
+name = "resume_0200e84c"
+
+[[entry_point]]
+addr = 0x0200e850
+size = 0x4
+mode = "arm"
+name = "resume_0200e850"
+
+[[entry_point]]
 addr = 0x0200e854
 size = 0x20
 mode = "arm"
@@ -2409,6 +5619,90 @@ addr = 0x0200e874
 size = 0xd0
 mode = "arm"
 name = "func_0200e874"
+
+[[entry_point]]
+addr = 0x0200e89c
+size = 0xa8
+mode = "arm"
+name = "resume_0200e89c"
+
+[[entry_point]]
+addr = 0x0200e8a0
+size = 0xa4
+mode = "arm"
+name = "resume_0200e8a0"
+
+[[entry_point]]
+addr = 0x0200e8a4
+size = 0xa0
+mode = "arm"
+name = "resume_0200e8a4"
+
+[[entry_point]]
+addr = 0x0200e8a8
+size = 0x9c
+mode = "arm"
+name = "resume_0200e8a8"
+
+[[entry_point]]
+addr = 0x0200e8ac
+size = 0x98
+mode = "arm"
+name = "resume_0200e8ac"
+
+[[entry_point]]
+addr = 0x0200e8b0
+size = 0x94
+mode = "arm"
+name = "resume_0200e8b0"
+
+[[entry_point]]
+addr = 0x0200e8bc
+size = 0x88
+mode = "arm"
+name = "resume_0200e8bc"
+
+[[entry_point]]
+addr = 0x0200e8c0
+size = 0x84
+mode = "arm"
+name = "resume_0200e8c0"
+
+[[entry_point]]
+addr = 0x0200e8cc
+size = 0x78
+mode = "arm"
+name = "resume_0200e8cc"
+
+[[entry_point]]
+addr = 0x0200e8d0
+size = 0x74
+mode = "arm"
+name = "resume_0200e8d0"
+
+[[entry_point]]
+addr = 0x0200e8d4
+size = 0x70
+mode = "arm"
+name = "resume_0200e8d4"
+
+[[entry_point]]
+addr = 0x0200e8d8
+size = 0x6c
+mode = "arm"
+name = "resume_0200e8d8"
+
+[[entry_point]]
+addr = 0x0200e8dc
+size = 0x68
+mode = "arm"
+name = "resume_0200e8dc"
+
+[[entry_point]]
+addr = 0x0200e8e0
+size = 0x64
+mode = "arm"
+name = "resume_0200e8e0"
 
 [[entry_point]]
 addr = 0x0200e944
@@ -2427,6 +5721,18 @@ addr = 0x0200eacc
 size = 0x34
 mode = "arm"
 name = "func_0200eacc"
+
+[[entry_point]]
+addr = 0x0200eaf8
+size = 0x8
+mode = "arm"
+name = "resume_0200eaf8"
+
+[[entry_point]]
+addr = 0x0200eafc
+size = 0x4
+mode = "arm"
+name = "resume_0200eafc"
 
 [[entry_point]]
 addr = 0x0200eb00
@@ -2451,6 +5757,42 @@ addr = 0x0200eb50
 size = 0x90
 mode = "arm"
 name = "func_0200eb50"
+
+[[entry_point]]
+addr = 0x0200ebbc
+size = 0x24
+mode = "arm"
+name = "resume_0200ebbc"
+
+[[entry_point]]
+addr = 0x0200ebc0
+size = 0x20
+mode = "arm"
+name = "resume_0200ebc0"
+
+[[entry_point]]
+addr = 0x0200ebc4
+size = 0x1c
+mode = "arm"
+name = "resume_0200ebc4"
+
+[[entry_point]]
+addr = 0x0200ebc8
+size = 0x18
+mode = "arm"
+name = "resume_0200ebc8"
+
+[[entry_point]]
+addr = 0x0200ebcc
+size = 0x14
+mode = "arm"
+name = "resume_0200ebcc"
+
+[[entry_point]]
+addr = 0x0200ebd0
+size = 0x10
+mode = "arm"
+name = "resume_0200ebd0"
 
 [[entry_point]]
 addr = 0x0200ebe0
@@ -2639,10 +5981,166 @@ mode = "arm"
 name = "Wifi_update"
 
 [[entry_point]]
+addr = 0x02010100
+size = 0x21c
+mode = "arm"
+name = "resume_02010100"
+
+[[entry_point]]
+addr = 0x020101d4
+size = 0x148
+mode = "arm"
+name = "resume_020101d4"
+
+[[entry_point]]
+addr = 0x020101d8
+size = 0x144
+mode = "arm"
+name = "resume_020101d8"
+
+[[entry_point]]
+addr = 0x020101dc
+size = 0x140
+mode = "arm"
+name = "resume_020101dc"
+
+[[entry_point]]
+addr = 0x020101e0
+size = 0x13c
+mode = "arm"
+name = "resume_020101e0"
+
+[[entry_point]]
+addr = 0x020101e4
+size = 0x138
+mode = "arm"
+name = "resume_020101e4"
+
+[[entry_point]]
 addr = 0x0201031c
 size = 0xa0
 mode = "arm"
 name = "Wifi_updatePackets"
+
+[[entry_point]]
+addr = 0x02010338
+size = 0x84
+mode = "arm"
+name = "resume_02010338"
+
+[[entry_point]]
+addr = 0x0201033c
+size = 0x80
+mode = "arm"
+name = "resume_0201033c"
+
+[[entry_point]]
+addr = 0x02010340
+size = 0x7c
+mode = "arm"
+name = "resume_02010340"
+
+[[entry_point]]
+addr = 0x02010344
+size = 0x78
+mode = "arm"
+name = "resume_02010344"
+
+[[entry_point]]
+addr = 0x02010348
+size = 0x74
+mode = "arm"
+name = "resume_02010348"
+
+[[entry_point]]
+addr = 0x0201034c
+size = 0x70
+mode = "arm"
+name = "resume_0201034c"
+
+[[entry_point]]
+addr = 0x02010350
+size = 0x6c
+mode = "arm"
+name = "resume_02010350"
+
+[[entry_point]]
+addr = 0x02010354
+size = 0x68
+mode = "arm"
+name = "resume_02010354"
+
+[[entry_point]]
+addr = 0x02010358
+size = 0x64
+mode = "arm"
+name = "resume_02010358"
+
+[[entry_point]]
+addr = 0x0201035c
+size = 0x60
+mode = "arm"
+name = "resume_0201035c"
+
+[[entry_point]]
+addr = 0x02010360
+size = 0x5c
+mode = "arm"
+name = "resume_02010360"
+
+[[entry_point]]
+addr = 0x02010364
+size = 0x58
+mode = "arm"
+name = "resume_02010364"
+
+[[entry_point]]
+addr = 0x02010368
+size = 0x54
+mode = "arm"
+name = "resume_02010368"
+
+[[entry_point]]
+addr = 0x0201036c
+size = 0x50
+mode = "arm"
+name = "resume_0201036c"
+
+[[entry_point]]
+addr = 0x02010370
+size = 0x4c
+mode = "arm"
+name = "resume_02010370"
+
+[[entry_point]]
+addr = 0x02010390
+size = 0x2c
+mode = "arm"
+name = "resume_02010390"
+
+[[entry_point]]
+addr = 0x02010394
+size = 0x28
+mode = "arm"
+name = "resume_02010394"
+
+[[entry_point]]
+addr = 0x02010398
+size = 0x24
+mode = "arm"
+name = "resume_02010398"
+
+[[entry_point]]
+addr = 0x0201039c
+size = 0x20
+mode = "arm"
+name = "resume_0201039c"
+
+[[entry_point]]
+addr = 0x020103a0
+size = 0x1c
+mode = "arm"
+name = "resume_020103a0"
 
 [[entry_point]]
 addr = 0x020103bc
@@ -2915,6 +6413,18 @@ mode = "arm"
 name = "func_02011380"
 
 [[entry_point]]
+addr = 0x020113ac
+size = 0x108
+mode = "arm"
+name = "resume_020113ac"
+
+[[entry_point]]
+addr = 0x020113b0
+size = 0x104
+mode = "arm"
+name = "resume_020113b0"
+
+[[entry_point]]
 addr = 0x020114b4
 size = 0xc8
 mode = "arm"
@@ -2925,6 +6435,222 @@ addr = 0x0201157c
 size = 0xdc
 mode = "arm"
 name = "func_0201157c"
+
+[[entry_point]]
+addr = 0x020115b4
+size = 0xa4
+mode = "arm"
+name = "resume_020115b4"
+
+[[entry_point]]
+addr = 0x020115b8
+size = 0xa0
+mode = "arm"
+name = "resume_020115b8"
+
+[[entry_point]]
+addr = 0x020115bc
+size = 0x9c
+mode = "arm"
+name = "resume_020115bc"
+
+[[entry_point]]
+addr = 0x020115c0
+size = 0x98
+mode = "arm"
+name = "resume_020115c0"
+
+[[entry_point]]
+addr = 0x020115c4
+size = 0x94
+mode = "arm"
+name = "resume_020115c4"
+
+[[entry_point]]
+addr = 0x020115c8
+size = 0x90
+mode = "arm"
+name = "resume_020115c8"
+
+[[entry_point]]
+addr = 0x020115cc
+size = 0x8c
+mode = "arm"
+name = "resume_020115cc"
+
+[[entry_point]]
+addr = 0x020115d0
+size = 0x88
+mode = "arm"
+name = "resume_020115d0"
+
+[[entry_point]]
+addr = 0x020115d4
+size = 0x84
+mode = "arm"
+name = "resume_020115d4"
+
+[[entry_point]]
+addr = 0x020115d8
+size = 0x80
+mode = "arm"
+name = "resume_020115d8"
+
+[[entry_point]]
+addr = 0x020115dc
+size = 0x7c
+mode = "arm"
+name = "resume_020115dc"
+
+[[entry_point]]
+addr = 0x020115e0
+size = 0x78
+mode = "arm"
+name = "resume_020115e0"
+
+[[entry_point]]
+addr = 0x020115e4
+size = 0x74
+mode = "arm"
+name = "resume_020115e4"
+
+[[entry_point]]
+addr = 0x020115e8
+size = 0x70
+mode = "arm"
+name = "resume_020115e8"
+
+[[entry_point]]
+addr = 0x020115ec
+size = 0x6c
+mode = "arm"
+name = "resume_020115ec"
+
+[[entry_point]]
+addr = 0x020115f0
+size = 0x68
+mode = "arm"
+name = "resume_020115f0"
+
+[[entry_point]]
+addr = 0x020115f4
+size = 0x64
+mode = "arm"
+name = "resume_020115f4"
+
+[[entry_point]]
+addr = 0x020115f8
+size = 0x60
+mode = "arm"
+name = "resume_020115f8"
+
+[[entry_point]]
+addr = 0x020115fc
+size = 0x5c
+mode = "arm"
+name = "resume_020115fc"
+
+[[entry_point]]
+addr = 0x02011600
+size = 0x58
+mode = "arm"
+name = "resume_02011600"
+
+[[entry_point]]
+addr = 0x02011604
+size = 0x54
+mode = "arm"
+name = "resume_02011604"
+
+[[entry_point]]
+addr = 0x02011608
+size = 0x50
+mode = "arm"
+name = "resume_02011608"
+
+[[entry_point]]
+addr = 0x0201160c
+size = 0x4c
+mode = "arm"
+name = "resume_0201160c"
+
+[[entry_point]]
+addr = 0x02011610
+size = 0x48
+mode = "arm"
+name = "resume_02011610"
+
+[[entry_point]]
+addr = 0x02011614
+size = 0x44
+mode = "arm"
+name = "resume_02011614"
+
+[[entry_point]]
+addr = 0x02011618
+size = 0x40
+mode = "arm"
+name = "resume_02011618"
+
+[[entry_point]]
+addr = 0x0201161c
+size = 0x3c
+mode = "arm"
+name = "resume_0201161c"
+
+[[entry_point]]
+addr = 0x02011620
+size = 0x38
+mode = "arm"
+name = "resume_02011620"
+
+[[entry_point]]
+addr = 0x02011624
+size = 0x34
+mode = "arm"
+name = "resume_02011624"
+
+[[entry_point]]
+addr = 0x02011628
+size = 0x30
+mode = "arm"
+name = "resume_02011628"
+
+[[entry_point]]
+addr = 0x02011630
+size = 0x28
+mode = "arm"
+name = "resume_02011630"
+
+[[entry_point]]
+addr = 0x02011634
+size = 0x24
+mode = "arm"
+name = "resume_02011634"
+
+[[entry_point]]
+addr = 0x02011638
+size = 0x20
+mode = "arm"
+name = "resume_02011638"
+
+[[entry_point]]
+addr = 0x0201163c
+size = 0x1c
+mode = "arm"
+name = "resume_0201163c"
+
+[[entry_point]]
+addr = 0x02011640
+size = 0x18
+mode = "arm"
+name = "resume_02011640"
+
+[[entry_point]]
+addr = 0x02011644
+size = 0x14
+mode = "arm"
+name = "resume_02011644"
 
 [[entry_point]]
 addr = 0x02011658
@@ -2943,6 +6669,60 @@ addr = 0x020117c0
 size = 0xdc
 mode = "arm"
 name = "func_020117c0"
+
+[[entry_point]]
+addr = 0x020117e8
+size = 0xb4
+mode = "arm"
+name = "resume_020117e8"
+
+[[entry_point]]
+addr = 0x020117ec
+size = 0xb0
+mode = "arm"
+name = "resume_020117ec"
+
+[[entry_point]]
+addr = 0x020117f0
+size = 0xac
+mode = "arm"
+name = "resume_020117f0"
+
+[[entry_point]]
+addr = 0x020117f4
+size = 0xa8
+mode = "arm"
+name = "resume_020117f4"
+
+[[entry_point]]
+addr = 0x020117f8
+size = 0xa4
+mode = "arm"
+name = "resume_020117f8"
+
+[[entry_point]]
+addr = 0x020117fc
+size = 0xa0
+mode = "arm"
+name = "resume_020117fc"
+
+[[entry_point]]
+addr = 0x02011800
+size = 0x9c
+mode = "arm"
+name = "resume_02011800"
+
+[[entry_point]]
+addr = 0x02011894
+size = 0x8
+mode = "arm"
+name = "resume_02011894"
+
+[[entry_point]]
+addr = 0x02011898
+size = 0x4
+mode = "arm"
+name = "resume_02011898"
 
 [[entry_point]]
 addr = 0x0201189c
@@ -3159,6 +6939,138 @@ addr = 0x020123d8
 size = 0x1ec
 mode = "arm"
 name = "func_020123d8"
+
+[[entry_point]]
+addr = 0x020123f4
+size = 0x1d0
+mode = "arm"
+name = "resume_020123f4"
+
+[[entry_point]]
+addr = 0x020123f8
+size = 0x1cc
+mode = "arm"
+name = "resume_020123f8"
+
+[[entry_point]]
+addr = 0x020123fc
+size = 0x1c8
+mode = "arm"
+name = "resume_020123fc"
+
+[[entry_point]]
+addr = 0x02012400
+size = 0x1c4
+mode = "arm"
+name = "resume_02012400"
+
+[[entry_point]]
+addr = 0x02012404
+size = 0x1c0
+mode = "arm"
+name = "resume_02012404"
+
+[[entry_point]]
+addr = 0x02012408
+size = 0x1bc
+mode = "arm"
+name = "resume_02012408"
+
+[[entry_point]]
+addr = 0x02012410
+size = 0x1b4
+mode = "arm"
+name = "resume_02012410"
+
+[[entry_point]]
+addr = 0x02012418
+size = 0x1ac
+mode = "arm"
+name = "resume_02012418"
+
+[[entry_point]]
+addr = 0x0201241c
+size = 0x1a8
+mode = "arm"
+name = "resume_0201241c"
+
+[[entry_point]]
+addr = 0x02012420
+size = 0x1a4
+mode = "arm"
+name = "resume_02012420"
+
+[[entry_point]]
+addr = 0x02012428
+size = 0x19c
+mode = "arm"
+name = "resume_02012428"
+
+[[entry_point]]
+addr = 0x0201242c
+size = 0x198
+mode = "arm"
+name = "resume_0201242c"
+
+[[entry_point]]
+addr = 0x02012430
+size = 0x194
+mode = "arm"
+name = "resume_02012430"
+
+[[entry_point]]
+addr = 0x02012458
+size = 0x16c
+mode = "arm"
+name = "resume_02012458"
+
+[[entry_point]]
+addr = 0x0201245c
+size = 0x168
+mode = "arm"
+name = "resume_0201245c"
+
+[[entry_point]]
+addr = 0x02012464
+size = 0x160
+mode = "arm"
+name = "resume_02012464"
+
+[[entry_point]]
+addr = 0x02012580
+size = 0x44
+mode = "arm"
+name = "resume_02012580"
+
+[[entry_point]]
+addr = 0x02012584
+size = 0x40
+mode = "arm"
+name = "resume_02012584"
+
+[[entry_point]]
+addr = 0x02012588
+size = 0x3c
+mode = "arm"
+name = "resume_02012588"
+
+[[entry_point]]
+addr = 0x0201258c
+size = 0x38
+mode = "arm"
+name = "resume_0201258c"
+
+[[entry_point]]
+addr = 0x02012590
+size = 0x34
+mode = "arm"
+name = "resume_02012590"
+
+[[entry_point]]
+addr = 0x02012594
+size = 0x30
+mode = "arm"
+name = "resume_02012594"
 
 [[entry_point]]
 addr = 0x020125c4
@@ -3479,6 +7391,42 @@ mode = "arm"
 name = "_ZN5Scene9preRenderEv"
 
 [[entry_point]]
+addr = 0x020134dc
+size = 0x18
+mode = "arm"
+name = "resume_020134dc"
+
+[[entry_point]]
+addr = 0x020134e0
+size = 0x14
+mode = "arm"
+name = "resume_020134e0"
+
+[[entry_point]]
+addr = 0x020134e4
+size = 0x10
+mode = "arm"
+name = "resume_020134e4"
+
+[[entry_point]]
+addr = 0x020134e8
+size = 0xc
+mode = "arm"
+name = "resume_020134e8"
+
+[[entry_point]]
+addr = 0x020134ec
+size = 0x8
+mode = "arm"
+name = "resume_020134ec"
+
+[[entry_point]]
+addr = 0x020134f0
+size = 0x4
+mode = "arm"
+name = "resume_020134f0"
+
+[[entry_point]]
 addr = 0x020134f4
 size = 0xc
 mode = "arm"
@@ -3489,6 +7437,186 @@ addr = 0x02013500
 size = 0x1c8
 mode = "arm"
 name = "_ZN5Scene9preUpdateEv"
+
+[[entry_point]]
+addr = 0x02013518
+size = 0x1b0
+mode = "arm"
+name = "resume_02013518"
+
+[[entry_point]]
+addr = 0x0201351c
+size = 0x1ac
+mode = "arm"
+name = "resume_0201351c"
+
+[[entry_point]]
+addr = 0x02013520
+size = 0x1a8
+mode = "arm"
+name = "resume_02013520"
+
+[[entry_point]]
+addr = 0x02013524
+size = 0x1a4
+mode = "arm"
+name = "resume_02013524"
+
+[[entry_point]]
+addr = 0x02013528
+size = 0x1a0
+mode = "arm"
+name = "resume_02013528"
+
+[[entry_point]]
+addr = 0x0201356c
+size = 0x15c
+mode = "arm"
+name = "resume_0201356c"
+
+[[entry_point]]
+addr = 0x02013570
+size = 0x158
+mode = "arm"
+name = "resume_02013570"
+
+[[entry_point]]
+addr = 0x02013574
+size = 0x154
+mode = "arm"
+name = "resume_02013574"
+
+[[entry_point]]
+addr = 0x020135a8
+size = 0x120
+mode = "arm"
+name = "resume_020135a8"
+
+[[entry_point]]
+addr = 0x020135ac
+size = 0x11c
+mode = "arm"
+name = "resume_020135ac"
+
+[[entry_point]]
+addr = 0x020135b0
+size = 0x118
+mode = "arm"
+name = "resume_020135b0"
+
+[[entry_point]]
+addr = 0x020135b4
+size = 0x114
+mode = "arm"
+name = "resume_020135b4"
+
+[[entry_point]]
+addr = 0x020135b8
+size = 0x110
+mode = "arm"
+name = "resume_020135b8"
+
+[[entry_point]]
+addr = 0x020135bc
+size = 0x10c
+mode = "arm"
+name = "resume_020135bc"
+
+[[entry_point]]
+addr = 0x020135c0
+size = 0x108
+mode = "arm"
+name = "resume_020135c0"
+
+[[entry_point]]
+addr = 0x020135c4
+size = 0x104
+mode = "arm"
+name = "resume_020135c4"
+
+[[entry_point]]
+addr = 0x020135d8
+size = 0xf0
+mode = "arm"
+name = "resume_020135d8"
+
+[[entry_point]]
+addr = 0x020135dc
+size = 0xec
+mode = "arm"
+name = "resume_020135dc"
+
+[[entry_point]]
+addr = 0x020135e0
+size = 0xe8
+mode = "arm"
+name = "resume_020135e0"
+
+[[entry_point]]
+addr = 0x020135f4
+size = 0xd4
+mode = "arm"
+name = "resume_020135f4"
+
+[[entry_point]]
+addr = 0x020135f8
+size = 0xd0
+mode = "arm"
+name = "resume_020135f8"
+
+[[entry_point]]
+addr = 0x020135fc
+size = 0xcc
+mode = "arm"
+name = "resume_020135fc"
+
+[[entry_point]]
+addr = 0x02013600
+size = 0xc8
+mode = "arm"
+name = "resume_02013600"
+
+[[entry_point]]
+addr = 0x02013604
+size = 0xc4
+mode = "arm"
+name = "resume_02013604"
+
+[[entry_point]]
+addr = 0x02013608
+size = 0xc0
+mode = "arm"
+name = "resume_02013608"
+
+[[entry_point]]
+addr = 0x0201360c
+size = 0xbc
+mode = "arm"
+name = "resume_0201360c"
+
+[[entry_point]]
+addr = 0x02013694
+size = 0x34
+mode = "arm"
+name = "resume_02013694"
+
+[[entry_point]]
+addr = 0x02013698
+size = 0x30
+mode = "arm"
+name = "resume_02013698"
+
+[[entry_point]]
+addr = 0x0201369c
+size = 0x2c
+mode = "arm"
+name = "resume_0201369c"
+
+[[entry_point]]
+addr = 0x020136a0
+size = 0x28
+mode = "arm"
+name = "resume_020136a0"
 
 [[entry_point]]
 addr = 0x020136c8
@@ -3899,10 +8027,94 @@ mode = "arm"
 name = "func_02015474"
 
 [[entry_point]]
+addr = 0x02015494
+size = 0x48
+mode = "arm"
+name = "resume_02015494"
+
+[[entry_point]]
+addr = 0x02015498
+size = 0x44
+mode = "arm"
+name = "resume_02015498"
+
+[[entry_point]]
+addr = 0x0201549c
+size = 0x40
+mode = "arm"
+name = "resume_0201549c"
+
+[[entry_point]]
+addr = 0x020154c4
+size = 0x18
+mode = "arm"
+name = "resume_020154c4"
+
+[[entry_point]]
+addr = 0x020154c8
+size = 0x14
+mode = "arm"
+name = "resume_020154c8"
+
+[[entry_point]]
+addr = 0x020154cc
+size = 0x10
+mode = "arm"
+name = "resume_020154cc"
+
+[[entry_point]]
+addr = 0x020154d0
+size = 0xc
+mode = "arm"
+name = "resume_020154d0"
+
+[[entry_point]]
 addr = 0x020154dc
 size = 0x48
 mode = "arm"
 name = "func_020154dc"
+
+[[entry_point]]
+addr = 0x020154f8
+size = 0x2c
+mode = "arm"
+name = "resume_020154f8"
+
+[[entry_point]]
+addr = 0x020154fc
+size = 0x28
+mode = "arm"
+name = "resume_020154fc"
+
+[[entry_point]]
+addr = 0x02015500
+size = 0x24
+mode = "arm"
+name = "resume_02015500"
+
+[[entry_point]]
+addr = 0x02015510
+size = 0x14
+mode = "arm"
+name = "resume_02015510"
+
+[[entry_point]]
+addr = 0x02015514
+size = 0x10
+mode = "arm"
+name = "resume_02015514"
+
+[[entry_point]]
+addr = 0x02015518
+size = 0xc
+mode = "arm"
+name = "resume_02015518"
+
+[[entry_point]]
+addr = 0x0201551c
+size = 0x8
+mode = "arm"
+name = "resume_0201551c"
 
 [[entry_point]]
 addr = 0x02015524
@@ -5195,6 +9407,54 @@ mode = "arm"
 name = "_ZN5Model17restoreNodeMatrixEm"
 
 [[entry_point]]
+addr = 0x020196bc
+size = 0x20
+mode = "arm"
+name = "resume_020196bc"
+
+[[entry_point]]
+addr = 0x020196c0
+size = 0x1c
+mode = "arm"
+name = "resume_020196c0"
+
+[[entry_point]]
+addr = 0x020196c4
+size = 0x18
+mode = "arm"
+name = "resume_020196c4"
+
+[[entry_point]]
+addr = 0x020196c8
+size = 0x14
+mode = "arm"
+name = "resume_020196c8"
+
+[[entry_point]]
+addr = 0x020196cc
+size = 0x10
+mode = "arm"
+name = "resume_020196cc"
+
+[[entry_point]]
+addr = 0x020196d0
+size = 0xc
+mode = "arm"
+name = "resume_020196d0"
+
+[[entry_point]]
+addr = 0x020196d4
+size = 0x8
+mode = "arm"
+name = "resume_020196d4"
+
+[[entry_point]]
+addr = 0x020196d8
+size = 0x4
+mode = "arm"
+name = "resume_020196d8"
+
+[[entry_point]]
 addr = 0x020196dc
 size = 0x50
 mode = "arm"
@@ -5211,6 +9471,102 @@ addr = 0x02019740
 size = 0x7c
 mode = "arm"
 name = "_ZN5Model21getNodeMatrixInternalEP12Ns3dNodeListmP6Mat4x3"
+
+[[entry_point]]
+addr = 0x0201977c
+size = 0x40
+mode = "arm"
+name = "resume_0201977c"
+
+[[entry_point]]
+addr = 0x02019780
+size = 0x3c
+mode = "arm"
+name = "resume_02019780"
+
+[[entry_point]]
+addr = 0x02019784
+size = 0x38
+mode = "arm"
+name = "resume_02019784"
+
+[[entry_point]]
+addr = 0x02019788
+size = 0x34
+mode = "arm"
+name = "resume_02019788"
+
+[[entry_point]]
+addr = 0x0201978c
+size = 0x30
+mode = "arm"
+name = "resume_0201978c"
+
+[[entry_point]]
+addr = 0x02019790
+size = 0x2c
+mode = "arm"
+name = "resume_02019790"
+
+[[entry_point]]
+addr = 0x02019794
+size = 0x28
+mode = "arm"
+name = "resume_02019794"
+
+[[entry_point]]
+addr = 0x02019798
+size = 0x24
+mode = "arm"
+name = "resume_02019798"
+
+[[entry_point]]
+addr = 0x0201979c
+size = 0x20
+mode = "arm"
+name = "resume_0201979c"
+
+[[entry_point]]
+addr = 0x020197a0
+size = 0x1c
+mode = "arm"
+name = "resume_020197a0"
+
+[[entry_point]]
+addr = 0x020197a4
+size = 0x18
+mode = "arm"
+name = "resume_020197a4"
+
+[[entry_point]]
+addr = 0x020197a8
+size = 0x14
+mode = "arm"
+name = "resume_020197a8"
+
+[[entry_point]]
+addr = 0x020197ac
+size = 0x10
+mode = "arm"
+name = "resume_020197ac"
+
+[[entry_point]]
+addr = 0x020197b0
+size = 0xc
+mode = "arm"
+name = "resume_020197b0"
+
+[[entry_point]]
+addr = 0x020197b4
+size = 0x8
+mode = "arm"
+name = "resume_020197b4"
+
+[[entry_point]]
+addr = 0x020197b8
+size = 0x4
+mode = "arm"
+name = "resume_020197b8"
 
 [[entry_point]]
 addr = 0x020197bc
@@ -6407,6 +10763,84 @@ mode = "arm"
 name = "_ZN9FrameCtrl6updateEv"
 
 [[entry_point]]
+addr = 0x0201feec
+size = 0x34
+mode = "arm"
+name = "resume_0201feec"
+
+[[entry_point]]
+addr = 0x0201fef0
+size = 0x30
+mode = "arm"
+name = "resume_0201fef0"
+
+[[entry_point]]
+addr = 0x0201fef4
+size = 0x2c
+mode = "arm"
+name = "resume_0201fef4"
+
+[[entry_point]]
+addr = 0x0201fef8
+size = 0x28
+mode = "arm"
+name = "resume_0201fef8"
+
+[[entry_point]]
+addr = 0x0201fefc
+size = 0x24
+mode = "arm"
+name = "resume_0201fefc"
+
+[[entry_point]]
+addr = 0x0201ff00
+size = 0x20
+mode = "arm"
+name = "resume_0201ff00"
+
+[[entry_point]]
+addr = 0x0201ff04
+size = 0x1c
+mode = "arm"
+name = "resume_0201ff04"
+
+[[entry_point]]
+addr = 0x0201ff08
+size = 0x18
+mode = "arm"
+name = "resume_0201ff08"
+
+[[entry_point]]
+addr = 0x0201ff0c
+size = 0x14
+mode = "arm"
+name = "resume_0201ff0c"
+
+[[entry_point]]
+addr = 0x0201ff10
+size = 0x10
+mode = "arm"
+name = "resume_0201ff10"
+
+[[entry_point]]
+addr = 0x0201ff14
+size = 0xc
+mode = "arm"
+name = "resume_0201ff14"
+
+[[entry_point]]
+addr = 0x0201ff18
+size = 0x8
+mode = "arm"
+name = "resume_0201ff18"
+
+[[entry_point]]
+addr = 0x0201ff1c
+size = 0x4
+mode = "arm"
+name = "resume_0201ff1c"
+
+[[entry_point]]
 addr = 0x0201ff20
 size = 0x20
 mode = "arm"
@@ -6845,6 +11279,36 @@ mode = "arm"
 name = "func_02021108"
 
 [[entry_point]]
+addr = 0x0202117c
+size = 0x74
+mode = "arm"
+name = "resume_0202117c"
+
+[[entry_point]]
+addr = 0x02021180
+size = 0x70
+mode = "arm"
+name = "resume_02021180"
+
+[[entry_point]]
+addr = 0x02021184
+size = 0x6c
+mode = "arm"
+name = "resume_02021184"
+
+[[entry_point]]
+addr = 0x02021188
+size = 0x68
+mode = "arm"
+name = "resume_02021188"
+
+[[entry_point]]
+addr = 0x0202118c
+size = 0x64
+mode = "arm"
+name = "resume_0202118c"
+
+[[entry_point]]
 addr = 0x020211f0
 size = 0x148
 mode = "arm"
@@ -6885,6 +11349,198 @@ addr = 0x02021654
 size = 0x118
 mode = "arm"
 name = "TouchPad_update"
+
+[[entry_point]]
+addr = 0x020216a0
+size = 0xcc
+mode = "arm"
+name = "resume_020216a0"
+
+[[entry_point]]
+addr = 0x020216a4
+size = 0xc8
+mode = "arm"
+name = "resume_020216a4"
+
+[[entry_point]]
+addr = 0x020216a8
+size = 0xc4
+mode = "arm"
+name = "resume_020216a8"
+
+[[entry_point]]
+addr = 0x020216ac
+size = 0xc0
+mode = "arm"
+name = "resume_020216ac"
+
+[[entry_point]]
+addr = 0x020216b0
+size = 0xbc
+mode = "arm"
+name = "resume_020216b0"
+
+[[entry_point]]
+addr = 0x020216b4
+size = 0xb8
+mode = "arm"
+name = "resume_020216b4"
+
+[[entry_point]]
+addr = 0x020216b8
+size = 0xb4
+mode = "arm"
+name = "resume_020216b8"
+
+[[entry_point]]
+addr = 0x020216bc
+size = 0xb0
+mode = "arm"
+name = "resume_020216bc"
+
+[[entry_point]]
+addr = 0x020216c0
+size = 0xac
+mode = "arm"
+name = "resume_020216c0"
+
+[[entry_point]]
+addr = 0x020216c4
+size = 0xa8
+mode = "arm"
+name = "resume_020216c4"
+
+[[entry_point]]
+addr = 0x020216c8
+size = 0xa4
+mode = "arm"
+name = "resume_020216c8"
+
+[[entry_point]]
+addr = 0x020216cc
+size = 0xa0
+mode = "arm"
+name = "resume_020216cc"
+
+[[entry_point]]
+addr = 0x020216d0
+size = 0x9c
+mode = "arm"
+name = "resume_020216d0"
+
+[[entry_point]]
+addr = 0x020216d4
+size = 0x98
+mode = "arm"
+name = "resume_020216d4"
+
+[[entry_point]]
+addr = 0x020216d8
+size = 0x94
+mode = "arm"
+name = "resume_020216d8"
+
+[[entry_point]]
+addr = 0x020216dc
+size = 0x90
+mode = "arm"
+name = "resume_020216dc"
+
+[[entry_point]]
+addr = 0x020216e0
+size = 0x8c
+mode = "arm"
+name = "resume_020216e0"
+
+[[entry_point]]
+addr = 0x020216e4
+size = 0x88
+mode = "arm"
+name = "resume_020216e4"
+
+[[entry_point]]
+addr = 0x020216e8
+size = 0x84
+mode = "arm"
+name = "resume_020216e8"
+
+[[entry_point]]
+addr = 0x020216ec
+size = 0x80
+mode = "arm"
+name = "resume_020216ec"
+
+[[entry_point]]
+addr = 0x020216f0
+size = 0x7c
+mode = "arm"
+name = "resume_020216f0"
+
+[[entry_point]]
+addr = 0x020216f4
+size = 0x78
+mode = "arm"
+name = "resume_020216f4"
+
+[[entry_point]]
+addr = 0x020216f8
+size = 0x74
+mode = "arm"
+name = "resume_020216f8"
+
+[[entry_point]]
+addr = 0x020216fc
+size = 0x70
+mode = "arm"
+name = "resume_020216fc"
+
+[[entry_point]]
+addr = 0x02021738
+size = 0x34
+mode = "arm"
+name = "resume_02021738"
+
+[[entry_point]]
+addr = 0x0202173c
+size = 0x30
+mode = "arm"
+name = "resume_0202173c"
+
+[[entry_point]]
+addr = 0x02021740
+size = 0x2c
+mode = "arm"
+name = "resume_02021740"
+
+[[entry_point]]
+addr = 0x02021744
+size = 0x28
+mode = "arm"
+name = "resume_02021744"
+
+[[entry_point]]
+addr = 0x02021748
+size = 0x24
+mode = "arm"
+name = "resume_02021748"
+
+[[entry_point]]
+addr = 0x0202174c
+size = 0x20
+mode = "arm"
+name = "resume_0202174c"
+
+[[entry_point]]
+addr = 0x02021750
+size = 0x1c
+mode = "arm"
+name = "resume_02021750"
+
+[[entry_point]]
+addr = 0x02021754
+size = 0x18
+mode = "arm"
+name = "resume_02021754"
 
 [[entry_point]]
 addr = 0x0202176c
@@ -6941,6 +11597,54 @@ mode = "arm"
 name = "func_02021a48"
 
 [[entry_point]]
+addr = 0x02021a54
+size = 0x34
+mode = "arm"
+name = "resume_02021a54"
+
+[[entry_point]]
+addr = 0x02021a58
+size = 0x30
+mode = "arm"
+name = "resume_02021a58"
+
+[[entry_point]]
+addr = 0x02021a5c
+size = 0x2c
+mode = "arm"
+name = "resume_02021a5c"
+
+[[entry_point]]
+addr = 0x02021a60
+size = 0x28
+mode = "arm"
+name = "resume_02021a60"
+
+[[entry_point]]
+addr = 0x02021a64
+size = 0x24
+mode = "arm"
+name = "resume_02021a64"
+
+[[entry_point]]
+addr = 0x02021a68
+size = 0x20
+mode = "arm"
+name = "resume_02021a68"
+
+[[entry_point]]
+addr = 0x02021a6c
+size = 0x1c
+mode = "arm"
+name = "resume_02021a6c"
+
+[[entry_point]]
+addr = 0x02021a70
+size = 0x18
+mode = "arm"
+name = "resume_02021a70"
+
+[[entry_point]]
 addr = 0x02021a88
 size = 0x60
 mode = "arm"
@@ -6951,6 +11655,144 @@ addr = 0x02021ae8
 size = 0xc4
 mode = "arm"
 name = "func_02021ae8"
+
+[[entry_point]]
+addr = 0x02021b10
+size = 0x9c
+mode = "arm"
+name = "resume_02021b10"
+
+[[entry_point]]
+addr = 0x02021b14
+size = 0x98
+mode = "arm"
+name = "resume_02021b14"
+
+[[entry_point]]
+addr = 0x02021b18
+size = 0x94
+mode = "arm"
+name = "resume_02021b18"
+
+[[entry_point]]
+addr = 0x02021b1c
+size = 0x90
+mode = "arm"
+name = "resume_02021b1c"
+
+[[entry_point]]
+addr = 0x02021b20
+size = 0x8c
+mode = "arm"
+name = "resume_02021b20"
+
+[[entry_point]]
+addr = 0x02021b24
+size = 0x88
+mode = "arm"
+name = "resume_02021b24"
+
+[[entry_point]]
+addr = 0x02021b28
+size = 0x84
+mode = "arm"
+name = "resume_02021b28"
+
+[[entry_point]]
+addr = 0x02021b2c
+size = 0x80
+mode = "arm"
+name = "resume_02021b2c"
+
+[[entry_point]]
+addr = 0x02021b30
+size = 0x7c
+mode = "arm"
+name = "resume_02021b30"
+
+[[entry_point]]
+addr = 0x02021b34
+size = 0x78
+mode = "arm"
+name = "resume_02021b34"
+
+[[entry_point]]
+addr = 0x02021b60
+size = 0x4c
+mode = "arm"
+name = "resume_02021b60"
+
+[[entry_point]]
+addr = 0x02021b64
+size = 0x48
+mode = "arm"
+name = "resume_02021b64"
+
+[[entry_point]]
+addr = 0x02021b68
+size = 0x44
+mode = "arm"
+name = "resume_02021b68"
+
+[[entry_point]]
+addr = 0x02021b6c
+size = 0x40
+mode = "arm"
+name = "resume_02021b6c"
+
+[[entry_point]]
+addr = 0x02021b70
+size = 0x3c
+mode = "arm"
+name = "resume_02021b70"
+
+[[entry_point]]
+addr = 0x02021b74
+size = 0x38
+mode = "arm"
+name = "resume_02021b74"
+
+[[entry_point]]
+addr = 0x02021b78
+size = 0x34
+mode = "arm"
+name = "resume_02021b78"
+
+[[entry_point]]
+addr = 0x02021b8c
+size = 0x20
+mode = "arm"
+name = "resume_02021b8c"
+
+[[entry_point]]
+addr = 0x02021b90
+size = 0x1c
+mode = "arm"
+name = "resume_02021b90"
+
+[[entry_point]]
+addr = 0x02021b94
+size = 0x18
+mode = "arm"
+name = "resume_02021b94"
+
+[[entry_point]]
+addr = 0x02021b98
+size = 0x14
+mode = "arm"
+name = "resume_02021b98"
+
+[[entry_point]]
+addr = 0x02021b9c
+size = 0x10
+mode = "arm"
+name = "resume_02021b9c"
+
+[[entry_point]]
+addr = 0x02021ba4
+size = 0x8
+mode = "arm"
+name = "resume_02021ba4"
 
 [[entry_point]]
 addr = 0x02021bac
@@ -7205,6 +12047,276 @@ mode = "arm"
 name = "func_02022890"
 
 [[entry_point]]
+addr = 0x020228ec
+size = 0x118
+mode = "arm"
+name = "resume_020228ec"
+
+[[entry_point]]
+addr = 0x020228f0
+size = 0x114
+mode = "arm"
+name = "resume_020228f0"
+
+[[entry_point]]
+addr = 0x020228f4
+size = 0x110
+mode = "arm"
+name = "resume_020228f4"
+
+[[entry_point]]
+addr = 0x020228f8
+size = 0x10c
+mode = "arm"
+name = "resume_020228f8"
+
+[[entry_point]]
+addr = 0x020228fc
+size = 0x108
+mode = "arm"
+name = "resume_020228fc"
+
+[[entry_point]]
+addr = 0x02022900
+size = 0x104
+mode = "arm"
+name = "resume_02022900"
+
+[[entry_point]]
+addr = 0x02022904
+size = 0x100
+mode = "arm"
+name = "resume_02022904"
+
+[[entry_point]]
+addr = 0x02022908
+size = 0xfc
+mode = "arm"
+name = "resume_02022908"
+
+[[entry_point]]
+addr = 0x0202290c
+size = 0xf8
+mode = "arm"
+name = "resume_0202290c"
+
+[[entry_point]]
+addr = 0x02022910
+size = 0xf4
+mode = "arm"
+name = "resume_02022910"
+
+[[entry_point]]
+addr = 0x02022914
+size = 0xf0
+mode = "arm"
+name = "resume_02022914"
+
+[[entry_point]]
+addr = 0x02022918
+size = 0xec
+mode = "arm"
+name = "resume_02022918"
+
+[[entry_point]]
+addr = 0x0202291c
+size = 0xe8
+mode = "arm"
+name = "resume_0202291c"
+
+[[entry_point]]
+addr = 0x02022920
+size = 0xe4
+mode = "arm"
+name = "resume_02022920"
+
+[[entry_point]]
+addr = 0x02022924
+size = 0xe0
+mode = "arm"
+name = "resume_02022924"
+
+[[entry_point]]
+addr = 0x02022928
+size = 0xdc
+mode = "arm"
+name = "resume_02022928"
+
+[[entry_point]]
+addr = 0x0202292c
+size = 0xd8
+mode = "arm"
+name = "resume_0202292c"
+
+[[entry_point]]
+addr = 0x02022930
+size = 0xd4
+mode = "arm"
+name = "resume_02022930"
+
+[[entry_point]]
+addr = 0x02022934
+size = 0xd0
+mode = "arm"
+name = "resume_02022934"
+
+[[entry_point]]
+addr = 0x02022938
+size = 0xcc
+mode = "arm"
+name = "resume_02022938"
+
+[[entry_point]]
+addr = 0x0202293c
+size = 0xc8
+mode = "arm"
+name = "resume_0202293c"
+
+[[entry_point]]
+addr = 0x02022940
+size = 0xc4
+mode = "arm"
+name = "resume_02022940"
+
+[[entry_point]]
+addr = 0x02022944
+size = 0xc0
+mode = "arm"
+name = "resume_02022944"
+
+[[entry_point]]
+addr = 0x02022948
+size = 0xbc
+mode = "arm"
+name = "resume_02022948"
+
+[[entry_point]]
+addr = 0x0202294c
+size = 0xb8
+mode = "arm"
+name = "resume_0202294c"
+
+[[entry_point]]
+addr = 0x02022950
+size = 0xb4
+mode = "arm"
+name = "resume_02022950"
+
+[[entry_point]]
+addr = 0x02022954
+size = 0xb0
+mode = "arm"
+name = "resume_02022954"
+
+[[entry_point]]
+addr = 0x02022958
+size = 0xac
+mode = "arm"
+name = "resume_02022958"
+
+[[entry_point]]
+addr = 0x0202295c
+size = 0xa8
+mode = "arm"
+name = "resume_0202295c"
+
+[[entry_point]]
+addr = 0x02022960
+size = 0xa4
+mode = "arm"
+name = "resume_02022960"
+
+[[entry_point]]
+addr = 0x02022964
+size = 0xa0
+mode = "arm"
+name = "resume_02022964"
+
+[[entry_point]]
+addr = 0x02022980
+size = 0x84
+mode = "arm"
+name = "resume_02022980"
+
+[[entry_point]]
+addr = 0x02022984
+size = 0x80
+mode = "arm"
+name = "resume_02022984"
+
+[[entry_point]]
+addr = 0x02022988
+size = 0x7c
+mode = "arm"
+name = "resume_02022988"
+
+[[entry_point]]
+addr = 0x0202298c
+size = 0x78
+mode = "arm"
+name = "resume_0202298c"
+
+[[entry_point]]
+addr = 0x02022990
+size = 0x74
+mode = "arm"
+name = "resume_02022990"
+
+[[entry_point]]
+addr = 0x02022994
+size = 0x70
+mode = "arm"
+name = "resume_02022994"
+
+[[entry_point]]
+addr = 0x02022998
+size = 0x6c
+mode = "arm"
+name = "resume_02022998"
+
+[[entry_point]]
+addr = 0x0202299c
+size = 0x68
+mode = "arm"
+name = "resume_0202299c"
+
+[[entry_point]]
+addr = 0x020229a0
+size = 0x64
+mode = "arm"
+name = "resume_020229a0"
+
+[[entry_point]]
+addr = 0x020229b0
+size = 0x54
+mode = "arm"
+name = "resume_020229b0"
+
+[[entry_point]]
+addr = 0x020229b4
+size = 0x50
+mode = "arm"
+name = "resume_020229b4"
+
+[[entry_point]]
+addr = 0x020229b8
+size = 0x4c
+mode = "arm"
+name = "resume_020229b8"
+
+[[entry_point]]
+addr = 0x020229bc
+size = 0x48
+mode = "arm"
+name = "resume_020229bc"
+
+[[entry_point]]
+addr = 0x020229c0
+size = 0x44
+mode = "arm"
+name = "resume_020229c0"
+
+[[entry_point]]
 addr = 0x02022a04
 size = 0x2c
 mode = "arm"
@@ -7269,6 +12381,60 @@ addr = 0x02022be4
 size = 0x58
 mode = "arm"
 name = "func_02022be4"
+
+[[entry_point]]
+addr = 0x02022c00
+size = 0x3c
+mode = "arm"
+name = "resume_02022c00"
+
+[[entry_point]]
+addr = 0x02022c04
+size = 0x38
+mode = "arm"
+name = "resume_02022c04"
+
+[[entry_point]]
+addr = 0x02022c08
+size = 0x34
+mode = "arm"
+name = "resume_02022c08"
+
+[[entry_point]]
+addr = 0x02022c0c
+size = 0x30
+mode = "arm"
+name = "resume_02022c0c"
+
+[[entry_point]]
+addr = 0x02022c10
+size = 0x2c
+mode = "arm"
+name = "resume_02022c10"
+
+[[entry_point]]
+addr = 0x02022c14
+size = 0x28
+mode = "arm"
+name = "resume_02022c14"
+
+[[entry_point]]
+addr = 0x02022c18
+size = 0x24
+mode = "arm"
+name = "resume_02022c18"
+
+[[entry_point]]
+addr = 0x02022c1c
+size = 0x20
+mode = "arm"
+name = "resume_02022c1c"
+
+[[entry_point]]
+addr = 0x02022c20
+size = 0x1c
+mode = "arm"
+name = "resume_02022c20"
 
 [[entry_point]]
 addr = 0x02022c3c

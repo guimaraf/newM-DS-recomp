@@ -2216,4 +2216,3 @@ mode = "arm"
 cpu  = "arm9"
 kind = "runtime_observed"
 # hits = 1, seen as call
-

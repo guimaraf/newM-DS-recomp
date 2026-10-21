@@ -1,8 +1,10 @@
 """Autoload extraction regression tests; run with Python + ndspy, no build."""
 import struct
 import unittest
+from pathlib import Path
+from unittest.mock import patch
 
-from prepare_nsmb import extract_arm9_runtime
+from prepare_nsmb import extract_arm9_runtime, merge_bounded_interiors
 
 
 class AutoloadExtractionTest(unittest.TestCase):
@@ -60,6 +62,40 @@ class AutoloadExtractionTest(unittest.TestCase):
         struct.pack_into('<I', self.image, 128, 0x02001000)
         with self.assertRaises(ValueError):
             extract_arm9_runtime(bytes(self.image), self.base)
+
+
+class BoundedInteriorsTest(unittest.TestCase):
+    def merge(self, *, addr=0x02001018, size=8, owner=0x02001000, mode='arm'):
+        functions = [dict(addr=0x02001000, size=0x20, mode='arm', name='parent')]
+        text = f'[[entry_point]]\naddr={addr}\nsize={size}\nowner={owner}\nmode="{mode}"\n'
+        with patch.object(Path, 'is_file', return_value=True), patch.object(Path, 'read_text', return_value=text):
+            return merge_bounded_interiors(functions, Path('seeds.toml'))
+
+    def test_keeps_parent_and_exact_continuation(self):
+        rows = self.merge()
+        self.assertEqual(len(rows), 2)
+        self.assertEqual(rows[0]['size'], 0x20)
+        self.assertEqual(rows[1]['addr'] + rows[1]['size'], 0x02001020)
+
+    def test_rejects_unbounded_or_cross_function_seed(self):
+        for size in (0, 4, 12):
+            with self.subTest(size=size), self.assertRaises(ValueError):
+                self.merge(size=size)
+
+    def test_rejects_pre_autoload_region_without_owner(self):
+        with self.assertRaises(ValueError):
+            self.merge(addr=0x0207E528, size=8, owner=0x02043380)
+
+    def test_rejects_wrong_mode_and_alignment(self):
+        with self.assertRaises(ValueError):
+            self.merge(mode='thumb')
+        with self.assertRaises(ValueError):
+            self.merge(addr=0x02001019, size=7)
+
+    def test_rejects_parent_entry_or_end(self):
+        for addr, size in ((0x02001000, 0x20), (0x02001020, 4)):
+            with self.subTest(addr=addr), self.assertRaises(ValueError):
+                self.merge(addr=addr, size=size)
 
 
 if __name__ == '__main__':

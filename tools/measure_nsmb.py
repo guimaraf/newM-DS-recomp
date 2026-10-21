@@ -21,7 +21,7 @@ def digest(path, algorithm):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     root = Path(__file__).resolve().parents[1]
-    parser.add_argument('--runner', type=Path, default=root / 'dist-playable/nds_runner.exe')
+    parser.add_argument('--runner', type=Path, default=root / 'dist-playable/New Super Mario Bros DS Decomp Runner.exe')
     parser.add_argument('--rom', type=Path, default=root / 'dist-playable/New Super Mario Bros. (USA).nds')
     parser.add_argument('--route', type=Path)
     parser.add_argument('--out', type=Path, required=True)

@@ -49,6 +49,16 @@ set(NDS_TITLE_BANK_DIR "" CACHE PATH
     "Optional ignored directory containing generated title banks")
 set(NDS_TITLE_ROM_SHA1 "" CACHE STRING
     "Exact lowercase ROM SHA-1 allowed to register NDS_TITLE_BANK_DIR")
+set(_nds_application_name "")
+set(_nds_runner_output_name "nds_runner")
+if(NDS_TITLE_ROM_SHA1 STREQUAL "a22713711b5cd58dfbafc9688dadea66c59888ce")
+    set(_nds_application_name "New Super Mario Bros DS Decomp")
+    set(_nds_runner_output_name "New Super Mario Bros DS Decomp Runner")
+endif()
+set(NDS_APPLICATION_NAME "${_nds_application_name}" CACHE STRING
+    "Optional exact title for game windows")
+set(NDS_RUNNER_OUTPUT_NAME "${_nds_runner_output_name}" CACHE STRING
+    "Runner executable basename")
 # Multi-title form: parallel lists, one bank directory per exact ROM SHA-1.
 # One runner binary can then serve several cartridges (e.g. a two-in-one
 # repository like Pokemon Black/White), registering only the bank group whose
@@ -390,6 +400,10 @@ add_executable(nds_runner
     vendor/melonds/net/PacketDispatcher.cpp
     vendor/melonds/net/Net_Slirp.cpp)
 set_target_properties(nds_runner PROPERTIES ENABLE_EXPORTS ON)
+set_target_properties(nds_runner PROPERTIES OUTPUT_NAME "${NDS_RUNNER_OUTPUT_NAME}")
+target_compile_definitions(nds_runner PRIVATE
+    NDS_APPLICATION_NAME="${NDS_APPLICATION_NAME}"
+    NDS_RUNNER_FILENAME="$<TARGET_FILE_NAME:nds_runner>")
 ndsrecomp_limit_link(nds_runner)
 if(NOT NDS_PGO_MODE STREQUAL "OFF")
     if(MSVC)

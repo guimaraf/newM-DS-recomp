@@ -2,9 +2,11 @@
 
 ## Estado da correção
 
-Foi preparado um banco ARM9 para o bloco de código instalado pelo autoload.
-Nenhum build foi executado nesta investigação. O runner medido ainda é o
-binário anterior à alteração; não existe comparação antes/depois da correção.
+O documento preserva o histórico da investigação. As seções iniciais descrevem
+a análise anterior à primeira build; as atualizações abaixo registram as
+compilações autorizadas, as entregas e as comparações posteriores. O resultado
+mais recente do mapa estabilizado foi 52,78 → 56,08 FPS, ainda abaixo da
+cadência nativa. Os detalhes e limites dessa comparação estão na seção final.
 
 O manifesto ARM9 principal continua com `authoritative_entry_points=true`.
 O novo banco usa `--validate-live-bytes`, assim como os bancos principais.
@@ -120,7 +122,7 @@ outras máquinas. Não foi feita avaliação humana da qualidade do som.
 - Sintaxe dos scripts Python e `git diff --check` conferidos.
 - Nenhum banco C foi gerado/compilado e nenhum executável foi substituído.
 
-## Build e comparação pendentes do usuário
+## Build e comparação pendentes na investigação inicial
 
 Na raiz do projeto, com os caches atuais, executar localmente:
 
@@ -177,3 +179,154 @@ Evidências em `build-runner/performance-checks/new-build-smoke/`, incluindo
 Esse teste de abertura inclui boot e aquecimento. Não substitui comparação
 A/B nem demonstra estabilidade em fases; os testes de gameplay serão
 realizados pelo usuário.
+
+## Correções de cobertura do mapa — 20/10/2026
+
+Após o usuário validar gameplay, castelo e saves e autorizar novas correções
+e build, foram preparados dois ajustes restritos ao título:
+
+- `config/seeds/arm9_main_interiors.toml` declara 861 retomadas ARM observadas
+  dentro de funções já delimitadas em `config/symbols.txt`. Cada registro
+  contém endereço, tamanho e proprietário. `prepare_nsmb.py` exige mesmo
+  modo, alinhamento e limite final idêntico ao do proprietário. Entradas
+  sem proprietário, com tamanho zero ou fora dos limites são rejeitadas.
+  O ARM9 principal continua authoritative; não recebe os antigos seeds
+  sem tamanho da imagem anterior ao autoload.
+- `config/seeds/arm9_arm9_overlay_009_020cc2e0.toml` declara 1.196 alvos
+  observados na rota, conferidos contra páginas capturadas correspondentes
+  ao overlay 009. Inclui chamadas/indiretos e retomadas omitidas na primeira
+  geração do banco. O pipeline agora emite e registra `nsmb_arm9_ov009`.
+
+Os bancos principal e overlay 009 mantêm `--validate-live-bytes`. Todas as
+22.149 linhas de dispatch ARM9 principal e 14.136 do overlay 009 têm
+descritor de validação. Os 861 pontos adicionais aparecem no dispatch.
+Nenhum código do runtime, scheduler, áudio ou renderizador foi alterado.
+
+O caso que motivou a mudança era `0x0200EAF8`, dentro da função declarada
+`0x0200EACC..0x0200EB00`: o C gerado desviava para esse endereço, mas não
+o emitia após o primeiro retorno. Agora esse trecho tem uma entrada
+delimitada, sem permitir descoberta recursiva fora da função.
+
+### Comparação no mapa
+
+Mesma rota, ROM, resolução e layout separado. Os artefatos antes da mudança
+estão em `build-runner/performance-checks/map-investigation/separate-baseline`;
+os posteriores, em `build-runner/performance-checks/map-fix/`.
+
+| Janela | Antes FPS | Final FPS | Antes emulação ms/q | Final emulação ms/q |
+| --- | ---: | ---: | ---: | ---: |
+| Mapa estabilizado | 52,78 | 56,08 | 17,48 | 16,28 |
+| Nó à direita ocioso | 51,89 | 56,65 | — | — |
+| Nó à esquerda ocioso | 54,33 | 56,46 | — | — |
+| Introdução e chegada ao mapa, janela mista | 51,47 | 53,60 | 17,40 | 16,42 |
+
+Na janela estabilizada, a interpretação ARM9 caiu de ~22.216 para ~5.548
+instruções/quadro. Só a mudança de retomadas internas já havia medido
+55,78 FPS e 16,35 ms de emulação/quadro. A inclusão do overlay 009 não
+mostrou ganho isolado relevante: uma primeira versão mediu 55,69 FPS e
+a versão completada, 56,08. Essa diferença não demonstra ganho próprio
+do overlay e não deve ser apresentada como tal.
+
+O mapa ainda ficou abaixo da cadência nativa nesses testes. As médias dos
+primeiros quadros do menu permaneceram próximas às anteriores; incluem
+startup e espera de áudio. A janela de introdução não isola o quadro do
+raio atingindo o castelo. Não foi demonstrada a eliminação de cada engasgo
+nesses momentos nem foram medidos percentis por quadro.
+
+As sessões foram sequenciais, com diagnósticos e snapshots entre janelas;
+não são um A/B intercalado com host certificado como ocioso. As durações
+de input têm overshoot, registrado nos artefatos. As capturas confirmam o
+mesmo mapa e não mostram regressão visual aparente, mas não constituem
+comparação bit a bit. A melhora precisa ser confirmada no teste do usuário.
+
+### Build e validação
+
+As builds intermediária e final concluíram. Os 12 testes Python passaram,
+incluindo rejeição de retomadas fora da função e da região inicial do
+autoload. Os testes existentes de boot direto e busca de dispatch passaram.
+O teste final do mapa encerrou normalmente após 5.936 quadros, sem
+dispatch-miss, falha terminal, erro de fila ou apresentação sintética.
+Registrou 1.984 callbacks de underrun e pico de emulação de 26,0 ms;
+underruns ainda não estão eliminados.
+
+O runner anterior foi preservado em
+`build-runner/performance-checks/map-fix/previous-runner.exe`; a versão
+intermediária, em `interiors-only-runner.exe`. Comparação numérica em
+`map-fix/comparison.json` e captura lado a lado em `map-before-after.png`.
+O pipeline também regenera os manifests TOML em `generated/inputs/`.
+
+A verificação final de gameplay completou 5.171 quadros e encerrou normalmente.
+As capturas confirmam fase 1-1, movimento, duas mortes e reinício; as janelas
+correndo (128 quadros) e pulando (96 quadros) mediram 59,83 FPS. São janelas
+curtas, não uma certificação de todas as fases. O comando de pausa dessa rota
+coincidiu com a transição de morte e não foi considerado uma validação de pausa.
+
+Uma execução adicional com o mapa parado confirmou visualmente a abertura
+do menu de pausa e a retomada; evidência em `map-fix/final-pause/pause-resume.png`.
+As três execuções finais encerraram normalmente, sem dispatch-miss ou falha
+terminal. Esses testes usaram `--no-save`; os saves pessoais não foram testados
+nem modificados nesta etapa.
+
+Runner entregue em `build-runner/nds_runner.exe`, `build-launcher/nds_runner.exe`
+e `dist-playable/nds_runner.exe`, com SHA-256 idêntico:
+`ee7507d2d550bcfbe189b138dbd03f92b6373046a8bc2bc23943490dd5abdbcf`.
+Os hashes da ROM, dos saves e das configurações pessoais permaneceram iguais
+antes/depois. O manifesto da entrega está em `map-fix/final-build.json`.
+O launcher não precisou de recompilação; seu target estava atualizado.
+
+### Segunda investigação: animações e movimentação no mapa (20/10/2026)
+
+Com o runner acima, o mapa no save com progresso mediu 55,27 FPS parado
+(16,48 ms de emulação/quadro) e 53,03 FPS no agregado dos deslocamentos
+(17,18 ms). A interpretação ARM9 ficou praticamente igual: 5.718 e 5.686
+instruções/quadro. Na introdução, a janela central com Bowser Jr. e Peach
+no mapa mediu 49,94 FPS; o trecho final, 51,27 FPS. As capturas não isolam
+o quadro do raio. Dados e limitações estão em
+`build-runner/performance-checks/animation-investigation/analise-animacoes.md`.
+
+A amostragem da thread principal encontrou custo disperso no código
+recompilado, no dispatch/validação e nos helpers de instrução. O grupo de
+dispatch/validação/retorno representou 19,7% das amostras dentro do módulo
+no mapa parado e 23,8% em deslocamento. São amostras de RIP, sem pilhas;
+helpers compartilhados não permitem atribuir todo o custo à interpretação
+ou a uma rotina de animação específica. Também houve aumento de custo de
+renderização/sincronização na introdução, ainda sem separar execução da GPU
+e espera. Essas medições não sustentam promover mais instruções como única
+solução para a queda ao movimentar o personagem.
+
+### Alteração nos fontes: agrupamento de fallthroughs validados
+
+O emissor passa a solicitar `--coalesce-fallthroughs` apenas nos bancos
+`nsmb_arm9_itcm` e `nsmb_arm9_runtime`. O mecanismo já existente no framework
+agrupa trechos consecutivos de mesmo modo e origem, dentro de uma página de
+4 KiB, evitando retornos intermediários ao dispatcher. Mantém a validação
+dos bytes vivos e os pontos de retomada; chamadas diretas otimizadas não
+foram ativadas nesta alteração.
+
+A emissão agora segue a ordenação dos nomes completos `*_dispatch.c` usada
+pelo registro de bancos do runner. Antes de agrupar um banco, passa ao
+recompilador os dispatches anteriores do título e os dispatches de BIOS e
+firmware. Também considera arquivos extras anteriores existentes na pasta
+do título. Uma entrada encontrada nesses bancos impede agrupamento através
+dela, preservando sua prioridade. Arquivos esperados ausentes interrompem
+a emissão. A inclusão conservadora dos dois CPUs e das duas variantes de
+BIOS pode limitar o agrupamento, mas não remove essa proteção.
+
+`NSMB_COALESCE_FALLTHROUGHS` fica `ON` por padrão no CMake. Para comparação,
+configurar `-DNSMB_COALESCE_FALLTHROUGHS=OFF`; no script, usar
+`--no-coalesce-fallthroughs`. Mudanças nessa opção ou nos dispatches do
+framework invalidam o stamp de emissão. Caso o runner use um
+`NDS_GENERATED_DIR` personalizado, configurar `NSMB_PRECEDING_DISPATCH_DIR`
+para a mesma pasta; o padrão é `${NDSRECOMP_ROOT}/generated`.
+
+Nesta etapa, passaram os 22 testes Python: 12 de preparação e 10 novos de
+ordenação, prioridade, arquivos ausentes, validação obrigatória, escopo,
+modo de controle, emissão inicial simulada e interrupção em falha. Os testes
+novos usam um subprocesso simulado, sem executar o recompilador. O diretório
+temporário precisou ser direcionado para dentro do projeto por restrição
+de acesso do ambiente Windows.
+
+Não houve build, geração dos bancos C, troca do executável nem nova medição
+de FPS nesta etapa. A compilação, a contagem efetiva de fallthroughs
+agrupados e a validação visual/de desempenho da mudança ficam pendentes da
+próxima build local. Não há ganho de FPS demonstrado para esta alteração.

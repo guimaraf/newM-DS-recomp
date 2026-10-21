@@ -3,6 +3,7 @@
 *.sav
 *.dsv
 dist-playable/
+dist-release/
 /roms/
 
 # Artefatos de build locais

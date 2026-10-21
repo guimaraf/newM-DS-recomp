@@ -50,6 +50,10 @@ NdsFrontendLiveStats g_live_stats{};
 NdsFrontendBlackBandCapture g_black_band{};
 NdsFrontendInputDebugState g_input_debug{};
 
+const char* window_title(const char* fallback) {
+    return NDS_APPLICATION_NAME[0] ? NDS_APPLICATION_NAME : fallback;
+}
+
 void observe_top_black_bands(const uint32_t* pixels, uint64_t frame) {
     if (!g_black_band.enabled || !pixels) return;
     ++g_black_band.scanned_frames;
@@ -1327,8 +1331,8 @@ bool create_presentation(const NdsFrontendOptions& options,
         (presentation.gl_top
              ? static_cast<uint64_t>(SDL_WINDOW_OPENGL) : 0u);
     presentation.windows[0] = create_window(
-        presentation.separate ? "ndsrecomp - Top Screen"
-                               : "ndsrecomp firmware preview",
+        window_title(presentation.separate ? "ndsrecomp - Top Screen"
+                                           : "ndsrecomp firmware preview"),
         SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
         (presentation.separate ? presentation.screen_widths[0]
                                : presentation.canvas_width) * kWindowScale,
@@ -1352,7 +1356,7 @@ bool create_presentation(const NdsFrontendOptions& options,
         int top_y = 0;
         SDL_GetWindowPosition(presentation.windows[0], &top_x, &top_y);
         presentation.windows[1] = create_window(
-            "ndsrecomp - Bottom Screen",
+            window_title("ndsrecomp - Bottom Screen"),
             top_x + presentation.screen_widths[0] * kWindowScale + 32,
             top_y,
             presentation.screen_widths[1] * kWindowScale,
@@ -2993,12 +2997,12 @@ int nds_run_interactive_frontend(const NdsFrontendOptions& options) {
                 ? "ndsrecomp - Top Screen - " + fps_text
                 : "ndsrecomp firmware preview - " + fps_text;
             SDL_SetWindowTitle(presentation.windows[0],
-                               top_title.c_str());
+                               window_title(top_title.c_str()));
             if (presentation.separate) {
                 const std::string bottom_title =
                     "ndsrecomp - Bottom Screen - " + fps_text;
                 SDL_SetWindowTitle(presentation.windows[1],
-                                   bottom_title.c_str());
+                                   window_title(bottom_title.c_str()));
             }
             fps_frames = 0;
             fps_start = counter;

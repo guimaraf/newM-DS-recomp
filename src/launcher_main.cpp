@@ -157,7 +157,7 @@ bool launch_runner(const fs::path& game_dir, const std::string& rom_path,
                    int display_layout, bool adaptive,
                    int supersampling, int antialiasing, int renderer,
                    bool mod_lock_60fps) {
-    const fs::path runner = game_dir / "nds_runner.exe";
+    const fs::path runner = game_dir / "New Super Mario Bros DS Decomp Runner.exe";
     const fs::path config = game_dir / "game.toml";
     const fs::path bios = game_dir / "bios";
     const fs::path save_dir = game_dir / "saves";
@@ -165,9 +165,9 @@ bool launch_runner(const fs::path& game_dir, const std::string& rom_path,
 
     if (!fs::is_regular_file(runner) || !fs::is_regular_file(config)) {
         MessageBoxW(nullptr,
-            L"The release is incomplete: nds_runner.exe or game.toml is "
+            L"The release is incomplete: New Super Mario Bros DS Decomp Runner.exe or game.toml is "
             L"missing in this directory.",
-            L"New Super Mario Bros. DS Recomp", MB_OK | MB_ICONERROR);
+            L"New Super Mario Bros DS Decomp", MB_OK | MB_ICONERROR);
         return false;
     }
 
@@ -281,7 +281,7 @@ int main(int argc, char** argv) {
 
     RecompLauncherCGameInfo game{};
     launcher_profile_apply("nds", &game);
-    game.name = "New Super Mario Bros.";
+    game.name = "New Super Mario Bros DS Decomp";
     game.region = "USA";
     game.known_sha1_hex = sha1;
     game.num_known_sha1 = std::size(sha1);
@@ -298,7 +298,7 @@ int main(int argc, char** argv) {
     const fs::path default_rom = exe_dir / "New Super Mario Bros. (USA).nds";
     char selected_rom[1024]{};
     const int result = recomp_launcher_run_window(
-        "New Super Mario Bros. - Launcher", &settings, &game,
+        "New Super Mario Bros DS Decomp", &settings, &game,
         exe_dir.string().c_str(), default_rom.string().c_str(),
         selected_rom, sizeof(selected_rom));
     if (result == 1) return 0;

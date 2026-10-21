@@ -339,7 +339,7 @@ std::string bundled_tcc_command(const std::filesystem::path& exe_dir) {
     const auto recompiler = tk / "nds_recompile.exe";
     const auto tcc = tk / "tcc" / "tcc.exe";
     const auto include = tk / "include";
-    const auto runner = exe_dir / "nds_runner.exe";
+    const auto runner = exe_dir / NDS_RUNNER_FILENAME;
     for (const auto& required : {python, script, recompiler, tcc, runner}) {
         if (!std::filesystem::is_regular_file(required, ec)) return {};
     }
