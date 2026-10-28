@@ -1,0 +1,32 @@
+{
+  "$schema": "https://recomp.fyi/schema/v1.json",
+  "game": "New Super Mario Bros.",
+  "wikidata": "Q301555",
+  "system": "NDS",
+  "type": "recomp",
+  "project": "New Super Mario Bros. DS Recomp",
+  "status": "released",
+  "targets": [
+    "Windows"
+  ],
+  "toolchain": "ndsrecomp",
+  "original": {
+    "region": "USA",
+    "revision": "0",
+    "serial": "NTR-A2DE-USA",
+    "sha1": "a22713711b5cd58dfbafc9688dadea66c59888ce"
+  },
+  "maintainers": [
+    {
+      "name": "guimaraf",
+      "link": "https://github.com/guimaraf"
+    }
+  ],
+  "links": [
+    {
+      "label": "GitHub",
+      "url": "https://github.com/guimaraf/newM-DS-recomp"
+    }
+  ],
+  "notes": "Native static recompilation port of New Super Mario Bros. (USA) for Nintendo DS powered by the ndsrecomp framework."
+}
